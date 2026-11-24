@@ -105,3 +105,22 @@ PRODUCTS = [
     dict(key="cap", name="Phoenix Cap", note="Black, embroidered gold phoenix. Nothing else."),
     dict(key="journal", name="Rebuild Journal", note="A black notebook made to sit beside the Rebuild Playbook."),
 ]
+
+# ---- Community ---- DRAFT, Sir K to approve
+SESSION_TOPICS = [
+    ("career", "Job search, CVs and interviews"),
+    ("change", "Changing career, including at 40+"),
+    ("money", "Debt and money basics"),
+    ("business", "Starting a business again"),
+    ("legal", "Legal basics after a layoff or divorce"),
+    ("health", "Living and working through recovery"),
+    ("wellbeing", "Stress, sleep and staying well"),
+    ("grief", "Grief and loss"),
+    ("skills", "Learning a new skill fast"),
+]
+VOLUNTEER_FORMATS = [
+    ("session", "Lead a free group session (45 min talk and Q&A)"),
+    ("circle", "Facilitate a Rebuild Circle (6 weekly calls, training provided)"),
+    ("written", "Answer reader questions in writing for the Comeback File"),
+    ("office", "One-to-one office hours (later, by invitation only)"),
+]

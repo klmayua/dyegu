@@ -3,7 +3,7 @@
 Run from the repo root:  python3 tools/build.py   (then commit and push; Vercel deploys)."""
 import json, html, os, sys
 sys.path.insert(0, os.path.dirname(__file__))
-from content import SITE, YOUTUBE, SUPPORT_URL, STORIES, STAGES, PRODUCTS
+from content import SITE, YOUTUBE, SUPPORT_URL, STORIES, STAGES, PRODUCTS, SESSION_TOPICS, VOLUNTEER_FORMATS
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SOURCES = json.load(open(os.path.join(ROOT, "content", "sources.json")))
@@ -13,8 +13,8 @@ e = html.escape
 FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
          '<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">')
 
-NAV = [("/#start", "Find your story"), ("/stories", "Stories"), ("/playbook", "Playbook"),
-       ("/shop", "Shop"), ("/speaking", "Speaking"), ("/about", "About")]
+NAV = [("/#start", "Find your story"), ("/stories", "Stories"), ("/community", "Community"),
+       ("/playbook", "Playbook"), ("/shop", "Shop"), ("/speaking", "Speaking")]
 
 
 def layout(path, title, desc, body, join_band=True, noindex=False):
@@ -62,6 +62,7 @@ def layout(path, title, desc, body, join_band=True, noindex=False):
     <div><img src="/assets/dyegu-lockup.webp" alt="DYEGU — Don't You Ever Give Up" width="1400" height="424" class="footer-lockup" loading="lazy"></div>
     <div class="footer-cols">
       <div><p class="eyebrow">Find your story</p>{''.join(f'<a href="/start/{s["key"]}">{e(s["short"])}</a>' for s in STAGES)}</div>
+      <div><p class="eyebrow">Community</p><a href="/community/circles">Rebuild Circles</a><a href="/community/sessions">Free expert sessions</a><a href="/volunteer">Volunteer as an expert</a><a href="/community/guidelines">Safety &amp; guidelines</a></div>
       <div><p class="eyebrow">DYEGU</p><a href="/stories">Stories</a><a href="/playbook">Rebuild Playbook</a><a href="/shop">Shop</a><a href="/share">Share your rebuild</a><a href="/about">About Sir K</a></div>
       <div><p class="eyebrow">Work with us</p><a href="/speaking">Talks &amp; workshops</a><a href="/studio">Sponsors &amp; partners</a><a href="/privacy">Privacy</a></div>
       <div><p class="eyebrow">Follow</p><div class="follow-links" data-follow></div></div>
@@ -231,6 +232,17 @@ def page_home():
 </section>
 
 <section class="section">
+  <div class="wrap">
+    <div class="section-head"><div><p class="eyebrow">DYEGU Community · free</p><h2 class="h2">Nobody rebuilds alone.</h2></div><a class="link-gold" href="/community">How the community works →</a></div>
+    <div class="doors">
+      <a class="door" href="/community/circles"><p class="eyebrow">Peer support</p><h3 class="h3">Rebuild Circles</h3><p>Six weeks with six to eight people at your stage, hosted by a trained volunteer.</p><span class="link-gold">Join a circle →</span></a>
+      <a class="door" href="/community/sessions"><p class="eyebrow">Expert help</p><h3 class="h3">Free expert sessions</h3><p>Recruiters, accountants, lawyers and founders giving practical guidance, free.</p><span class="link-gold">Request a session →</span></a>
+      <a class="door" href="/volunteer"><p class="eyebrow">Give back</p><h3 class="h3">Volunteer as an expert</h3><p>Give an hour a month to someone starting over.</p><span class="link-gold">Apply →</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
   <div class="wrap share-strip">
     <div>
       <p class="eyebrow">Your story matters too</p>
@@ -241,7 +253,7 @@ def page_home():
   </div>
 </section>
 
-<section class="section section-alt" id="host">
+<section class="section" id="host">
   <div class="wrap host">
     <img class="host-mark" src="/assets/phoenix.svg" alt="" width="160" height="184">
     <div>
@@ -544,6 +556,210 @@ def page_share():
     return layout("/share", "Share your rebuild · DYEGU", "Tell DYEGU your comeback story, in the middle of it or on the other side.", body)
 
 
+CARE = f"""<aside class="care-note"><p><strong>Not for emergencies.</strong> Circles and sessions are peer support and general guidance, not therapy, medical care, or legal or financial advice for your situation. If you're in danger or thinking about suicide or self-harm, contact a local crisis line or emergency services now. <a href="{SUPPORT_URL}" target="_blank" rel="noopener">Find a free helpline in your country</a>.</p></aside>"""
+
+
+def checks(name, items, form_id=None):
+    fa = f' form="{form_id}"' if form_id else ""
+    return '<div class="check-grid">' + "".join(f'<label class="check"><input type="checkbox" name="{name}" value="{k}"{fa}> {e(t)}</label>' for k, t in items) + '</div>'
+
+
+def page_community():
+    body = f"""
+<section class="page-hero">
+  <div class="wrap narrow center">
+    <img class="mark-sm" src="/assets/phoenix.svg" alt="" width="56" height="64">
+    <p class="eyebrow">DYEGU Community · free</p>
+    <h1 class="display-sm">Nobody rebuilds alone.</h1>
+    <p class="lede">The stories show it can be done. The community is where you do it: with people at the same stage, and with experts who give their time for free.</p>
+  </div>
+</section>
+<section class="section-tight">
+  <div class="wrap doors">
+    <a class="door" href="/community/circles"><p class="eyebrow">Peer support</p><h2 class="h3">Rebuild Circles</h2><p>Six to eight people at the same stage meet online once a week for six weeks, with a trained volunteer host. One story, one move, and people who notice whether you made it.</p><span class="link-gold">Join a circle →</span></a>
+    <a class="door" href="/community/sessions"><p class="eyebrow">Expert help</p><h2 class="h3">Free Rebuild Sessions</h2><p>Live group sessions with volunteer experts: recruiters, accountants, lawyers, founders, coaches. Practical guidance and open Q&amp;A, at no cost.</p><span class="link-gold">Request a session →</span></a>
+    <a class="door" href="/volunteer"><p class="eyebrow">Give back</p><h2 class="h3">Volunteer your expertise</h2><p>Consultants and professionals: give an hour a month to someone starting over. Lead a session, host a circle or answer reader questions.</p><span class="link-gold">Apply to volunteer →</span></a>
+  </div>
+</section>
+<section class="section-tight section-alt">
+  <div class="wrap narrow">
+    <h2 class="h3">How it opens</h2>
+    <ol class="moves">
+      <li><h3>Join the list for what you need</h3><p>Circles are matched by stage and time zone. Sessions are scheduled around the topics most people ask for.</p></li>
+      <li><h3>We vet every volunteer</h3><p>Identity, experience and, for regulated professions, licences are checked before anyone hosts. Everyone agrees to the <a class="link-gold" href="/community/guidelines">community guidelines</a>.</p></li>
+      <li><h3>First circles and sessions start in early 2027</h3><p>The first circle for a stage opens when enough people in the same time zone have joined. You'll be invited by email.</p></li>
+    </ol>
+    {CARE}
+  </div>
+</section>"""
+    return layout("/community", "Community — Rebuild Circles, free expert sessions, volunteers · DYEGU", "Free peer support circles and expert sessions for people rebuilding after a setback, hosted by vetted volunteers.", body)
+
+
+def community_form(kind, button, success, topics=False):
+    u = uid()
+    return f"""<form class="js-form community" id="{u}" data-table="community_requests" data-kind="{kind}" data-success="{e(success)}" novalidate>
+  <div class="grid-2">
+    <div><label for="{u}n">First name (optional)</label><input id="{u}n" name="first_name" autocomplete="given-name" maxlength="60"></div>
+    <div><label for="{u}e">Email</label><input id="{u}e" name="email" type="email" autocomplete="email" required></div>
+  </div>
+  {stage_select(label="Which is closest to where you are?", required=(kind == 'circle')).replace("{uid}", u)}
+  {('<p class="label">Topics you want help with</p>' + checks('topics', SESSION_TOPICS)) if topics else ''}
+  <label for="{u}x">Anything we should know? (optional)</label>
+  <textarea id="{u}x" name="note" rows="3" maxlength="1500" placeholder="Please don't include medical or legal details here."></textarea>
+  <input type="hidden" name="timezone" data-tz>
+  <label class="check"><input type="checkbox" name="agreed_terms" required> I've read the <a href="/community/guidelines" target="_blank">community guidelines</a> and understand this is peer support and general guidance, not professional advice or emergency help.</label>
+  <input class="hp" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
+  <button class="btn btn-gold" type="submit">{button}</button>
+  <p class="form-msg" role="status" aria-live="polite"></p>
+</form>"""
+
+
+def page_circles():
+    body = f"""
+<section class="page-hero">
+  <div class="wrap narrow">
+    <p class="eyebrow"><a href="/community">Community</a> · Peer support</p>
+    <h1 class="display-sm">Rebuild Circles</h1>
+    <p class="lede">A small group of people at the same stage of a setback, meeting online once a week for six weeks. Free, hosted by a trained volunteer.</p>
+  </div>
+</section>
+<section class="section-tight">
+  <div class="wrap narrow">
+    <div class="facts">
+      <div><span class="num">6–8</span><p>people, matched by stage and time zone</p></div>
+      <div><span class="num">6</span><p>weekly video calls, 60 minutes each</p></div>
+      <div><span class="num">$0</span><p>always free</p></div>
+    </div>
+    <h2 class="h3">What happens in a circle</h2>
+    <ol class="moves">
+      <li><h3>Check in</h3><p>Where you are this week, in a few sentences. No one has to share more than they want to.</p></li>
+      <li><h3>One story</h3><p>A short comeback story from the series or from someone in the room, and what it says about your week.</p></li>
+      <li><h3>One move</h3><p>Everyone picks one small action. Next week the group asks how it went. That's the accountability.</p></li>
+    </ol>
+    {CARE}
+  </div>
+</section>
+<section class="section section-alt">
+  <div class="wrap narrow">
+    <h2 class="h2">Join the circle list</h2>
+    <p class="muted">We'll invite you when a circle for your stage and time zone is ready.</p>
+    {community_form('circle', 'Join the circle list', "You're on the list. We'll email you when a circle for your stage and time zone is ready.")}
+  </div>
+</section>"""
+    return layout("/community/circles", "Rebuild Circles — free peer support groups · DYEGU", "Six weeks, six to eight people at the same stage, one trained volunteer host. Free peer support for rebuilding after a setback.", body)
+
+
+def page_sessions():
+    topics = "".join(f'<li>{e(t)}</li>' for _, t in SESSION_TOPICS)
+    body = f"""
+<section class="page-hero">
+  <div class="wrap narrow">
+    <p class="eyebrow"><a href="/community">Community</a> · Expert help</p>
+    <h1 class="display-sm">Free Rebuild Sessions</h1>
+    <p class="lede">Live online sessions where a volunteer expert walks through one practical topic and answers questions. Free, open to anyone rebuilding.</p>
+  </div>
+</section>
+<section class="section-tight">
+  <div class="wrap narrow">
+    <h2 class="h3">Topics we're lining up</h2>
+    <ul class="topic-list">{topics}</ul>
+    <p class="muted">Sessions give general guidance for everyone in the room. Volunteers won't advise on your individual case in a session and never charge, sell or ask for payment.</p>
+    {CARE}
+  </div>
+</section>
+<section class="section section-alt">
+  <div class="wrap narrow">
+    <h2 class="h2">Tell us what would help</h2>
+    <p class="muted">The topics with the most requests are scheduled first. You'll get an invite for anything you ticked.</p>
+    {community_form('session', 'Request sessions', "Thank you. We'll invite you as soon as sessions on your topics are scheduled.", topics=True)}
+  </div>
+</section>"""
+    return layout("/community/sessions", "Free Rebuild Sessions with volunteer experts · DYEGU", "Free live sessions with volunteer recruiters, accountants, lawyers, founders and coaches for people rebuilding after a setback.", body)
+
+
+def page_volunteer():
+    u = uid()
+    stage_checks = checks("stages", [(s["key"], s["short"]) for s in STAGES])
+    body = f"""
+<section class="page-hero">
+  <div class="wrap narrow">
+    <p class="eyebrow"><a href="/community">Community</a> · For consultants and professionals</p>
+    <h1 class="display-sm">Give an hour to someone starting over.</h1>
+    <p class="lede">You've spent years learning what most people only find out the hard way. Give a little of it, for free, to people rebuilding after a job loss, a failed business, a divorce, a health setback or grief.</p>
+  </div>
+</section>
+<section class="section-tight">
+  <div class="wrap">
+    <div class="pillars">
+      <article><span class="num">I</span><h3>Lead a session</h3><p>45 minutes on one practical topic, then Q&amp;A. We handle the scheduling, the room and the audience.</p></article>
+      <article><span class="num">II</span><h3>Host a circle</h3><p>Six weekly calls with six to eight people at the same stage. Short training and a host guide provided.</p></article>
+      <article><span class="num">III</span><h3>Answer in writing</h3><p>Reply to a reader question for the Comeback File, credited to you, once a month or once a quarter.</p></article>
+    </div>
+    <p class="muted small">Volunteers are credited by name and profession on the site and in the Comeback File. Selling, pitching or taking clients from sessions isn't allowed; full rules are in the <a class="link-gold" href="/community/guidelines">guidelines</a>.</p>
+  </div>
+</section>
+<section class="section section-alt">
+  <div class="wrap narrow">
+    <h2 class="h2">Apply to volunteer</h2>
+    <p class="muted">We review every application by hand and check identity, experience and, for regulated professions, your licence. We'll reply within two weeks.</p>
+    <form class="js-form volunteer" data-table="volunteers" data-success="Thank you. Your application is in; we'll reply within two weeks." novalidate>
+      <div class="grid-2">
+        <div><label for="{u}n">Full name</label><input id="{u}n" name="full_name" autocomplete="name" required maxlength="120"></div>
+        <div><label for="{u}e">Email</label><input id="{u}e" name="email" type="email" autocomplete="email" required></div>
+      </div>
+      <div class="grid-2">
+        <div><label for="{u}p">Profession or expertise</label><input id="{u}p" name="profession" required maxlength="160" placeholder="e.g. Recruiter, chartered accountant, employment lawyer"></div>
+        <div><label for="{u}l">LinkedIn or website</label><input id="{u}l" name="profile_url" type="url" maxlength="300" placeholder="https://"></div>
+      </div>
+      <label for="{u}c">Qualifications or licences (for regulated professions)</label>
+      <input id="{u}c" name="credentials" maxlength="300" placeholder="Body and number, e.g. ICAN, SRA, state bar, HCPC">
+      <div class="grid-2">
+        <div><label for="{u}o">Country</label><input id="{u}o" name="country" autocomplete="country-name" maxlength="80"></div>
+        <div><label for="{u}g">Languages</label><input id="{u}g" name="languages" maxlength="160" placeholder="English, French, Hausa…"></div>
+      </div>
+      <p class="label">How would you like to help?</p>
+      {checks("formats", VOLUNTEER_FORMATS)}
+      <p class="label">Which stages do you know best?</p>
+      {stage_checks}
+      <label for="{u}h">Time you can give</label>
+      <select id="{u}h" name="hours_per_month"><option value="1/month">About an hour a month</option><option value="2-4/month">2–4 hours a month</option><option value="1/quarter">An hour a quarter</option><option value="one-off">A one-off session</option></select>
+      <label for="{u}w">Why do you want to do this? (optional)</label>
+      <textarea id="{u}w" name="why" rows="4" maxlength="2000"></textarea>
+      <input type="hidden" name="timezone" data-tz>
+      <label class="check"><input type="checkbox" name="agreed_code" required> I've read and agree to the <a href="/community/guidelines" target="_blank">volunteer code</a>: no selling or soliciting, general guidance only, confidentiality, and escalating anyone at risk.</label>
+      <input class="hp" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button class="btn btn-gold" type="submit">Send application</button>
+      <p class="form-msg" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>"""
+    return layout("/volunteer", "Volunteer as an expert · DYEGU Community", "Consultants and professionals: give an hour a month to people rebuilding after a setback. Lead a free session, host a circle or answer reader questions.", body)
+
+
+GUIDELINES = """<p class="eyebrow">DYEGU Community</p>
+<h1>Safety &amp; guidelines</h1>
+<p>DYEGU's circles and sessions exist so people rebuilding after a setback can get support and practical guidance, free. These rules keep them safe and useful. Everyone who joins or volunteers agrees to them.</p>
+<h2>What this is, and isn't</h2>
+<ul><li>Circles are <strong>peer support</strong>. Sessions are <strong>general guidance</strong> for a group.</li>
+<li>Neither is therapy, medical care, or legal, financial or tax advice for your individual situation. For that, see a qualified professional you engage directly.</li>
+<li>Neither is an emergency service. If you're in danger or thinking about suicide or self-harm, contact a local crisis line or emergency services now: <a href="https://findahelpline.com" target="_blank" rel="noopener">findahelpline.com</a>.</li></ul>
+<h2>For everyone</h2>
+<ul><li><strong>Confidentiality.</strong> What people share in a circle stays in the circle. No recording, screenshots or quoting without everyone's consent.</li>
+<li><strong>Respect.</strong> No harassment, discrimination, hate or sexual content. Disagree with ideas, never attack people.</li>
+<li><strong>No selling.</strong> No promoting products, services, schemes, loans or investments, and no asking members for money.</li>
+<li><strong>Your privacy.</strong> Share only what you're comfortable with. Don't share other people's private details.</li>
+<li>Hosts can remove anyone who breaks these rules. Serious breaches are permanent.</li></ul>
+<h2>Volunteer code</h2>
+<ul><li><strong>General guidance only.</strong> Explain options and how things usually work; don't advise on an individual's case in a group, and say when someone needs their own professional.</li>
+<li><strong>No soliciting.</strong> Don't pitch your services, collect contacts or move members into paid work. You may share your name and profession; if someone asks to hire you later, tell the DYEGU team first.</li>
+<li><strong>Stay in your lane.</strong> Speak to what you're qualified in. Regulated professionals follow their own professional rules at all times.</li>
+<li><strong>Escalate risk.</strong> If anyone says they may harm themselves or others, share the crisis-line information, stay calm, and tell the DYEGU team the same day.</li>
+<li><strong>Protect data.</strong> Never keep, copy or reuse members' details outside DYEGU's tools.</li>
+<li><strong>Adults only.</strong> Circles and sessions are for people aged 18 and over.</li></ul>
+<h2>Reporting a problem</h2>
+<p>Use the <a href="/speaking#enquire">contact form</a> and choose "Something else", or reply to any DYEGU email. We review every report.</p>"""
+
+
 def simple(path, title, desc, inner, noindex=False, band=True):
     return layout(path, title, desc, f'<section class="page"><div class="wrap narrow">{inner}</div></section>', join_band=band, noindex=noindex)
 
@@ -555,6 +771,8 @@ PRIVACY = """<p class="eyebrow">Last updated 24 November 2026</p>
 <ul>
 <li><strong>Your email address</strong> when you join the Comeback File, the Rebuild Playbook waitlist or the shop drop list, with the list you joined, the situation you chose (if any), the products you ticked, the page you signed up on and the campaign link you arrived from.</li>
 <li><strong>Your name, email, organisation and message</strong> when you send a talk, workshop, sponsorship or press enquiry.</li>
+<li><strong>Your circle or session request</strong>: the stage you choose, your time zone, the topics you tick and any note, so we can match you to a circle or schedule sessions.</li>
+<li><strong>Volunteer applications</strong>: name, email, profession, qualifications, profile link, country, languages and availability, so we can vet and schedule volunteers. Approved volunteers are credited by name and profession.</li>
 <li><strong>Your story</strong> when you share your rebuild, with your first name if you give it and the permissions you tick. Please leave out details that identify other people.</li>
 <li><strong>Anonymous visit statistics</strong> (pages viewed, country, device type) through Vercel Web Analytics, which uses no cookies.</li>
 </ul>
@@ -570,7 +788,7 @@ PRIVACY = """<p class="eyebrow">Last updated 24 November 2026</p>
 <h2>Who processes it</h2>
 <p>Form submissions are stored with Supabase (database hosted in the UK). Newsletter subscribers are sent through Substack. The site is hosted by Vercel. Episodes embedded from YouTube load only when you press play, using YouTube's privacy-enhanced mode.</p>
 <h2>How long we keep it</h2>
-<p>List emails are kept until you unsubscribe or ask us to delete them. Enquiries are kept for up to two years. Shared stories are kept until you ask us to delete them, or for two years if not featured.</p>
+<p>List emails, circle and session requests are kept until you unsubscribe or ask us to delete them. Declined volunteer applications are deleted after six months. Enquiries are kept for up to two years. Shared stories are kept until you ask us to delete them, or for two years if not featured.</p>
 <h2>Your rights</h2>
 <p>You can ask to see, correct or delete your data, or withdraw consent, at any time: reply to any email we send you, or use the <a href="/speaking#enquire">enquiry form</a> and choose "Something else". We'll act within 30 days. If you're in the UK or EU and unhappy with how we've handled your data, you can complain to your data protection authority (in the UK, the ICO).</p>"""
 
@@ -601,10 +819,13 @@ def main():
     out += [write("shop/index.html", page_shop()), write("playbook/index.html", page_playbook()),
             write("speaking/index.html", page_speaking()), write("about/index.html", page_about()),
             write("share/index.html", page_share()),
+            write("community/index.html", page_community()), write("community/circles/index.html", page_circles()),
+            write("community/sessions/index.html", page_sessions()), write("volunteer/index.html", page_volunteer()),
+            write("community/guidelines/index.html", simple("/community/guidelines", "Community safety & guidelines · DYEGU", "Rules for DYEGU Rebuild Circles, free sessions and volunteers.", GUIDELINES)),
             write("privacy/index.html", simple("/privacy", "Privacy · DYEGU", "How DYEGU collects and uses your data.", PRIVACY)),
             write("studio/index.html", simple("/studio", "Sponsors & partners · DYEGU", "Partner with DYEGU, the documented comeback series presented by Sir K.", STUDIO)),
             write("404.html", simple("/404", "Not found · DYEGU", "Page not found.", '<h1>Lost the thread?</h1><p>This page doesn\'t exist, but the story isn\'t over. <a href="/">Back to DYEGU</a> or <a href="/#start">find the story for where you are</a>.</p>', noindex=True))]
-    urls = ["/"] + [f"/start/{s['key']}" for s in STAGES] + ["/stories"] + [f"/stories/{s['slug']}" for s in STORIES if s.get("live_page")] + ["/shop", "/playbook", "/speaking", "/about", "/share", "/studio", "/privacy"]
+    urls = ["/"] + [f"/start/{s['key']}" for s in STAGES] + ["/stories"] + [f"/stories/{s['slug']}" for s in STORIES if s.get("live_page")] + ["/community", "/community/circles", "/community/sessions", "/volunteer", "/community/guidelines", "/shop", "/playbook", "/speaking", "/about", "/share", "/studio", "/privacy"]
     write("sitemap.xml", '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "".join(f"  <url><loc>{SITE}{u}</loc></url>\n" for u in urls) + "</urlset>\n")
     print(f"built {len(out)} pages + sitemap ({len(urls)} urls)")
 

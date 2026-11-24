@@ -84,6 +84,10 @@
     if (cd) { tick(); setInterval(tick, 30000); }
   });
 
+  /* Time zone for matching circles and scheduling sessions */
+  const fillTz = () => { try { const tz = Intl.DateTimeFormat().resolvedOptions().timeZone; $$("[data-tz]").forEach(i => (i.value = tz)); } catch (_) {} };
+  fillTz();
+
   /* Forms → Supabase (insert-only) */
   async function insert(table, row, attempt = 0) {
     const r = await fetch(`${CONFIG.supabaseUrl}/rest/v1/${table}`, {
@@ -118,6 +122,18 @@
         message: v("message"), event_date: v("event_date") || null, budget: v("budget") || null,
         audience: v("audience") || null, site: CONFIG.site };
     }
+    if (t === "volunteers") {
+      return { full_name: v("full_name"), email: v("email"), profession: v("profession"), credentials: v("credentials") || null,
+        profile_url: v("profile_url") || null, country: v("country") || null, timezone: v("timezone") || null,
+        languages: v("languages") || null, stages: fd.getAll("stages").map(String), formats: fd.getAll("formats").map(String),
+        hours_per_month: v("hours_per_month") || null, why: v("why") || null, agreed_code: fd.get("agreed_code") === "on", site: CONFIG.site };
+    }
+    if (t === "community_requests") {
+      const topics = fd.getAll("topics").map(String);
+      return { kind: form.dataset.kind, first_name: v("first_name") || null, email: v("email"), stage: v("stage") || null,
+        timezone: v("timezone") || null, topics: topics.length ? topics : null, note: v("note") || null,
+        agreed_terms: fd.get("agreed_terms") === "on", site: CONFIG.site };
+    }
     if (t === "rebuilds") {
       return { first_name: v("first_name") || null, email: v("email"), stage: v("stage") || null, story: v("story"),
         consent_contact: fd.get("consent_contact") === "on", consent_feature: fd.get("consent_feature") === "on", site: CONFIG.site };
@@ -130,13 +146,18 @@
       const row = rowFor(form);
       if (!validEmail(row.email || "")) return say(form, "Please enter a valid email address.", "err");
       if (form.dataset.table === "enquiries" && (!row.name || !row.message)) return say(form, "Please add your name and a short message.", "err");
+      if (form.dataset.table === "volunteers" && (!row.full_name || !row.profession)) return say(form, "Please add your name and your profession.", "err");
+      if (form.dataset.table === "volunteers" && row.profile_url && !/^https?:\/\//i.test(row.profile_url)) return say(form, "Please give the full link, starting with https://", "err");
+      if (form.dataset.table === "volunteers" && !row.agreed_code) return say(form, "Please read and agree to the volunteer code.", "err");
+      if (form.dataset.table === "community_requests" && !row.agreed_terms) return say(form, "Please tick the box to confirm you've read the guidelines.", "err");
+      if (form.dataset.table === "community_requests" && row.kind === "circle" && !row.stage) return say(form, "Please choose the stage closest to yours, so we can match your circle.", "err");
       if (form.dataset.table === "rebuilds" && (row.story || "").length < 20) return say(form, "Please tell us a little more (at least a couple of sentences).", "err");
       const ok = form.dataset.success || "You're in. Your first Comeback File arrives with Episode 01.";
       if ((form.company && form.company.value) || now() - loadedAt < 2500) return say(form, ok, "ok");
       const btn = $("button[type=submit]", form); btn.disabled = true;
       try {
         const res = await insert(form.dataset.table, row);
-        form.reset();
+        form.reset(); fillTz();
         say(form, res === "exists" ? "You're already on this list. Thank you." : ok, "ok");
         track("signup", { table: form.dataset.table, list: row.list || "", stage: row.stage || "" });
       } catch (_) {
