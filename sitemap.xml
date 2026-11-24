@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://dyegu.co/</loc></url>
+  <url><loc>https://dyegu.co/start/job</loc></url>
+  <url><loc>https://dyegu.co/start/money</loc></url>
+  <url><loc>https://dyegu.co/start/breakup</loc></url>
+  <url><loc>https://dyegu.co/start/health</loc></url>
+  <url><loc>https://dyegu.co/start/rejected</loc></url>
+  <url><loc>https://dyegu.co/start/later</loc></url>
+  <url><loc>https://dyegu.co/start/stuck</loc></url>
+  <url><loc>https://dyegu.co/start/grief</loc></url>
+  <url><loc>https://dyegu.co/stories</loc></url>
+  <url><loc>https://dyegu.co/stories/steve-jobs</loc></url>
+  <url><loc>https://dyegu.co/stories/jk-rowling</loc></url>
+  <url><loc>https://dyegu.co/stories/tyler-perry</loc></url>
+  <url><loc>https://dyegu.co/shop</loc></url>
+  <url><loc>https://dyegu.co/playbook</loc></url>
+  <url><loc>https://dyegu.co/speaking</loc></url>
+  <url><loc>https://dyegu.co/about</loc></url>
+  <url><loc>https://dyegu.co/share</loc></url>
   <url><loc>https://dyegu.co/studio</loc></url>
   <url><loc>https://dyegu.co/privacy</loc></url>
 </urlset>
