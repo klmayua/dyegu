@@ -67,13 +67,14 @@
   tick(); setInterval(tick, 30000);
 
   /* Supabase insert (insert-only, no reads) */
-  async function insert(table, row) {
+  async function insert(table, row, attempt = 0) {
     const r = await fetch(`${CONFIG.supabaseUrl}/rest/v1/${table}`, {
       method: "POST",
       headers: { "apikey": CONFIG.supabaseKey, "Content-Type": "application/json", "Prefer": "return=minimal" },
       body: JSON.stringify(row),
     });
     if (r.status === 409) return "exists";
+    if ((r.status >= 500 || r.status === 401) && attempt < 1) { await new Promise(ok => setTimeout(ok, 1200)); return insert(table, row, attempt + 1); }
     if (!r.ok) throw new Error(String(r.status));
     return "ok";
   }
