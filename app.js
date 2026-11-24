@@ -10,11 +10,11 @@
     // Follow row: add each account once its handle is claimed (Social Stack: T1/T2 for DYEGU).
     follow: [
       ["YouTube", "https://www.youtube.com/@DYEGUOfficial"],
-      // ["Instagram", "https://www.instagram.com/dyeguofficial"],
-      // ["TikTok", "https://www.tiktok.com/@dyeguofficial"],
+      ["Instagram", "https://www.instagram.com/dyegulive"],
+      ["X", "https://x.com/dyegulive"],
+      ["Facebook", "https://www.facebook.com/dyegulive"],
+      // ["TikTok", "https://www.tiktok.com/@dyegulive"],
       // ["LinkedIn", "https://www.linkedin.com/in/<sir-k>"],
-      // ["X", "https://x.com/DYEGUOfficial"],
-      // ["Facebook", "https://www.facebook.com/DYEGUOfficial"],
       // ["WhatsApp", "https://whatsapp.com/channel/<id>"],
     ],
   };
