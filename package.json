@@ -1,0 +1,7 @@
+{
+  "name": "dyegu-site",
+  "private": true,
+  "type": "module",
+  "description": "dyegu.co — DYEGU (Don't You Ever Give Up) brand home. Static site + one Vercel function.",
+  "engines": { "node": ">=20" }
+}
