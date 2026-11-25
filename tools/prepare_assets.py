@@ -86,24 +86,25 @@ def process_sir_k_portrait():
     press_path = os.path.join(ASSETS_DIR, "sir-k-portrait.jpg")
     press.save(press_path, "JPEG", quality=92, optimize=True)
 
-    # Editorial dark-room portrait (4:5 vertical-friendly or square balanced crop with soft edge vignette)
-    graded = ImageEnhance.Color(base).enhance(0.92)
-    graded = ImageEnhance.Contrast(graded).enhance(1.08)
-    graded = apply_editorial_vignette(graded, strength=0.58)
+    # Luminous, warm, natural editorial portrait (no heavy gloomy dark vignette)
+    graded = ImageEnhance.Contrast(base).enhance(1.04)
+    graded = ImageEnhance.Brightness(graded).enhance(1.03)
+    graded = ImageEnhance.Color(graded).enhance(1.02)
+    graded = apply_editorial_vignette(graded, strength=0.10)
     if graded.width > 900:
         graded = graded.resize((900, int(900 * graded.height / graded.width)), Image.Resampling.LANCZOS)
-    graded.save(os.path.join(ASSETS_DIR, "sir-k-portrait.webp"), "WEBP", quality=88, method=6)
+    graded.save(os.path.join(ASSETS_DIR, "sir-k-portrait.webp"), "WEBP", quality=90, method=6)
 
-    # Tighter circular-safe avatar crop centered on Sir K's face
+    # Tighter circular-safe avatar crop centered on Sir K's face (clean & bright)
     w, h = base.size
     side = int(min(w, h) * 0.72)
     left = max(0, min(w - side, int(w * 0.52 - side / 2)))
     top = max(0, min(h - side, int(h * 0.34 - side / 2)))
     av = base.crop((left, top, left + side, top + side)).resize((280, 280), Image.Resampling.LANCZOS)
-    av = ImageEnhance.Contrast(av).enhance(1.06)
-    av = apply_editorial_vignette(av, strength=0.35)
-    av.save(os.path.join(ASSETS_DIR, "sir-k-avatar.webp"), "WEBP", quality=88, method=6)
-    print("generated sir-k-portrait.webp, sir-k-portrait.jpg, sir-k-avatar.webp")
+    av = ImageEnhance.Contrast(av).enhance(1.04)
+    av = ImageEnhance.Brightness(av).enhance(1.03)
+    av.save(os.path.join(ASSETS_DIR, "sir-k-avatar.webp"), "WEBP", quality=90, method=6)
+    print("generated luminous sir-k-portrait.webp, sir-k-portrait.jpg, sir-k-avatar.webp")
 
 
 def optimize_studio_renders(render_sources: dict[str, str]):
@@ -240,7 +241,7 @@ def generate_og_cards():
 
         # Bottom axis rule & footer caption
         d.line([(76, 542), (710 if (include_portrait and portrait) else 1124, 542)], fill=AXIS, width=1)
-        d.text((76, 558), "DON'T YOU EVER GIVE UP  ·  PRESENTED BY SIR K  ·  DYEGU.CO", fill=GOLD, font=f_foot)
+        d.text((76, 558), "DON'T YOU EVER GIVE UP  ·  DOCUMENTED COMEBACKS  ·  DYEGU.CO", fill=GOLD, font=f_foot)
 
         im.save(os.path.join(OG_DIR, filename), "JPEG", quality=88, optimize=True)
 

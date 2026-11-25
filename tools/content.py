@@ -6,88 +6,111 @@ YOUTUBE = "https://www.youtube.com/@DYEGUOfficial"
 SUPPORT_URL = "https://findahelpline.com"
 
 # ---- Complete Season 1 slate (14 Sundays: 6 Dec 2026 – 7 Mar 2027) ----
-# Titles stay off the public site until Gate 1A; subjects and documented arcs lead.
 STORIES = [
     dict(no="01", slug="steve-jobs", subject="Steve Jobs", date="2026-12-06T14:00:00Z", live_page=True,
-         category="Tech · US", arc="The comeback that took a decade",
+         category="Tech · US", arc="The comeback that took a decade", wilderness="11 years",
          fall="Forced out of Apple, the company he co-founded, at 30.",
          rise="Eleven years, two companies and a near-bankrupt Apple later, he walked back in.",
          synopsis="In 1985, at 30, Steve Jobs was stripped of every operating role at the company he co-founded and walked out. He spent eleven years building NeXT and funding Pixar through years of losses. Then Toy Story, Pixar's IPO and Apple's purchase of NeXT brought him back to a company that had just lost more than a billion dollars.",
          stages=["job", "stuck", "rejected"]),
     dict(no="02", slug="jk-rowling", subject="J.K. Rowling", date="2026-12-13T14:00:00Z", live_page=True,
-         category="Literature · UK", arc="Had it, lost it, rebuilt",
+         category="Literature · UK", arc="Had it, lost it, rebuilt", wilderness="3 years",
          fall="A single mother on benefits in Edinburgh, grieving, with three chapters and a stack of rejections.",
          rise="Then one eight-year-old reader said yes.",
          synopsis="In the mid-1990s Joanne Rowling was a single mother on state benefits in Edinburgh, still grieving her mother, with the opening chapters of a children's book. Publisher after publisher said no. Then an eight-year-old girl read chapter one.",
          stages=["rejected", "money", "breakup", "grief"]),
     dict(no="03", slug="tyler-perry", subject="Tyler Perry", date="2026-12-20T14:00:00Z", live_page=True,
-         category="Film & Media · US", arc="Had it, lost it, rebuilt",
+         category="Film & Media · US", arc="Had it, lost it, rebuilt", wilderness="6 years",
          fall="He spent his $12,000 savings on one play. About thirty people came. He slept in his car.",
          rise="He kept staging it, year after year, until the seventh. Today he owns one of America's largest studios.",
          synopsis="Tyler Perry saved $12,000 and spent all of it staging his first play in Atlanta in 1992. About thirty people came. He lived in his car for three months and kept staging the same play once a year while it failed, until 1998. In 2015 he bought 330 acres of a former army base and built one of America's largest film studios.",
          stages=["money", "rejected", "stuck"]),
     dict(no="04", slug="nwankwo-kanu", subject="Nwankwo Kanu", date="2026-12-27T14:00:00Z",
-         category="Football · Nigeria / UK", arc="Two comebacks in one life",
+         category="Football · Nigeria / UK", arc="Two comebacks in one life", wilderness="2 years",
          fall="Weeks after captaining Nigeria to Olympic gold at 20, a routine medical exposed a fatal congenital heart defect.",
          rise="After emergency open-heart surgery, he defied every diagnosis to become an Arsenal Invincible.",
          stages=["health"]),
     dict(no="05", slug="brendan-fraser", subject="Brendan Fraser", date="2027-01-03T14:00:00Z",
-         category="Film · Canada / US", arc="The comeback that took a decade",
+         category="Film · Canada / US", arc="The comeback that took a decade", wilderness="10 years",
          fall="Seven years of spine, knee and vocal-cord surgeries alongside grief and a decade of quiet exile from Hollywood.",
          rise="He returned to a six-minute standing ovation in Venice and the Best Actor Oscar.",
          stages=["health", "job", "later", "grief"]),
     dict(no="06", slug="tina-turner", subject="Tina Turner", date="2027-01-10T14:00:00Z",
-         category="Music · US / Europe", arc="Had it, lost it, rebuilt",
+         category="Music · US / Europe", arc="Had it, lost it, rebuilt", wilderness="8 years",
          fall="She walked away with 36 cents and a gas card, giving up everything else just to keep her name.",
          rise="Dismissed by labels at 44, she rebuilt in Europe and swept three Grammys.",
          stages=["breakup", "money", "later"]),
     dict(no="07", slug="season-1-marathon", subject="Mid-Season Marathon", date="2027-01-17T14:00:00Z",
-         special=True, category="Special · 90 Minutes", arc="Marathon compilation",
+         special=True, category="Special · 90 Minutes", arc="Marathon compilation", wilderness="6 lives",
          fall="Six documented journeys of people who lost everything — Jobs, Rowling, Perry, Kanu, Fraser and Turner.",
-         rise="Woven with a brand-new 2027 New Year reflection from Sir K for focused Sunday viewing.",
+         rise="Woven with a brand-new 2027 New Year reflection for focused Sunday viewing.",
          stages=["job", "money", "health", "breakup", "rejected", "later"]),
     dict(no="08", slug="denzel-washington", subject="Denzel Washington", date="2027-01-24T14:00:00Z",
-         category="Film · US", arc="The comeback that took a decade",
+         category="Film · US", arc="The comeback that took a decade", wilderness="14 years",
          fall="Dismissed from Fordham University with a 1.7 GPA while his closest boyhood friends faced decades in prison.",
          rise="A handwritten note in his mother's beauty parlour sparked a turnaround that reshaped cinema.",
          stages=["stuck", "rejected"]),
     dict(no="09", slug="monica-seles", subject="Monica Seles", date="2027-01-31T14:00:00Z",
-         category="Tennis · Europe / US", arc="Had it, lost it, rebuilt",
+         category="Tennis · Europe / US", arc="Had it, lost it, rebuilt", wilderness="28 months",
          fall="World No. 1 with eight Grand Slams at 19 — until an on-court attack stole 28 months of her prime.",
          rise="She walked back onto centre court and won the 1996 Australian Open.",
          stages=["health", "stuck"]),
     dict(no="10", slug="tyson-fury", subject="Tyson Fury", date="2027-02-07T14:00:00Z",
-         category="Boxing · UK / Global", arc="Had it, lost it, rebuilt",
+         category="Boxing · UK / Global", arc="Had it, lost it, rebuilt", wilderness="3 years",
          fall="Stripped of his heavyweight belts and sinking to 400 pounds in severe depression after reaching the summit.",
          rise="He shed over 150 pounds, rose off the canvas at the count of nine, and reclaimed the crown.",
          stages=["health", "stuck", "money"]),
     dict(no="11", slug="shania-twain", subject="Shania Twain", date="2027-02-14T14:00:00Z",
-         category="Music · Canada / Global", arc="Two comebacks in one life",
+         category="Music · Canada / Global", arc="Two comebacks in one life", wilderness="15 years",
          fall="Lost both parents at 22, and later lost her marriage and her singing voice to nerve damage.",
          rise="After open-throat surgery and years of rehabilitation, she returned to top the Billboard charts.",
          stages=["grief", "breakup", "health", "later"]),
     dict(no="12", slug="simone-biles", subject="Simone Biles", date="2027-02-21T14:00:00Z",
-         category="Gymnastics · US / Global", arc="Had it, lost it, rebuilt",
+         category="Gymnastics · US / Global", arc="Had it, lost it, rebuilt", wilderness="2 years",
          fall="From foster care to global icon — then walking away mid-Olympics in Tokyo under fierce backlash.",
          rise="Two years spent healing her mind and body led to three Olympic gold medals in Paris.",
          stages=["health", "rejected", "stuck"]),
     dict(no="13", slug="african-diaspora-comeback", subject="African / Diaspora Comeback", date="2027-02-28T14:00:00Z",
-         tbc=True, category="Announced Soon · Africa / Diaspora", arc="Two comebacks in one life",
+         tbc=True, category="Announced Soon · Africa / Diaspora", arc="Two comebacks in one life", wilderness="Announced soon",
          fall="A landmark documented African & diaspora rebuild — currently in final claims review from our Season 1 shortlist.",
          rise="Revealed first to Comeback File subscribers ahead of February 2027.",
          stages=["money", "grief", "rejected", "stuck"]),
     dict(no="14", slug="george-foreman", subject="George Foreman", date="2027-03-07T14:00:00Z",
-         category="Boxing & Business · US", arc="The comeback that took a decade",
+         category="Boxing & Business · US", arc="The comeback that took a decade", wilderness="20 years",
          fall="Broke, mocked and twenty years past his prime while fighting to keep his Houston youth centre alive.",
          rise="At 45, wearing the same red trunks from Zaire, he won the heavyweight title and built a business empire.",
          stages=["later", "money", "rejected"]),
 ]
 
-# ---- "Where are you right now?" ---- DRAFT copy, Sir K to approve
+# ---- Wilderness Duration Reframe (E-06) ----
+WILDERNESS_TIMELINE = [
+    dict(person="Monica Seles", span="28 months", pct=16, note="Away from tennis after Hamburg → 1996 Australian Open champion"),
+    dict(person="J.K. Rowling", span="3 years", pct=24, note="Benefits in Edinburgh & 12 rejections → Bloomsbury says yes"),
+    dict(person="Tyler Perry", span="6 years", pct=38, note="Geo Metro & failed annual stagings → 1998 House of Blues breakthrough"),
+    dict(person="Tina Turner", span="8 years", pct=48, note="36 cents in Dallas (1976) → Private Dancer & 3 Grammys at age 44"),
+    dict(person="Steve Jobs", span="11 years", pct=64, note="Stripped of Apple roles (1985) → Pixar IPO & $400M NeXT return"),
+    dict(person="Shania Twain", span="15 years", pct=82, note="Loss of voice & open-throat surgery → #1 Billboard comeback"),
+    dict(person="George Foreman", span="20 years", pct=100, note="Zaire loss (1974) → oldest heavyweight champion in history at 45"),
+]
+
+# ---- Real Verbatim Voices From the Wilderness (E-12) ----
+VERBATIM_VOICES = [
+    dict(quote="Rock bottom became the solid foundation on which I rebuilt my life.",
+         person="J.K. Rowling", source="Harvard Commencement Address · 5 June 2008", slug="jk-rowling"),
+    dict(quote="The heaviness of being successful was replaced by the lightness of being a beginner again.",
+         person="Steve Jobs", source="Stanford Commencement Address · 12 June 2005", slug="steve-jobs"),
+    dict(quote="Every year it would fail, until 1998, the seventh year. Don't let year three convince you it's over.",
+         person="Tyler Perry", source="Tuskegee University Commencement · 2019 (attributed)", slug="tyler-perry"),
+]
+
+# ---- "What are you carrying today?" — 8 Life Stages ----
 STAGES = [
     dict(key="job", short="I lost my job", title="You lost your job.",
          tag="Career & Identity",
          sub="Fired, laid off, pushed out or quietly passed over.",
+         exhale="Take a breath. When work ends suddenly, the hardest ache isn't just income — it's feeling erased overnight. You did not lose your mind, your judgement, or what you know how to build.",
+         proof_person="Steve Jobs", proof_slug="steve-jobs",
+         proof_line="Stripped of every operating role at Apple at age 30 — spent 11 years building NeXT and Pixar before walking back in.",
          lede="Fired, laid off, pushed out or quietly passed over. It feels personal because work is where a lot of us keep our sense of worth. It is not the end of your story.",
          rule_preview="Losing the seat you built is brutal. Letting bitterness become your career is the only real defeat.",
          moves=[
@@ -98,6 +121,9 @@ STAGES = [
     dict(key="money", short="My business or money is gone", title="Your business failed, or the money ran out.",
          tag="Finances & Venture",
          sub="Debt, a closed company, savings depleted.",
+         exhale="Exhale slowly. Financial collapse feels loud in your chest and deeply lonely in public. A zero balance sheet is a snapshot of a season — never a verdict on your capability.",
+         proof_person="Tyler Perry", proof_slug="tyler-perry",
+         proof_line="Lost his entire $12,000 savings on one play for 30 people, lived in a Geo Metro, and rebuilt into a 330-acre studio.",
          lede="Debt, a closed company, savings gone. Money trouble is loud and private at the same time. People have rebuilt from far less than you have right now.",
          rule_preview="Your balance sheet can hit zero without erasing what you know how to build.",
          moves=[
@@ -108,6 +134,9 @@ STAGES = [
     dict(key="breakup", short="Starting over after a breakup", title="You're starting over after a breakup or divorce.",
          tag="Home & Chapter Two",
          sub="The life you planned has changed shape.",
+         exhale="You don't have to have the next five years figured out tonight. When a home or marriage breaks, the ground feels unsteady — starting again is not starting from nothing.",
+         proof_person="Tina Turner & J.K. Rowling", proof_slug="jk-rowling",
+         proof_line="Both walked out of collapsed marriages with almost nothing financially — and rebuilt lives entirely on their own terms.",
          lede="The life you planned has changed shape, and sometimes the home, the friends and the money change with it. Starting again is not starting from nothing.",
          rule_preview="Starting again is not starting from zero — you carry your name and everything you survived.",
          moves=[
@@ -118,6 +147,9 @@ STAGES = [
     dict(key="health", short="A health setback", title="Your health set you back.",
          tag="Body & Recovery",
          sub="An injury, a diagnosis, a long recovery.",
+         exhale="Give your body permission to move at its real pace today. When health interrupts every plan, frustration can hurt almost as much as the condition itself. Slower is not over.",
+         proof_person="Nwankwo Kanu & Brendan Fraser", proof_slug="steve-jobs",
+         proof_line="Kanu faced career-ending open-heart surgery at 20; Fraser endured 7 years of surgeries before his Oscar-winning return.",
          lede="An injury, a diagnosis, a long recovery. When your body changes the plan, everything else can feel on hold. Many of the comebacks in this series started in a hospital.",
          rule_preview="Slower is not the same as over. Redraw the timeline, never surrender the dignity of the climb.",
          moves=[
@@ -128,6 +160,9 @@ STAGES = [
     dict(key="rejected", short="Rejected again", title="You've been rejected. Again.",
          tag="Persistence & Craft",
          sub="The pitch, the publisher, the role, the door that stayed closed.",
+         exhale="Every closed door lands on the same bruise. Rejection feels like proof that you don't belong in the room — when in truth, most rooms cannot recognise something new until someone else says yes.",
+         proof_person="J.K. Rowling", proof_slug="jk-rowling",
+         proof_line="Turned down by 12 publishers while on state benefits — until one chairman's eight-year-old daughter read chapter one.",
          lede="The application, the audition, the pitch, the publisher. Every no lands on the same bruise. The people in these stories collected a lot of them before the yes.",
          rule_preview="Twelve nos are data, not a verdict. You only need the right room to read chapter one.",
          moves=[
@@ -138,6 +173,9 @@ STAGES = [
     dict(key="later", short="Starting over at 40, 50 or later", title="You're starting over later in life.",
          tag="Second Act",
          sub="More responsibility, less patience for noise, deeper judgement.",
+         exhale="Quiet the voice telling you the clock ran out. You are not arriving empty-handed — you are arriving with decades of pattern recognition, scars, and discernment that beginners would pay dearly to own.",
+         proof_person="George Foreman & Tina Turner", proof_slug="tyler-perry",
+         proof_line="Tina Turner rebuilt her solo career at 44; George Foreman won the heavyweight championship of the world at 45.",
          lede="40, 50, 60 or beyond, with less time and more responsibility than the first time. Experience is an asset most beginners would pay for.",
          rule_preview="You are not late. You are arriving with decades of pattern recognition nobody can shortcut.",
          moves=[
@@ -148,6 +186,9 @@ STAGES = [
     dict(key="stuck", short="Stuck or lost my direction", title="You're stuck, or you've lost your direction.",
          tag="Clarity & Motion",
          sub="Nothing collapsed — you just can't see the next step.",
+         exhale="You don't need a dramatic tragedy to feel quietly exhausted. Standing in fog while years pass is a real setback too — and clarity almost never arrives from overthinking alone.",
+         proof_person="Steve Jobs & Denzel Washington", proof_slug="steve-jobs",
+         proof_line="Both spent painful seasons uncertain of the next room until one honest experiment restored motion.",
          lede="Nothing has collapsed, exactly. You just can't see the next step, and the years are moving. That counts as a setback too.",
          rule_preview="Clarity rarely arrives while standing still. Direction is what motion leaves behind.",
          moves=[
@@ -158,6 +199,9 @@ STAGES = [
     dict(key="grief", short="Grieving a loss", title="You're grieving.",
          tag="Loss & Grounding",
          sub="A person, a marriage, a career, a version of yourself.",
+         exhale="Nothing on this page is meant to hurry you or fix your grief with a slogan. You do not have to perform strength today. Keeping one tiny anchor steady is more than enough.",
+         proof_person="J.K. Rowling & Shania Twain", proof_slug="jk-rowling",
+         proof_line="Rowling wrote through the grief of losing her mother at 45; Twain raised three siblings after losing both parents at 22.",
          lede="A person, a marriage, a career, a version of yourself. Grief doesn't follow a schedule, and nothing here is meant to rush it.",
          rule_preview="You do not have to perform strength. Keep one steady anchor while the ground settles.",
          moves=[
@@ -167,7 +211,45 @@ STAGES = [
          ], sensitive=True),
 ]
 
-# ---- Drop 01 — Rise ---- (DRAFT; no sales until vector masters, trademark search and gold-matched samples clear)
+# ---- Anti-Hype Covenant (E-11) ----
+ANTI_HYPE = dict(
+    never=[
+        "Toxic positivity or 'just hustle harder' guilt",
+        "Fabricated quotes, invented inner thoughts, or guessed net worths",
+        "Hiding the 3–15 wilderness years when nothing looked like winning",
+        "Pitching, selling, or upselling vulnerable people inside support circles",
+    ],
+    always=[
+        "Primary-sourced facts with every single link published openly",
+        "Honest timelines that normalise how long real rebuilding takes",
+        "A calm, dignified human voice — zero loud hype or gimmicks",
+        "100% free peer Rebuild Circles and vetted volunteer expert sessions",
+    ],
+)
+
+# ---- 4-Promise Psychological Safety Box for Circles (E-13) ----
+CIRCLE_SAFETY_PROMISES = [
+    ("Camera optional on rough days", "Show up as you are. Nobody forces performance when you are drained."),
+    ("Saying 'pass' is always respected", "You only share what you are comfortable sharing — never more."),
+    ("Zero unsolicited lectures", "Peers share what helped them; nobody talks down to you."),
+    ("Strictly zero selling or pitching", "Enforced across every member and every volunteer expert."),
+]
+
+# ---- Blank-Page Writing Starters for /share (E-12) ----
+SHARE_PROMPTS = [
+    ("In the middle of it", "Right now I'm in the middle of rebuilding after "),
+    ("What nobody sees", "The hardest part nobody around me sees is "),
+    ("What's keeping me standing", "One small thing keeping me standing this week is "),
+]
+
+# ---- Dignified Friend-Share Messages (E-03) ----
+FRIEND_MESSAGES = [
+    ("Quiet encouragement", "Thinking of you today. Came across this calm place for people walking through a hard season — no hype, just real stories and practical grounding. Take your time with it:"),
+    ("After a job / business hit", "Saw this and thought of you. Real documented comebacks + a quiet 7-day reset for rebuilding without the usual motivational noise:"),
+    ("Just letting you know", "No need to reply to this. Just wanted to leave something steady in your corner today:"),
+]
+
+# ---- Drop 01 — Rise ----
 PRODUCTS = [
     dict(key="mug", name="The Studio Mug", spec="12 oz matte-black ceramic · flat gold phoenix",
          note="Matte black, gold phoenix. The straight-walled ceramic mug on Sir K's desk in every episode."),
@@ -181,7 +263,6 @@ PRODUCTS = [
          note="A matte-black linen notebook designed to sit beside The Rebuild Playbook."),
 ]
 
-# ---- Rebuild Playbook Chapter 1 Sample Preview ----
 PLAYBOOK_CHAPTERS = [
     ("I", "Name the fall", "What actually happened, without the verdict you've been telling yourself."),
     ("II", "Stop the bleeding", "The first fourteen days after a shock — protecting sleep, cash and judgement."),
@@ -203,7 +284,6 @@ PLAYBOOK_SAMPLE = dict(
     ],
 )
 
-# ---- Community ---- DRAFT, Sir K to approve
 CIRCLE_WEEKS = [
     ("Week 01", "Name the ground", "Meet your 6–8 peers, establish confidentiality, and state honestly where you stand."),
     ("Week 02", "Strip the noise", "Separate facts from verdicts using the DYEGU reality audit and one documented story."),
@@ -232,7 +312,6 @@ VOLUNTEER_FORMATS = [
     ("office", "One-to-one office hours (later, by invitation only)"),
 ]
 
-# ---- Sir K Speaker & Press Kit ----
 SPEAKER_KIT = dict(
     short_bio="Sir K is the creator and host of DYEGU (Don't You Ever Give Up), a fact-checked documentary series profiling documented comebacks after public loss. With more than twenty years building companies, teams and technology across Africa and beyond, he speaks to organisations, founders and global audiences on resilience grounded in evidence, not slogans.",
     long_bio="Sir K has spent more than two decades building companies, teams and technology ventures across Africa and internationally—navigating major growth cycles as well as hard rebuilds firsthand. In 2026 he launched DYEGU (Don't You Ever Give Up), an independent documentary house and free peer-support community dedicated to telling true, primary-sourced stories of people who lost status, health, livelihood or direction and came back. On stage, Sir K brings the same calm baritone, journalistic rigour and practical clarity that define the series—leaving audiences with concrete frameworks for rebuilding rather than temporary motivational hype.",

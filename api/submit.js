@@ -190,8 +190,8 @@ function buildConfirmationEmail(table, row, careFlag) {
   const esc = s => String(s || "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   const name = row.first_name || row.name || row.full_name || "friend";
   let subject = "You're in — DYEGU";
-  let headline = "Welcome to DYEGU.";
-  let bodyHtml = "<p>Thank you for joining <strong>The Comeback File</strong>. Every Sunday, Sir K shares one documented comeback story, one clear lesson, and one move for your week.</p>";
+  let headline = "Welcome. You don't have to carry this alone.";
+  let bodyHtml = "<p>Thank you for joining <strong>The Comeback File</strong>. Every Sunday, we share one documented comeback story, the primary sources behind it, and one quiet move for your week.</p>";
 
   if (table === "subscribers" && row.list === "playbook_waitlist") {
     subject = "You're on The Rebuild Playbook early list · DYEGU";
