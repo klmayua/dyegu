@@ -1,44 +1,41 @@
-# dyegu.co — DYEGU Brand Home
+# dyegu.co — DYEGU Screening Room & Investigative Archive
 
-Static prestige documentary site (HTML/CSS/JS, zero framework bloat) + hardened Vercel serverless APIs (`/api/submit`, `/api/episodes`) + automated episode-to-site sync pipeline.
+Next.js App Router + React + TypeScript + Tailwind CSS application aligned 100% with the DYEGU Brand & Post-Production Bible (v1.1).
 
 ## Quick Commands
 
 ```bash
-# 1. Process portraits, studio renders, strip SVG bloat & generate bespoke OG cards
-python tools/prepare_assets.py
+# 1. Sync verified claims, chapters & DYEGU Rules from ../episodes/
+python tools/sync_episodes.py
 
-# 2. Sync verified claims, chapters, shorts & Sir K's DYEGU Rules from ../episodes/, then build all pages + .ics calendars
-python tools/build.py --sync
+# 2. Run local dev server
+npm run dev
 
-# 3. Run the automated pre-deploy quality gate (links, anchors, assets, JSON-LD, CSP, NEEDS_CHECK check)
-python tools/check_site.py
+# 3. Production build
+npm run build
 ```
 
 ## Architecture
 
 | Component | Path | Purpose |
 | :--- | :--- | :--- |
-| Episode Sync | `tools/sync_episodes.py` | Ingests `../episodes/ep*` (`01_claims.md`, `03_master_script.json`, `publish.json`, `teleprompter.txt`) into `content/sources.json` + `content/episodes.json` (excludes `NEEDS_CHECK`). |
-| Media & OG Prep | `tools/prepare_assets.py` | Grades `SirK_Profile Pix.jpeg` into WebP/JPG portrait + avatar, copies `brand/sting.mp4`, strips C2PA bloat from SVGs, generates 1200×630 Void & Gold OG cards. |
-| Site Generator | `tools/build.py` + `tools/content.py` | Builds all 26+ HTML pages, JSON-LD structured data, `.ics` calendar feeds (`assets/calendar/`), and `sitemap.xml`. |
-| Quality Gate | `tools/check_site.py` | Zero-tolerance check for broken links, broken `#anchors`, missing assets, SVG bloat, invalid JSON-LD, CSP gaps, and `NEEDS_CHECK` leaks. |
-| Ops CLI | `tools/ops_cli.py` | Zero-SQL triage CLI for `subscribers` (Substack batch export), `enquiries`, `volunteers`, `community_requests` cohorts, and `rebuilds`. |
-| Submission Proxy | `api/submit.js` | Server-side validation, IP rate limiting, optional Turnstile, care-review flagging, Supabase insert, branded Resend confirmation email, and priority team webhook alerts. |
-| YouTube Sync | `api/episodes.js` | Pulls long-form `UULF` RSS uploads once `YT_CHANNEL_ID` is set and matches videos to Season 1 story slugs. |
+| Brand Marks | `src/components/BrandMarks.tsx` | `<BrandLockup />` (D + phoenix Y + EGU) & standalone `<PhoenixMark />` vector components. |
+| Act I: Hero | `src/components/HeroIdent.tsx` | Date-aware Screening Room Hero (`2026-12-06T14:00:00Z`), 4.0s ident mount animation, live `Intl.DateTimeFormat` timezone pill, `.ics` download, 4s Ident modal. |
+| Act II: Proof | `src/components/ArchivalPlate.tsx`, `src/components/DossierDrawer.tsx` | Featured Episode 01 archival plate with scroll-triggered gold highlight bar + 3-column hairline dossier grid + slide-over citation drawer. |
+| Act III: Timeline | `src/components/WildernessTimeline.tsx` | 7-bar horizontal perspective chart (`1.5px #444444` axes, `#C5A059` bars + `6px` milestone nodes). |
+| Act IV: Triage | `src/components/FloorTriage.tsx` | 8-chapter 2-column hairline index with `?chapter=slug` URL sync, inline reading pane, 1-line email signup, and quiet share controls. |
+| Act V: Host Rule | `src/components/HostRule.tsx` | Sir K Studio 01 editorial block, Sunday Comeback File, Founding Cohort Waitlist (Jan 2027), and The Studio Mug preview. |
+| Standards Route | `src/app/standards/page.tsx` | Dedicated verification methodology (`[V] / [E] / [T]`, AI-assisted research & human source audit, held-back claims policy). |
+| API Routes | `src/app/api/submit/route.ts`, `src/app/api/episodes/route.ts` | Hardened Supabase/Resend/Care-Review submission proxy & `@DYEGUOfficial` YouTube RSS sync. |
 
 ## Vercel Environment Variables
 
 | Variable | Required | Purpose |
 | :--- | :--- | :--- |
-| `YT_CHANNEL_ID` | Recommended | `UC…` channel ID for `@dyegulive` (powers live player & card thumbnails) |
+| `YT_CHANNEL_ID` | Recommended | `UC…` channel ID for `@DYEGUOfficial` |
 | `SUPABASE_URL` | Optional | Defaults to `https://hhnvirsisuxumwchntjf.supabase.co` |
 | `SUPABASE_SERVICE_ROLE_KEY` | Recommended | Enables server-side `priority_flag = 'care_review'` writes & `ops_cli.py` |
-| `RESEND_API_KEY` | Recommended | Sends Void & Gold branded confirmation emails on every form submission |
+| `RESEND_API_KEY` | Recommended | Sends Void & Gold branded confirmation emails |
 | `RESEND_FROM` | Optional | Defaults to `DYEGU <hello@dyegu.co>` |
-| `TEAM_ALERT_WEBHOOK_URL` | Recommended | n8n / Slack / Telegram webhook alerted immediately on Enquiries, Volunteers & Care-Review stories |
-| `TURNSTILE_SECRET_KEY` | Optional | Enables Cloudflare Turnstile verification in `api/submit.js` |
-
-## Supabase Operations Upgrade
-
-Run `supabase/migrations/001_ops_schema.sql` once in the Supabase SQL Editor to add non-destructive triage columns (`status`, `priority_flag`, `cohort_id`, `internal_notes`) and 4 operational views (`v_circle_cohorts_ready`, `v_session_topic_demand`, `v_merch_drop_demand`, `v_funnel_by_utm`).
+| `TEAM_ALERT_WEBHOOK_URL` | Recommended | Webhook alerted immediately on Enquiries, Volunteers & Care-Review stories |
+| `TURNSTILE_SECRET_KEY` | Optional | Optional Cloudflare Turnstile verification |

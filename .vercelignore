@@ -1,6 +1,5 @@
 tools/
 supabase/
-content/
 README.md
 __pycache__/
 *.pyc

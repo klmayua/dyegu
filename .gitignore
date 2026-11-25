@@ -1,7 +1,9 @@
+node_modules/
+.next/
+out/
+.env*
 .vercel
-node_modules
-.DS_Store
 __pycache__/
 *.pyc
-
-.vercel
+.DS_Store
+next-env.d.ts
