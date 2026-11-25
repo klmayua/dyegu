@@ -1,1 +1,41 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 440" role="img" aria-label="cap mockup"><rect width="460" height="440" fill="#0a0a0a"/><path d="M110 260 q0 -150 140 -150 q140 0 140 150z" fill="#141414" stroke="#2b2b2b" stroke-width="3"/><path d="M250 260 h170 q30 0 10 25 q-20 20 -100 15 h-80z" fill="#101010" stroke="#2b2b2b" stroke-width="3"/><circle cx="250" cy="112" r="8" fill="#2b2b2b"/><svg x="218" y="160" width="64" height="74" viewBox="465 385 1117 1278"><path fill="#C5A059" fill-rule="evenodd" d="M1133,654 L1105,654 L1077,669 L1062,663 L1043,665 L970,713 L917,731 L946,743 L976,750 L943,871 L994,952 L1024,1007 L1052,954 L1104,870 L1078,788 L1076,759 L1082,736 L1105,699 L1130,674 L1150,663Z M485,405 L506,562 L521,604 L541,631 L716,825 L706,820 L486,651 L548,797 L557,810 L578,828 L793,958 L580,883 L680,1001 L823,1050 L866,1070 L898,1091 L925,1115 L947,1142 L963,1169 L887,1450 L937,1520 L985,1292 L970,1567 L1024,1643 L1078,1566 L1063,1294 L1111,1520 L1160,1451 L1085,1168 L1101,1141 L1119,1119 L1141,1098 L1173,1075 L1225,1050 L1370,1000 L1468,883 L1256,957 L1481,819 L1498,799 L1562,650 L1356,809 L1330,826 L1510,627 L1526,605 L1536,584 L1542,561 L1562,406 L1152,863 L1085,962 L1059,1009 L1024,1084 L966,968 L926,905 L895,863Z"/></svg></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img" aria-label="DYEGU Phoenix Cap architectural mockup">
+  <defs>
+    <radialGradient id="bg-cap" cx="50%" cy="48%" r="58%">
+      <stop offset="0%" stop-color="#151515"/>
+      <stop offset="68%" stop-color="#050505"/>
+      <stop offset="100%" stop-color="#000000"/>
+    </radialGradient>
+    <linearGradient id="crown-cap" x1="20%" y1="10%" x2="85%" y2="90%">
+      <stop offset="0%" stop-color="#242424"/>
+      <stop offset="45%" stop-color="#141414"/>
+      <stop offset="100%" stop-color="#0a0a0a"/>
+    </linearGradient>
+    <linearGradient id="brim-cap" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1c1c1c"/>
+      <stop offset="60%" stop-color="#0e0e0e"/>
+      <stop offset="100%" stop-color="#060606"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="600" fill="url(#bg-cap)"/>
+  <path d="M24 44 V24 H44 M556 24 H576 V44 M24 556 V576 H44 M556 576 H576 V556" fill="none" stroke="#C5A059" stroke-opacity="0.32" stroke-width="1"/>
+  <!-- Subtle ground shadow -->
+  <ellipse cx="304" cy="434" rx="186" ry="20" fill="#000000" opacity="0.7"/>
+  <!-- Top crown button -->
+  <ellipse cx="300" cy="176" rx="14" ry="7" fill="#1e1e1e" stroke="#333333" stroke-width="1.2"/>
+  <!-- 6-panel structured crown -->
+  <path d="M138 352 C140 236 206 178 300 178 C394 178 460 236 462 352 Q300 330 138 352 Z" fill="url(#crown-cap)" stroke="#2e2e2e" stroke-width="1.5"/>
+  <!-- Panel seams -->
+  <path d="M300 182 Q232 246 218 342 M300 182 Q368 246 382 342" fill="none" stroke="#282828" stroke-width="1.2"/>
+  <!-- Subtle eyelets -->
+  <circle cx="240" cy="222" r="4" fill="#0b0b0b" stroke="#2c2c2c" stroke-width="1.2"/>
+  <circle cx="360" cy="222" r="4" fill="#0b0b0b" stroke="#2c2c2c" stroke-width="1.2"/>
+  <!-- Curved brim -->
+  <path d="M112 362 Q300 320 488 362 Q462 414 300 418 Q138 414 112 362 Z" fill="url(#brim-cap)" stroke="#2e2e2e" stroke-width="1.5"/>
+  <!-- Brim concentric stitching -->
+  <path d="M136 372 Q300 338 464 372 M152 384 Q300 356 448 384 M176 396 Q300 374 424 396" fill="none" stroke="#232323" stroke-width="1" stroke-dasharray="3 3"/>
+  <!-- Embroidered flat gold phoenix centered on front crown -->
+  <svg x="266" y="232" width="68" height="78" viewBox="465 385 1117 1278">
+    <path fill="#C5A059" fill-rule="evenodd" d="M1133,654 L1105,654 L1077,669 L1062,663 L1043,665 L970,713 L917,731 L946,743 L976,750 L943,871 L994,952 L1024,1007 L1052,954 L1104,870 L1078,788 L1076,759 L1082,736 L1105,699 L1130,674 L1150,663Z M485,405 L506,562 L521,604 L541,631 L716,825 L706,820 L486,651 L548,797 L557,810 L578,828 L793,958 L580,883 L680,1001 L823,1050 L866,1070 L898,1091 L925,1115 L947,1142 L963,1169 L887,1450 L937,1520 L985,1292 L970,1567 L1024,1643 L1078,1566 L1063,1294 L1111,1520 L1160,1451 L1085,1168 L1101,1141 L1119,1119 L1141,1098 L1173,1075 L1225,1050 L1370,1000 L1468,883 L1256,957 L1481,819 L1498,799 L1562,650 L1356,809 L1330,826 L1510,627 L1526,605 L1536,584 L1542,561 L1562,406 L1152,863 L1085,962 L1059,1009 L1024,1084 L966,968 L926,905 L895,863Z"/>
+  </svg>
+  <text x="300" y="552" text-anchor="middle" fill="#6b655c" font-family="Montserrat, Arial, sans-serif" font-size="11" letter-spacing="4">6-PANEL MATTE TWILL · DROP 01</text>
+</svg>

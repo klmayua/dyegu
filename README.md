@@ -1,60 +1,44 @@
-# dyegu.co — DYEGU brand home
+# dyegu.co — DYEGU Brand Home
 
-Static site (HTML/CSS/JS, no build step) plus one Vercel function. Every push to `main` deploys to production.
+Static prestige documentary site (HTML/CSS/JS, zero framework bloat) + hardened Vercel serverless APIs (`/api/submit`, `/api/episodes`) + automated episode-to-site sync pipeline.
 
-## How it's built
+## Quick Commands
 
-Words live in `tools/content.py` (stories, the 8 "Where are you right now?" stages, shop products). Page templates live in `tools/build.py`. After any change:
+```bash
+# 1. Process portraits, studio renders, strip SVG bloat & generate bespoke OG cards
+python tools/prepare_assets.py
 
-```
-python3 tools/build.py   # regenerates every page + sitemap
-git commit -am "..." && git push   # Vercel deploys in ~10 s
-```
+# 2. Sync verified claims, chapters, shorts & Sir K's DYEGU Rules from ../episodes/, then build all pages + .ics calendars
+python tools/build.py --sync
 
-Runtime config (Supabase, premiere time, social links) is the `CONFIG` block at the top of `app.js`. Episode sources come from `content/sources.json`, generated from each episode's `01_claims.md` (NEEDS_CHECK rows are excluded).
-
-| Page | Path | Converts to |
-| --- | --- | --- |
-| Home | `/` | stage pick → stage page; Comeback File |
-| 8 stage pages | `/start/<job,money,breakup,health,rejected,later,stuck,grief>` | Comeback File tagged with the stage |
-| Stories | `/stories`, `/stories/<slug>` | sources published; Comeback File |
-| Shop · Drop 01 Rise | `/shop` | drop list with ticked products (`merch_waitlist` + `interest`) |
-| Rebuild Playbook | `/playbook` | `playbook_waitlist` + stage |
-| Speaking | `/speaking` | `enquiries` (date, audience, budget) |
-| Share your rebuild | `/share` | `rebuilds` (with two consents) |
-| About, Studio, Privacy | `/about`, `/studio`, `/privacy` | — |
-
-Every page ends with the Comeback File band and the crisis-support line. Every signup records list, stage, products, page and `utm_*` campaign.
-
-## Data (Supabase project `DYEGU360`, eu-west-2)
-
-- `subscribers`: email, list (`comeback_file` / `playbook_waitlist` / `merch_waitlist`), stage, interest[], page, utm, created_at, exported_at
-- `enquiries`: talks / workshops / sponsor / press, with date, audience, budget
-- `rebuilds`: shared stories with consent_contact / consent_feature. Treat as sensitive: read, never publish without asking again
-
-The browser can only INSERT (row-level security + column grants). Read in Supabase → Table editor.
-
-Useful queries:
-```sql
-select stage, count(*) from subscribers group by 1 order by 2 desc;          -- which stages convert
-select unnest(interest) item, count(*) from subscribers where list='merch_waitlist' group by 1 order by 2 desc;  -- merch demand
-select utm, count(*) from subscribers group by 1 order by 2 desc;            -- which campaigns work
+# 3. Run the automated pre-deploy quality gate (links, anchors, assets, JSON-LD, CSP, NEEDS_CHECK check)
+python tools/check_site.py
 ```
 
-**Moving subscribers to Substack:** export `subscribers where list='comeback_file' and exported_at is null` as CSV → Substack → Subscribers → Import. Then `update subscribers set exported_at = now() where exported_at is null and list='comeback_file';`
+## Architecture
 
-## Episodes from YouTube
+| Component | Path | Purpose |
+| :--- | :--- | :--- |
+| Episode Sync | `tools/sync_episodes.py` | Ingests `../episodes/ep*` (`01_claims.md`, `03_master_script.json`, `publish.json`, `teleprompter.txt`) into `content/sources.json` + `content/episodes.json` (excludes `NEEDS_CHECK`). |
+| Media & OG Prep | `tools/prepare_assets.py` | Grades `SirK_Profile Pix.jpeg` into WebP/JPG portrait + avatar, copies `brand/sting.mp4`, strips C2PA bloat from SVGs, generates 1200×630 Void & Gold OG cards. |
+| Site Generator | `tools/build.py` + `tools/content.py` | Builds all 26+ HTML pages, JSON-LD structured data, `.ics` calendar feeds (`assets/calendar/`), and `sitemap.xml`. |
+| Quality Gate | `tools/check_site.py` | Zero-tolerance check for broken links, broken `#anchors`, missing assets, SVG bloat, invalid JSON-LD, CSP gaps, and `NEEDS_CHECK` leaks. |
+| Ops CLI | `tools/ops_cli.py` | Zero-SQL triage CLI for `subscribers` (Substack batch export), `enquiries`, `volunteers`, `community_requests` cohorts, and `rebuilds`. |
+| Submission Proxy | `api/submit.js` | Server-side validation, IP rate limiting, optional Turnstile, care-review flagging, Supabase insert, branded Resend confirmation email, and priority team webhook alerts. |
+| YouTube Sync | `api/episodes.js` | Pulls long-form `UULF` RSS uploads once `YT_CHANNEL_ID` is set and matches videos to Season 1 story slugs. |
 
-`api/episodes.js` pulls long-form uploads once the Vercel env var `YT_CHANNEL_ID` (the `UC…` id of @DYEGUOfficial) is set. To embed a specific episode on its story page, add `youtube_id="<11-char id>"` to that story in `tools/content.py`.
+## Vercel Environment Variables
 
-## Analytics
+| Variable | Required | Purpose |
+| :--- | :--- | :--- |
+| `YT_CHANNEL_ID` | Recommended | `UC…` channel ID for `@DYEGUOfficial` (powers live player & card thumbnails) |
+| `SUPABASE_URL` | Optional | Defaults to `https://hhnvirsisuxumwchntjf.supabase.co` |
+| `SUPABASE_SERVICE_ROLE_KEY` | Recommended | Enables server-side `priority_flag = 'care_review'` writes & `ops_cli.py` |
+| `RESEND_API_KEY` | Recommended | Sends Void & Gold branded confirmation emails on every form submission |
+| `RESEND_FROM` | Optional | Defaults to `Sir K · DYEGU <hello@dyegu.co>` |
+| `TEAM_ALERT_WEBHOOK_URL` | Recommended | n8n / Slack / Telegram webhook alerted immediately on Enquiries, Volunteers & Care-Review stories |
+| `TURNSTILE_SECRET_KEY` | Optional | Enables Cloudflare Turnstile verification in `api/submit.js` |
 
-Vercel Web Analytics (cookie-free) is wired in. Turn it on once: Vercel → project `dyegu` → Analytics → Enable.
+## Supabase Operations Upgrade
 
-## Domain
-
-When bought, add it in Vercel → Project → Domains, then change `SITE` in `tools/content.py` and rebuild (canonical + OG tags).
-
-## Before selling anything
-
-Shop is a drop list only. Open sales after: vector masters (N-01), trademark search (N-17), gold-matched samples, and Vercel Pro.
+Run `supabase/migrations/001_ops_schema.sql` once in the Supabase SQL Editor to add non-destructive triage columns (`status`, `priority_flag`, `cohort_id`, `internal_notes`) and 4 operational views (`v_circle_cohorts_ready`, `v_session_topic_demand`, `v_merch_drop_demand`, `v_funnel_by_utm`).

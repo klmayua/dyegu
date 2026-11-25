@@ -18,12 +18,13 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/styles.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://dyegu.co/"}, {"@type": "ListItem", "position": 2, "name": "Share your rebuild", "item": "https://dyegu.co/share"}]}</script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="site-header">
   <div class="wrap header-row">
-    <a class="brand" href="/" aria-label="DYEGU home"><img src="/assets/dyegu-wordmark-sm.webp" alt="DYEGU" width="560" height="139"></a>
+    <a class="brand" href="/" aria-label="DYEGU home"><img src="/assets/dyegu-wordmark-sm.webp" srcset="/assets/dyegu-wordmark-sm.webp 1x, /assets/dyegu-wordmark.webp 2x" alt="DYEGU" width="560" height="139"></a>
     <nav class="nav" aria-label="Main"><a href="/#start">Find your story</a><a href="/stories">Stories</a><a href="/community">Community</a><a href="/playbook">Playbook</a><a href="/shop">Shop</a><a href="/speaking">Speaking</a></nav>
     <a class="btn btn-gold btn-sm header-cta" href="#join">Join free</a>
     <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-nav">Menu</button>
@@ -34,23 +35,27 @@
 
 <section class="page-hero">
   <div class="wrap narrow">
-    <p class="eyebrow">Share your rebuild</p>
+    <p class="eyebrow eyebrow-rule">Share your rebuild</p>
     <h1 class="display-sm">Tell us where you are.</h1>
-    <p class="lede">In the middle of it or out the other side: we read every story. With your permission, some will be shared in the Comeback File, and some may one day become an episode.</p>
+    <p class="lede">In the middle of it or standing on the other side: we read every story privately. With your explicit permission, some will be featured in The Comeback File, and some may one day inspire an episode.</p>
   </div>
 </section>
 <section class="section-tight">
   <div class="wrap narrow">
-    <form class="js-form share" data-table="rebuilds" data-success="Thank you for trusting us with your story. We read every one." novalidate>
+    <form class="js-form share" data-table="rebuilds" data-success="Thank you for trusting us with your story. We read every one privately." novalidate>
       <div class="grid-2">
         <div><label for="u21n">First name (optional)</label><input id="u21n" name="first_name" autocomplete="given-name" maxlength="60"></div>
         <div><label for="u21e">Email</label><input id="u21e" name="email" type="email" autocomplete="email" required></div>
       </div>
-      <label for="f-stage-u21">Which is closest to your story?</label><select id="f-stage-u21" name="stage"><option value="">Choose one</option><option value="job">I lost my job</option><option value="money">My business or money is gone</option><option value="breakup">Starting over after a breakup</option><option value="health">A health setback</option><option value="rejected">Rejected again</option><option value="later">Starting over at 40, 50 or later</option><option value="stuck">Stuck or lost my direction</option><option value="grief">Grieving a loss</option></select>
+      <label for="f-stage-u21">Which chapter is closest to your story?</label><select id="f-stage-u21" name="stage"><option value="">Choose one</option><option value="job">I lost my job</option><option value="money">My business or money is gone</option><option value="breakup">Starting over after a breakup</option><option value="health">A health setback</option><option value="rejected">Rejected again</option><option value="later">Starting over at 40, 50 or later</option><option value="stuck">Stuck or lost my direction</option><option value="grief">Grieving a loss</option></select>
       <label for="u21s">Your story</label>
-      <textarea id="u21s" name="story" rows="9" required minlength="20" maxlength="6000" placeholder="What happened, where you are now, what's helping. Please leave out details that identify other people."></textarea>
-      <label class="check"><input type="checkbox" name="consent_contact"> You can email me about my story.</label>
-      <label class="check"><input type="checkbox" name="consent_feature"> You can share my story in the Comeback File or on DYEGU, using my first name only. I'll be asked again before anything is published.</label>
+      <textarea id="u21s" name="story" rows="9" required minlength="20" maxlength="6000" placeholder="What happened, where you are now, and what is helping you keep going. Please leave out details that identify other people."></textarea>
+      <p class="char-count" data-story-count>0 / 6000</p>
+      <aside class="care-note care-live" data-care-live hidden>
+        <p><strong>You don't have to carry this alone right now.</strong> If you're feeling overwhelmed or thinking about harming yourself, free confidential support is available immediately at <a href="https://findahelpline.com" target="_blank" rel="noopener">findahelpline.com</a>.</p>
+      </aside>
+      <label class="check"><input type="checkbox" name="consent_contact"> You can email me privately about my story.</label>
+      <label class="check"><input type="checkbox" name="consent_feature"> You can share my story in The Comeback File or on DYEGU, using my first name only. I will always be asked again before anything is published.</label>
       <input class="hp" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
       <button class="btn btn-gold" type="submit">Send my story</button>
       <p class="form-msg" role="status" aria-live="polite"></p>
@@ -59,12 +64,12 @@
   </div>
 </section>
 </main>
-<section class="join-band" id="join">
+<section class="join-band grain-surface" id="join">
   <div class="wrap join-grid">
     <div>
-      <p class="eyebrow">The Comeback File · free, weekly</p>
+      <p class="eyebrow eyebrow-rule">The Comeback File · free, weekly</p>
       <h2 class="h3">One story. One lesson. One move for your week.</h2>
-      <p class="muted">From Sir K, every week. Subscribers also get the Rebuild Playbook first, at the early price.</p>
+      <p class="muted">From Sir K, every Sunday. Subscribers also get The Rebuild Playbook first, at the early price, plus early invites to Rebuild Circles.</p>
     </div>
     <form class="js-form signup" data-table="subscribers" data-list="comeback_file" novalidate>
   

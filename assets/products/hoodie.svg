@@ -1,1 +1,38 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 440" role="img" aria-label="hoodie mockup"><rect width="460" height="440" fill="#0a0a0a"/><path d="M160 100 q65 -60 130 0 l95 45 30 200 -50 10 -15 -120 v185 H150 V235 l-15 120 -50 -10 30 -200z" fill="#141414" stroke="#2b2b2b" stroke-width="3"/><path d="M178 102 q47 70 94 0" fill="none" stroke="#2b2b2b" stroke-width="3"/><path d="M190 330 h70 v40 h-70z" fill="#101010" stroke="#2b2b2b" stroke-width="2"/><svg x="272" y="175" width="38" height="44" viewBox="465 385 1117 1278"><path fill="#C5A059" fill-rule="evenodd" d="M1133,654 L1105,654 L1077,669 L1062,663 L1043,665 L970,713 L917,731 L946,743 L976,750 L943,871 L994,952 L1024,1007 L1052,954 L1104,870 L1078,788 L1076,759 L1082,736 L1105,699 L1130,674 L1150,663Z M485,405 L506,562 L521,604 L541,631 L716,825 L706,820 L486,651 L548,797 L557,810 L578,828 L793,958 L580,883 L680,1001 L823,1050 L866,1070 L898,1091 L925,1115 L947,1142 L963,1169 L887,1450 L937,1520 L985,1292 L970,1567 L1024,1643 L1078,1566 L1063,1294 L1111,1520 L1160,1451 L1085,1168 L1101,1141 L1119,1119 L1141,1098 L1173,1075 L1225,1050 L1370,1000 L1468,883 L1256,957 L1481,819 L1498,799 L1562,650 L1356,809 L1330,826 L1510,627 L1526,605 L1536,584 L1542,561 L1562,406 L1152,863 L1085,962 L1059,1009 L1024,1084 L966,968 L926,905 L895,863Z"/></svg></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img" aria-label="DYEGU Rise Hoodie architectural mockup">
+  <defs>
+    <radialGradient id="bg-hoodie" cx="50%" cy="46%" r="58%">
+      <stop offset="0%" stop-color="#141414"/>
+      <stop offset="68%" stop-color="#050505"/>
+      <stop offset="100%" stop-color="#000000"/>
+    </radialGradient>
+    <linearGradient id="fabric-hoodie" x1="15%" y1="5%" x2="85%" y2="95%">
+      <stop offset="0%" stop-color="#222222"/>
+      <stop offset="40%" stop-color="#141414"/>
+      <stop offset="100%" stop-color="#090909"/>
+    </linearGradient>
+    <linearGradient id="hood-inner" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#070707"/>
+      <stop offset="100%" stop-color="#161616"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="600" fill="url(#bg-hoodie)"/>
+  <path d="M24 44 V24 H44 M556 24 H576 V44 M24 556 V576 H44 M556 576 H576 V556" fill="none" stroke="#C5A059" stroke-opacity="0.32" stroke-width="1"/>
+  <!-- Structured double-layered hood -->
+  <path d="M222 144 Q218 76 300 72 Q382 76 378 144 Q346 196 300 198 Q254 196 222 144 Z" fill="#181818" stroke="#303030" stroke-width="1.5"/>
+  <path d="M244 138 Q248 96 300 94 Q352 96 356 138 Q332 180 300 182 Q268 180 244 138 Z" fill="url(#hood-inner)" stroke="#262626" stroke-width="1"/>
+  <!-- Main body & heavy dropped-shoulder sleeves -->
+  <path d="M222 142 L134 176 L86 436 L146 446 L176 286 L176 492 L424 492 L424 286 L454 446 L514 436 L466 176 L378 142 Q342 192 300 194 Q258 192 222 142 Z" fill="url(#fabric-hoodie)" stroke="#2d2d2d" stroke-width="1.5"/>
+  <!-- Ribbed cuffs and waistband -->
+  <rect x="176" y="458" width="248" height="34" fill="#101010" stroke="#282828" stroke-width="1.2"/>
+  <path d="M88 412 L148 422 L144 446 L86 436 Z M512 412 L452 422 L456 446 L514 436 Z" fill="#101010" stroke="#282828" stroke-width="1.2"/>
+  <!-- Minimalist kangaroo pocket -->
+  <path d="M214 352 H386 L402 436 H198 Z" fill="#111111" stroke="#272727" stroke-width="1.2"/>
+  <path d="M214 352 L198 436 M386 352 L402 436" stroke="#2c2c2c" stroke-width="1.5"/>
+  <!-- Subtle shoulder seam lines -->
+  <path d="M176 286 Q184 220 154 168 M424 286 Q416 220 446 168" fill="none" stroke="#242424" stroke-width="1.2"/>
+  <!-- Flat gold phoenix mark on left chest -->
+  <svg x="342" y="220" width="44" height="50" viewBox="465 385 1117 1278">
+    <path fill="#C5A059" fill-rule="evenodd" d="M1133,654 L1105,654 L1077,669 L1062,663 L1043,665 L970,713 L917,731 L946,743 L976,750 L943,871 L994,952 L1024,1007 L1052,954 L1104,870 L1078,788 L1076,759 L1082,736 L1105,699 L1130,674 L1150,663Z M485,405 L506,562 L521,604 L541,631 L716,825 L706,820 L486,651 L548,797 L557,810 L578,828 L793,958 L580,883 L680,1001 L823,1050 L866,1070 L898,1091 L925,1115 L947,1142 L963,1169 L887,1450 L937,1520 L985,1292 L970,1567 L1024,1643 L1078,1566 L1063,1294 L1111,1520 L1160,1451 L1085,1168 L1101,1141 L1119,1119 L1141,1098 L1173,1075 L1225,1050 L1370,1000 L1468,883 L1256,957 L1481,819 L1498,799 L1562,650 L1356,809 L1330,826 L1510,627 L1526,605 L1536,584 L1542,561 L1562,406 L1152,863 L1085,962 L1059,1009 L1024,1084 L966,968 L926,905 L895,863Z"/>
+  </svg>
+  <text x="300" y="552" text-anchor="middle" fill="#6b655c" font-family="Montserrat, Arial, sans-serif" font-size="11" letter-spacing="4">420 GSM BRUSHED FLEECE · DROP 01</text>
+</svg>

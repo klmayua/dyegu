@@ -18,12 +18,14 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/styles.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "DYEGU — Don't You Ever Give Up", "url": "https://dyegu.co", "logo": "https://dyegu.co/assets/icon-512.png", "sameAs": ["https://www.youtube.com/@DYEGUOfficial", "https://www.instagram.com/dyegulive", "https://x.com/dyegulive", "https://www.facebook.com/dyegulive"]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Person", "name": "Sir K", "jobTitle": "Creator & Documentary Host", "worksFor": {"@type": "Organization", "name": "DYEGU"}, "image": "https://dyegu.co/assets/sir-k-portrait.jpg", "url": "https://dyegu.co/about"}</script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="site-header">
   <div class="wrap header-row">
-    <a class="brand" href="/" aria-label="DYEGU home"><img src="/assets/dyegu-wordmark-sm.webp" alt="DYEGU" width="560" height="139"></a>
+    <a class="brand" href="/" aria-label="DYEGU home"><img src="/assets/dyegu-wordmark-sm.webp" srcset="/assets/dyegu-wordmark-sm.webp 1x, /assets/dyegu-wordmark.webp 2x" alt="DYEGU" width="560" height="139"></a>
     <nav class="nav" aria-label="Main"><a href="/#start">Find your story</a><a href="/stories">Stories</a><a href="/community">Community</a><a href="/playbook">Playbook</a><a href="/shop">Shop</a><a href="/speaking">Speaking</a></nav>
     <a class="btn btn-gold btn-sm header-cta" href="#join">Join free</a>
     <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-nav">Menu</button>
@@ -35,16 +37,25 @@
 <section class="hero">
   <div class="wrap hero-grid">
     <div class="hero-copy">
-      <p class="eyebrow">True comeback stories · presented by Sir K</p>
+      <div class="hero-byline">
+        <img class="hero-avatar" src="/assets/sir-k-avatar.webp" alt="Sir K" width="42" height="42">
+        <p class="eyebrow">True comeback documentaries · presented by Sir K</p>
+      </div>
       <h1 class="display">Don't you ever<br><em>give up.</em></h1>
-      <p class="lede">Lost your job, your business, your health, your marriage or your way? You're not the first, and you won't be the last to rebuild. Every Sunday, Sir K tells the documented story of someone who lost it all and came back, and what you can take from it.</p>
+      <p class="lede">Lost your job, your business, your health, your marriage or your way? You're not the first, and you won't be the last to rebuild. Every Sunday, Sir K tells the documented story of someone who lost it all and came back — and the exact move you can take from it.</p>
       <div class="hero-actions">
         <a class="btn btn-gold" href="#start">Find the story for where you are</a>
         <a class="btn btn-ghost" href="#join">Get the weekly Comeback File</a>
       </div>
+      <div class="trust-bar" aria-label="Series credentials">
+        <span><strong>14</strong> Season 1 documentaries</span>
+        <span><strong>131</strong> verified claims in Batch 1</span>
+        <span><strong>96</strong> published sources</span>
+        <span><strong>$0</strong> free peer community</span>
+      </div>
     </div>
     <div class="hero-media" data-latest><div class="premiere-card" id="premiere">
-  <img class="premiere-mark" src="/assets/phoenix.svg" alt="" width="120" height="138">
+  <div class="sting-frame"><video autoplay muted playsinline preload="metadata" poster="/assets/og.jpg"><source src="/assets/sting.mp4" type="video/mp4"></video><span class="sting-badge">Official Ident · 4K</span><button class="sting-replay" type="button" data-sting-replay aria-label="Replay DYEGU title sting">Replay</button></div>
   <p class="eyebrow">Episode 01 premieres</p>
   <p class="premiere-date">Sunday 6 December 2026</p>
   <p class="premiere-time" data-premiere-time>15:00 WAT · 14:00 GMT · 09:00 ET</p>
@@ -52,29 +63,42 @@
     <div><span data-u="d">--</span><small>days</small></div>
     <div><span data-u="h">--</span><small>hours</small></div>
     <div><span data-u="m">--</span><small>min</small></div>
+    <div><span data-u="s">--</span><small>sec</small></div>
   </div>
-  <a class="btn btn-ghost" href="https://www.youtube.com/@DYEGUOfficial?sub_confirmation=1" rel="noopener" target="_blank">Subscribe on YouTube</a>
+  <div class="premiere-actions">
+    <a class="btn btn-gold btn-sm" href="https://www.youtube.com/@DYEGUOfficial?sub_confirmation=1" rel="noopener" target="_blank">Subscribe on YouTube</a>
+    <a class="btn btn-ghost btn-sm" href="/assets/calendar/ep01-steve-jobs.ics" download>Add to calendar (.ics)</a>
+  </div>
+  <div class="premiere-cal">
+    <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=DYEGU+Episode+01+Premiere%3A+Steve+Jobs&amp;dates=20261206T140000Z%2F20261206T143000Z&amp;details=Watch+Episode+01+%28Steve+Jobs%29+on+YouTube+%40DYEGUOfficial+%E2%80%94+presented+by+Sir+K.&amp;location=https%3A%2F%2Fwww.youtube.com%2F%40DYEGUOfficial" target="_blank" rel="noopener">Google Calendar</a>
+    <span>·</span>
+    <a href="/assets/calendar/dyegu-season1.ics" download>All 14 Sundays (.ics)</a>
+  </div>
 </div></div>
   </div>
 </section>
 
 <section class="section" id="start">
   <div class="wrap">
-    <p class="eyebrow">Start here</p>
+    <p class="eyebrow eyebrow-rule">Start here</p>
     <h2 class="h2">Where are you right now?</h2>
-    <p class="lede">Pick the one closest to your life today. You'll get the stories that match it and three moves you can make this week.</p>
-    <div class="stage-grid"><a class="stage-tile" href="/start/job"><span>I lost my job</span><span class="arrow" aria-hidden="true">→</span></a><a class="stage-tile" href="/start/money"><span>My business or money is gone</span><span class="arrow" aria-hidden="true">→</span></a><a class="stage-tile" href="/start/breakup"><span>Starting over after a breakup</span><span class="arrow" aria-hidden="true">→</span></a><a class="stage-tile" href="/start/health"><span>A health setback</span><span class="arrow" aria-hidden="true">→</span></a><a class="stage-tile" href="/start/rejected"><span>Rejected again</span><span class="arrow" aria-hidden="true">→</span></a><a class="stage-tile" href="/start/later"><span>Starting over at 40, 50 or later</span><span class="arrow" aria-hidden="true">→</span></a><a class="stage-tile" href="/start/stuck"><span>Stuck or lost my direction</span><span class="arrow" aria-hidden="true">→</span></a><a class="stage-tile" href="/start/grief"><span>Grieving a loss</span><span class="arrow" aria-hidden="true">→</span></a></div>
+    <p class="lede">Pick the chapter closest to your life today. You'll get matched documentaries, an interactive 7-day move checklist you can print, and a free circle at your stage.</p>
+    <div class="stage-grid"><a class="stage-tile" href="/start/job" data-reveal><div class="stage-tile-top"><svg class="stage-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="1"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M3 12h18"/></svg><span class="stage-count">3 stories</span></div><div><span class="stage-tile-title">I lost my job</span><span class="stage-tile-sub">Fired, laid off, pushed out or quietly passed over.</span></div><div class="stage-tile-foot"><span>3 moves + stories</span><span aria-hidden="true">→</span></div></a><a class="stage-tile" href="/start/money" data-reveal><div class="stage-tile-top"><svg class="stage-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg><span class="stage-count">7 stories</span></div><div><span class="stage-tile-title">My business or money is gone</span><span class="stage-tile-sub">Debt, a closed company, savings depleted.</span></div><div class="stage-tile-foot"><span>3 moves + stories</span><span aria-hidden="true">→</span></div></a><a class="stage-tile" href="/start/breakup" data-reveal><div class="stage-tile-top"><svg class="stage-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M12 21s-7-4.5-9-9.2C1.6 8.3 4.2 5 7.5 5c1.9 0 3.5 1 4.5 2.5C13 6 14.6 5 16.5 5 19.8 5 22.4 8.3 21 11.8 19 16.5 12 21 12 21z"/></svg><span class="stage-count">4 stories</span></div><div><span class="stage-tile-title">Starting over after a breakup</span><span class="stage-tile-sub">The life you planned has changed shape.</span></div><div class="stage-tile-foot"><span>3 moves + stories</span><span aria-hidden="true">→</span></div></a><a class="stage-tile" href="/start/health" data-reveal><div class="stage-tile-top"><svg class="stage-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M3 12h4l2.5-6 4 12 2.5-6H21"/></svg><span class="stage-count">7 stories</span></div><div><span class="stage-tile-title">A health setback</span><span class="stage-tile-sub">An injury, a diagnosis, a long recovery.</span></div><div class="stage-tile-foot"><span>3 moves + stories</span><span aria-hidden="true">→</span></div></a><a class="stage-tile" href="/start/rejected" data-reveal><div class="stage-tile-top"><svg class="stage-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M4 20V4h11v16"/><path d="M15 12h6m-3-3 3 3-3 3"/><circle cx="11.5" cy="12" r=".8" fill="currentColor"/></svg><span class="stage-count">8 stories</span></div><div><span class="stage-tile-title">Rejected again</span><span class="stage-tile-sub">The pitch, the publisher, the role, the door that stayed closed.</span></div><div class="stage-tile-foot"><span>3 moves + stories</span><span aria-hidden="true">→</span></div></a><a class="stage-tile" href="/start/later" data-reveal><div class="stage-tile-top"><svg class="stage-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg><span class="stage-count">5 stories</span></div><div><span class="stage-tile-title">Starting over at 40, 50 or later</span><span class="stage-tile-sub">More responsibility, less patience for noise, deeper judgement.</span></div><div class="stage-tile-foot"><span>3 moves + stories</span><span aria-hidden="true">→</span></div></a><a class="stage-tile" href="/start/stuck" data-reveal><div class="stage-tile-top"><svg class="stage-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="12" cy="12" r="9"/><polygon points="15.5,8.5 13.4,13.4 8.5,15.5 10.6,10.6"/></svg><span class="stage-count">7 stories</span></div><div><span class="stage-tile-title">Stuck or lost my direction</span><span class="stage-tile-sub">Nothing collapsed — you just can&#x27;t see the next step.</span></div><div class="stage-tile-foot"><span>3 moves + stories</span><span aria-hidden="true">→</span></div></a><a class="stage-tile" href="/start/grief" data-reveal><div class="stage-tile-top"><svg class="stage-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M12 3v18"/><path d="M6 15c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M4 21h16"/></svg><span class="stage-count">4 stories</span></div><div><span class="stage-tile-title">Grieving a loss</span><span class="stage-tile-sub">A person, a marriage, a career, a version of yourself.</span></div><div class="stage-tile-foot"><span>3 moves + stories</span><span aria-hidden="true">→</span></div></a></div>
+    <div class="compass-trigger">
+      <p><strong>Not sure which one fits?</strong> Take 15 seconds with our private starting compass — no email required.</p>
+      <button class="btn btn-subtle btn-sm" type="button" data-open-compass>Open starting compass</button>
+    </div>
   </div>
 </section>
 
-<section class="section section-alt" id="standard">
+<section class="section section-alt grain-surface" id="standard">
   <div class="wrap">
-    <p class="eyebrow">The DYEGU standard</p>
+    <p class="eyebrow eyebrow-rule">The DYEGU standard</p>
     <h2 class="h2">Comebacks you can check.</h2>
-    <div class="pillars">
-      <article><span class="num">I</span><h3>Real people</h3><p>Names you know. People who held real status, health, money or fame, lost it in public, and climbed back.</p></article>
-      <article><span class="num">II</span><h3>Documented facts</h3><p>Every claim is checked before it's narrated, and every source is published on the story's page so you can read it yourself.</p></article>
-      <article><span class="num">III</span><h3>No invention</h3><p>No made-up inner thoughts, no guessed net worths, no dramatised quotes. The truth is dramatic enough.</p></article>
+    <div class="pillars" data-reveal>
+      <article><span class="num">I</span><h3>Real people</h3><p>Names you know. People who held real status, health, money or fame, lost it in public, and climbed back without shortcuts.</p></article>
+      <article><span class="num">II</span><h3>Documented receipts</h3><p>Every claim is audited against primary records or two independent reports, and every source is published on the story's dossier page.</p></article>
+      <article><span class="num">III</span><h3>Zero invention</h3><p>No fabricated inner monologues, no guessed net worths, no sensationalised trauma. The documented truth is dramatic enough.</p></article>
     </div>
   </div>
 </section>
@@ -82,43 +106,58 @@
 <section class="section" id="episodes">
   <div class="wrap">
     <div class="section-head">
-      <div><p class="eyebrow">Season 1 · every Sunday</p><h2 class="h2">The first three stories</h2></div>
-      <a class="link-gold" href="/stories">The whole season →</a>
+      <div><p class="eyebrow eyebrow-rule">Season 1 · every Sunday at 15:00 WAT</p><h2 class="h2">Opening three dossiers</h2></div>
+      <a class="link-gold" href="/stories">Explore all 14 Season 1 stories →</a>
     </div>
-    <div class="episodes" data-episodes><a class="ep" href="/stories/steve-jobs" data-date="2026-12-06T14:00:00Z">
-  <span class="ep-no">01</span>
+    <div class="episodes" data-episodes><a class="ep" href="/stories/steve-jobs" data-date="2026-12-06T14:00:00Z" data-slug="steve-jobs" data-stages="job,stuck,rejected" data-reveal>
+  <div class="ep-top"><span class="ep-no">01</span><span class="ep-badge live">Dossier ready</span></div>
+  <p class="ep-cat">Tech · US</p>
   <h3 class="ep-subject">Steve Jobs</h3>
   <p class="ep-tease">Forced out of Apple, the company he co-founded, at 30. Eleven years, two companies and a near-bankrupt Apple later, he walked back in.</p>
-  <p class="ep-when"></p>
-</a><a class="ep" href="/stories/jk-rowling" data-date="2026-12-13T14:00:00Z">
-  <span class="ep-no">02</span>
+  <div class="ep-foot">
+    <p class="ep-when"></p>
+    <span class="small muted">49 verified claims</span>
+  </div>
+</a><a class="ep" href="/stories/jk-rowling" data-date="2026-12-13T14:00:00Z" data-slug="jk-rowling" data-stages="rejected,money,breakup,grief" data-reveal>
+  <div class="ep-top"><span class="ep-no">02</span><span class="ep-badge live">Dossier ready</span></div>
+  <p class="ep-cat">Literature · UK</p>
   <h3 class="ep-subject">J.K. Rowling</h3>
-  <p class="ep-tease">A single mother on benefits in Edinburgh, grieving, with three chapters and a stack of rejections. Then one reader said yes.</p>
-  <p class="ep-when"></p>
-</a><a class="ep" href="/stories/tyler-perry" data-date="2026-12-20T14:00:00Z">
-  <span class="ep-no">03</span>
+  <p class="ep-tease">A single mother on benefits in Edinburgh, grieving, with three chapters and a stack of rejections. Then one eight-year-old reader said yes.</p>
+  <div class="ep-foot">
+    <p class="ep-when"></p>
+    <span class="small muted">38 verified claims</span>
+  </div>
+</a><a class="ep" href="/stories/tyler-perry" data-date="2026-12-20T14:00:00Z" data-slug="tyler-perry" data-stages="money,rejected,stuck" data-reveal>
+  <div class="ep-top"><span class="ep-no">03</span><span class="ep-badge live">Dossier ready</span></div>
+  <p class="ep-cat">Film &amp; Media · US</p>
   <h3 class="ep-subject">Tyler Perry</h3>
-  <p class="ep-tease">He spent his savings on one play. About thirty people came. He slept in his car. He kept staging it, year after year, until the seventh. Today he owns one of America&#x27;s largest studios.</p>
-  <p class="ep-when"></p>
+  <p class="ep-tease">He spent his $12,000 savings on one play. About thirty people came. He slept in his car. He kept staging it, year after year, until the seventh. Today he owns one of America&#x27;s largest studios.</p>
+  <div class="ep-foot">
+    <p class="ep-when"></p>
+    <span class="small muted">44 verified claims</span>
+  </div>
 </a></div>
   </div>
 </section>
 
-<section class="section section-alt">
+<section class="section section-alt grain-surface">
   <div class="wrap offer-grid">
-    <a class="offer offer-link" href="/playbook">
-      <p class="eyebrow">Coming January 2027 · $19</p>
-      <h2 class="h3">The Rebuild Playbook</h2>
-      <p>The patterns behind every comeback in Season 1, turned into a workbook for your own. Subscribers get it first, at the early price.</p>
-      <span class="link-gold">See what's inside →</span>
+    <a class="offer offer-link offer-shop" href="/playbook" data-reveal>
+      <img src="/assets/products/playbook.webp" alt="The Rebuild Playbook cover" width="460" height="460" loading="lazy">
+      <div>
+        <p class="eyebrow">Coming January 2027 · $19</p>
+        <h2 class="h3">The Rebuild Playbook</h2>
+        <p>The patterns behind every comeback in Season 1, turned into a 7-chapter field workbook. Includes a free Chapter 1 sample inside.</p>
+        <span class="link-gold">Look inside &amp; join waitlist →</span>
+      </div>
     </a>
-    <a class="offer offer-link offer-shop" href="/shop">
-      <img src="/assets/products/mug.svg" alt="" width="460" height="440" loading="lazy">
+    <a class="offer offer-link offer-shop" href="/shop" data-reveal>
+      <img src="/assets/products/mug.webp" alt="The DYEGU Studio Mug" width="460" height="460" loading="lazy">
       <div>
         <p class="eyebrow">Drop 01 · Rise</p>
         <h2 class="h3">Wear the reminder</h2>
-        <p>The studio mug, the Rise tee and hoodie, the phoenix cap. Join the drop list for first access.</p>
-        <span class="link-gold">See the drop →</span>
+        <p>The matte-black Studio Mug on Sir K's desk, the heavyweight Rise tee and hoodie, the phoenix cap, and the linen Rebuild Journal.</p>
+        <span class="link-gold">Preview Drop 01 →</span>
       </div>
     </a>
   </div>
@@ -126,46 +165,79 @@
 
 <section class="section">
   <div class="wrap">
-    <div class="section-head"><div><p class="eyebrow">DYEGU Community · free</p><h2 class="h2">Nobody rebuilds alone.</h2></div><a class="link-gold" href="/community">How the community works →</a></div>
-    <div class="doors">
-      <a class="door" href="/community/circles"><p class="eyebrow">Peer support</p><h3 class="h3">Rebuild Circles</h3><p>Six weeks with six to eight people at your stage, hosted by a trained volunteer.</p><span class="link-gold">Join a circle →</span></a>
-      <a class="door" href="/community/sessions"><p class="eyebrow">Expert help</p><h3 class="h3">Free expert sessions</h3><p>Recruiters, accountants, lawyers and founders giving practical guidance, free.</p><span class="link-gold">Request a session →</span></a>
-      <a class="door" href="/volunteer"><p class="eyebrow">Give back</p><h3 class="h3">Volunteer as an expert</h3><p>Give an hour a month to someone starting over.</p><span class="link-gold">Apply →</span></a>
+    <div class="section-head">
+      <div><p class="eyebrow eyebrow-rule">DYEGU Community · always free</p><h2 class="h2">Nobody rebuilds alone.</h2></div>
+      <a class="link-gold" href="/community">How the community works →</a>
+    </div>
+    <div class="doors" data-reveal>
+      <a class="door" href="/community/circles"><p class="eyebrow">Peer support</p><h3 class="h3">Rebuild Circles</h3><p>Six weeks with six to eight people at your exact stage and time zone, guided by a trained volunteer host.</p><span class="link-gold">Join a circle →</span></a>
+      <a class="door" href="/community/sessions"><p class="eyebrow">Expert help</p><h3 class="h3">Free expert sessions</h3><p>Vetted recruiters, accountants, lawyers and founders giving practical, pitch-free guidance live.</p><span class="link-gold">Request a session →</span></a>
+      <a class="door" href="/volunteer"><p class="eyebrow">Give back</p><h3 class="h3">Volunteer as an expert</h3><p>Give an hour a month of hard-won expertise to someone rebuilding after a major setback.</p><span class="link-gold">Apply to volunteer →</span></a>
     </div>
   </div>
 </section>
 
-<section class="section section-alt">
-  <div class="wrap share-strip">
+<section class="section section-alt grain-surface">
+  <div class="wrap share-strip" data-reveal>
     <div>
-      <p class="eyebrow">Your story matters too</p>
+      <p class="eyebrow eyebrow-rule">Your story matters too</p>
       <h2 class="h2">Tell us your rebuild.</h2>
-      <p class="lede">Halfway through it or on the other side, we want to hear it. With your permission, some stories will be shared in the Comeback File, and may one day become an episode.</p>
+      <p class="lede">Halfway through the wilderness or standing on the other side, we read every story privately. With your explicit permission, selected stories are featured in The Comeback File.</p>
     </div>
     <a class="btn btn-gold" href="/share">Share your story</a>
   </div>
 </section>
 
 <section class="section" id="host">
-  <div class="wrap host">
-    <img class="host-mark" src="/assets/phoenix.svg" alt="" width="160" height="184">
+  <div class="wrap host" data-reveal>
+    <figure class="portrait-frame" style="margin:0">
+  <picture>
+    <source srcset="/assets/sir-k-portrait.webp" type="image/webp">
+    <img src="/assets/sir-k-portrait.jpg" alt="Portrait of Sir K, creator and host of DYEGU" width="800" height="1000" loading="lazy">
+  </picture>
+  <figcaption class="portrait-caption">Sir K · Creator &amp; Host of DYEGU</figcaption>
+</figure>
     <div>
-      <p class="eyebrow">Your host</p>
+      <p class="eyebrow eyebrow-rule">Your host</p>
       <h2 class="h2">Sir K</h2>
-      <p class="lede">Sir K has spent more than twenty years building companies, teams and technology across Africa and beyond, and has had to rebuild more than once. DYEGU is the series he wanted when things went wrong: real people, real setbacks, and the honest work of coming back.</p>
+      <p class="lede">Sir K has spent more than twenty years building companies, teams and technology across Africa and beyond — and has had to rebuild more than once. DYEGU is the documentary house he wanted when things went wrong: real people, verified facts, and the honest craft of coming back.</p>
+      <div class="host-stats">
+        <div><strong>20+ yrs</strong><span>Building ventures &amp; teams</span></div>
+        <div><strong>100%</strong><span>Human-narrated &amp; sourced</span></div>
+        <div><strong>Global</strong><span>US · UK · Europe · Africa</span></div>
+      </div>
       <p class="signoff">“Until the next story… don't you ever give up.”</p>
-      <p><a class="link-gold" href="/about">More about Sir K and how DYEGU is made →</a> &nbsp; <a class="link-gold" href="/speaking">Book Sir K to speak →</a></p>
+      <p><a class="link-gold" href="/about">More about Sir K &amp; studio method →</a> &nbsp;&nbsp; <a class="link-gold" href="/speaking">Book Sir K to speak →</a></p>
     </div>
   </div>
 </section>
+<div class="modal" id="compass-modal" role="dialog" aria-modal="true" aria-labelledby="compass-title" hidden>
+  <div class="modal-card">
+    <button class="modal-close" type="button" data-close-compass aria-label="Close">×</button>
+    <p class="eyebrow eyebrow-rule">15-second starting compass</p>
+    <h2 class="h3" id="compass-title">Which sentence feels heaviest this week?</h2>
+    <p class="muted small">Pick the closest match. Nothing you click here is sent to a server.</p>
+    <div class="compass-opts">
+      <button class="compass-opt" type="button" data-compass-pick="job"><span>My career or role ended, and it knocked my footing.</span><span>→</span></button>
+      <button class="compass-opt" type="button" data-compass-pick="money"><span>A business failed, debt grew, or the money ran dry.</span><span>→</span></button>
+      <button class="compass-opt" type="button" data-compass-pick="rejected"><span>I keep putting work out and hearing no.</span><span>→</span></button>
+      <button class="compass-opt" type="button" data-compass-pick="health"><span>My body or health changed the plan for my life.</span><span>→</span></button>
+      <button class="compass-opt" type="button" data-compass-pick="breakup"><span>A marriage or relationship ended and life changed shape.</span><span>→</span></button>
+      <button class="compass-opt" type="button" data-compass-pick="later"><span>I am rebuilding at 40, 50 or later with real responsibilities.</span><span>→</span></button>
+      <button class="compass-opt" type="button" data-compass-pick="stuck"><span>Nothing collapsed — I just feel lost and out of motion.</span><span>→</span></button>
+      <button class="compass-opt" type="button" data-compass-pick="grief"><span>I am carrying a deep loss and trying to steady myself.</span><span>→</span></button>
+    </div>
+    <div class="compass-result" data-compass-result hidden></div>
+  </div>
+</div>
 
 </main>
-<section class="join-band" id="join">
+<section class="join-band grain-surface" id="join">
   <div class="wrap join-grid">
     <div>
-      <p class="eyebrow">The Comeback File · free, weekly</p>
+      <p class="eyebrow eyebrow-rule">The Comeback File · free, weekly</p>
       <h2 class="h3">One story. One lesson. One move for your week.</h2>
-      <p class="muted">From Sir K, every week. Subscribers also get the Rebuild Playbook first, at the early price.</p>
+      <p class="muted">From Sir K, every Sunday. Subscribers also get The Rebuild Playbook first, at the early price, plus early invites to Rebuild Circles.</p>
     </div>
     <form class="js-form signup" data-table="subscribers" data-list="comeback_file" novalidate>
   

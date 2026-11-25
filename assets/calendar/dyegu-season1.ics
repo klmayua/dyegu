@@ -1,0 +1,133 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//DYEGU//Season 1//EN
+X-WR-CALNAME:DYEGU Season 1 Premieres
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:ep01-steve-jobs@dyegu.co
+DTSTAMP:20261125T113929Z
+DTSTART:20261206T140000Z
+DTEND:20261206T143000Z
+SUMMARY:DYEGU Episode 01 Premiere: Steve Jobs
+DESCRIPTION:Forced out of Apple\, the company he co-founded\, at 30. Watch on YouTube (@DYEGUOfficial) or read verified sources at https://dyegu.co/stories.
+URL:https://www.youtube.com/@DYEGUOfficial
+END:VEVENT
+BEGIN:VEVENT
+UID:ep02-jk-rowling@dyegu.co
+DTSTAMP:20261125T113929Z
+DTSTART:20261213T140000Z
+DTEND:20261213T143000Z
+SUMMARY:DYEGU Episode 02 Premiere: J.K. Rowling
+DESCRIPTION:A single mother on benefits in Edinburgh\, grieving\, with three chapters and a stack of rejections. Watch on YouTube (@DYEGUOfficial) or read verified sources at https://dyegu.co/stories.
+URL:https://www.youtube.com/@DYEGUOfficial
+END:VEVENT
+BEGIN:VEVENT
+UID:ep03-tyler-perry@dyegu.co
+DTSTAMP:20261125T113929Z
+DTSTART:20261220T140000Z
+DTEND:20261220T143000Z
+SUMMARY:DYEGU Episode 03 Premiere: Tyler Perry
+DESCRIPTION:He spent his $12\,000 savings on one play. About thirty people came. He slept in his car. Watch on YouTube (@DYEGUOfficial) or read verified sources at https://dyegu.co/stories.
+URL:https://www.youtube.com/@DYEGUOfficial
+END:VEVENT
+BEGIN:VEVENT
+UID:ep04-nwankwo-kanu@dyegu.co
+DTSTAMP:20261125T113929Z
+DTSTART:20261227T140000Z
+DTEND:20261227T143000Z
+SUMMARY:DYEGU Episode 04 Premiere: Nwankwo Kanu
+DESCRIPTION:Weeks after captaining Nigeria to Olympic gold at 20\, a routine medical exposed a fatal congenital heart defect. Watch on YouTube (@DYEGUOfficial) or read verified sources at https://dyegu.co/stories.
+URL:https://www.youtube.com/@DYEGUOfficial
+END:VEVENT
+BEGIN:VEVENT
+UID:ep05-brendan-fraser@dyegu.co
+DTSTAMP:20261125T113929Z
+DTSTART:20270103T140000Z
+DTEND:20270103T143000Z
+SUMMARY:DYEGU Episode 05 Premiere: Brendan Fraser
+DESCRIPTION:Seven years of spine\, knee and vocal-cord surgeries alongside grief and a decade of quiet exile from Hollywood. Watch on YouTube (@DYEGUOfficial) or read verified sources at https://dyegu.co/stories.
+URL:https://www.youtube.com/@DYEGUOfficial
+END:VEVENT
+BEGIN:VEVENT
+UID:ep06-tina-turner@dyegu.co
+DTSTAMP:20261125T113929Z
+DTSTART:20270110T140000Z
+DTEND:20270110T143000Z
+SUMMARY:DYEGU Episode 06 Premiere: Tina Turner
+DESCRIPTION:She walked away with 36 cents and a gas card\, giving up everything else just to keep her name. Watch on YouTube (@DYEGUOfficial) or read verified sources at https://dyegu.co/stories.
+URL:https://www.youtube.com/@DYEGUOfficial
+END:VEVENT
+BEGIN:VEVENT
+UID:ep07-season-1-marathon@dyegu.co
+DTSTAMP:20261125T113929Z
+DTSTART:20270117T140000Z
+DTEND:20270117T143000Z
+SUMMARY:DYEGU Episode 07 Premiere: Mid-Season Marathon
+DESCRIPTION:Six documented journeys of people who lost everything — Jobs\, Rowling\, Perry\, Kanu\, Fraser and Turner. Watch on YouTube (@DYEGUOfficial) or read verified sources at https://dyegu.co/stories.
+URL:https://www.youtube.com/@DYEGUOfficial
+END:VEVENT
+BEGIN:VEVENT
+UID:ep08-denzel-washington@dyegu.co
+DTSTAMP:20261125T113929Z
+DTSTART:20270124T140000Z
+DTEND:20270124T143000Z
+SUMMARY:DYEGU Episode 08 Premiere: Denzel Washington
+DESCRIPTION:Dismissed from Fordham University with a 1.7 GPA while his closest boyhood friends faced decades in prison. Watch on YouTube (@DYEGUOfficial) or read verified sources at https://dyegu.co/stories.
+URL:https://www.youtube.com/@DYEGUOfficial
+END:VEVENT
+BEGIN:VEVENT
+UID:ep09-monica-seles@dyegu.co
+DTSTAMP:20261125T113929Z
+DTSTART:20270131T140000Z
+DTEND:20270131T143000Z
+SUMMARY:DYEGU Episode 09 Premiere: Monica Seles
+DESCRIPTION:World No. 1 with eight Grand Slams at 19 — until an on-court attack stole 28 months of her prime. Watch on YouTube (@DYEGUOfficial) or read verified sources at https://dyegu.co/stories.
+URL:https://www.youtube.com/@DYEGUOfficial
+END:VEVENT
+BEGIN:VEVENT
+UID:ep10-tyson-fury@dyegu.co
+DTSTAMP:20261125T113929Z
+DTSTART:20270207T140000Z
+DTEND:20270207T143000Z
+SUMMARY:DYEGU Episode 10 Premiere: Tyson Fury
+DESCRIPTION:Stripped of his heavyweight belts and sinking to 400 pounds in severe depression after reaching the summit. Watch on YouTube (@DYEGUOfficial) or read verified sources at https://dyegu.co/stories.
+URL:https://www.youtube.com/@DYEGUOfficial
+END:VEVENT
+BEGIN:VEVENT
+UID:ep11-shania-twain@dyegu.co
+DTSTAMP:20261125T113929Z
+DTSTART:20270214T140000Z
+DTEND:20270214T143000Z
+SUMMARY:DYEGU Episode 11 Premiere: Shania Twain
+DESCRIPTION:Lost both parents at 22\, and later lost her marriage and her singing voice to nerve damage. Watch on YouTube (@DYEGUOfficial) or read verified sources at https://dyegu.co/stories.
+URL:https://www.youtube.com/@DYEGUOfficial
+END:VEVENT
+BEGIN:VEVENT
+UID:ep12-simone-biles@dyegu.co
+DTSTAMP:20261125T113929Z
+DTSTART:20270221T140000Z
+DTEND:20270221T143000Z
+SUMMARY:DYEGU Episode 12 Premiere: Simone Biles
+DESCRIPTION:From foster care to global icon — then walking away mid-Olympics in Tokyo under fierce backlash. Watch on YouTube (@DYEGUOfficial) or read verified sources at https://dyegu.co/stories.
+URL:https://www.youtube.com/@DYEGUOfficial
+END:VEVENT
+BEGIN:VEVENT
+UID:ep13-african-diaspora-comeback@dyegu.co
+DTSTAMP:20261125T113929Z
+DTSTART:20270228T140000Z
+DTEND:20270228T143000Z
+SUMMARY:DYEGU Episode 13 Premiere: African / Diaspora Comeback
+DESCRIPTION:A landmark documented African & diaspora rebuild — currently in final claims review from our Season 1 shortlist. Watch on YouTube (@DYEGUOfficial) or read verified sources at https://dyegu.co/stories.
+URL:https://www.youtube.com/@DYEGUOfficial
+END:VEVENT
+BEGIN:VEVENT
+UID:ep14-george-foreman@dyegu.co
+DTSTAMP:20261125T113929Z
+DTSTART:20270307T140000Z
+DTEND:20270307T143000Z
+SUMMARY:DYEGU Episode 14 Premiere: George Foreman
+DESCRIPTION:Broke\, mocked and twenty years past his prime while fighting to keep his Houston youth centre alive. Watch on YouTube (@DYEGUOfficial) or read verified sources at https://dyegu.co/stories.
+URL:https://www.youtube.com/@DYEGUOfficial
+END:VEVENT
+END:VCALENDAR

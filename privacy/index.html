@@ -20,10 +20,10 @@
 <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-<a class="skip" href="#main">Skip to content</a>
+<div class="read-progress" aria-hidden="true"></div><a class="skip" href="#main">Skip to content</a>
 <header class="site-header">
   <div class="wrap header-row">
-    <a class="brand" href="/" aria-label="DYEGU home"><img src="/assets/dyegu-wordmark-sm.webp" alt="DYEGU" width="560" height="139"></a>
+    <a class="brand" href="/" aria-label="DYEGU home"><img src="/assets/dyegu-wordmark-sm.webp" srcset="/assets/dyegu-wordmark-sm.webp 1x, /assets/dyegu-wordmark.webp 2x" alt="DYEGU" width="560" height="139"></a>
     <nav class="nav" aria-label="Main"><a href="/#start">Find your story</a><a href="/stories">Stories</a><a href="/community">Community</a><a href="/playbook">Playbook</a><a href="/shop">Shop</a><a href="/speaking">Speaking</a></nav>
     <a class="btn btn-gold btn-sm header-cta" href="#join">Join free</a>
     <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-nav">Menu</button>
@@ -31,40 +31,41 @@
   <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile" hidden><a href="/#start">Find your story</a><a href="/stories">Stories</a><a href="/community">Community</a><a href="/playbook">Playbook</a><a href="/shop">Shop</a><a href="/speaking">Speaking</a></nav>
 </header>
 <main id="main">
-<section class="page"><div class="wrap narrow"><p class="eyebrow">Last updated 24 November 2026</p>
+<section class="page"><div class="wrap narrow"><p class="eyebrow eyebrow-rule">Last updated 25 November 2026</p>
 <h1>Privacy</h1>
 <p>This page explains what DYEGU's website collects, why, and what you can ask us to do with it. DYEGU is a documentary series presented by Sir K.</p>
 <h2>What we collect</h2>
 <ul>
-<li><strong>Your email address</strong> when you join the Comeback File, the Rebuild Playbook waitlist or the shop drop list, with the list you joined, the situation you chose (if any), the products you ticked, the page you signed up on and the campaign link you arrived from.</li>
+<li><strong>Your email address</strong> when you join The Comeback File, The Rebuild Playbook waitlist or the shop drop list, with the list you joined, the situation you chose (if any), the products you ticked, the page you signed up on and the campaign link you arrived from.</li>
 <li><strong>Your name, email, organisation and message</strong> when you send a talk, workshop, sponsorship or press enquiry.</li>
 <li><strong>Your circle or session request</strong>: the stage you choose, your time zone, the topics you tick and any note, so we can match you to a circle or schedule sessions.</li>
 <li><strong>Volunteer applications</strong>: name, email, profession, qualifications, profile link, country, languages and availability, so we can vet and schedule volunteers. Approved volunteers are credited by name and profession.</li>
 <li><strong>Your story</strong> when you share your rebuild, with your first name if you give it and the permissions you tick. Please leave out details that identify other people.</li>
+<li><strong>Private on-device checklist</strong>: ticking off moves on a stage page stores progress strictly in your own browser's localStorage and is never sent to our servers.</li>
 <li><strong>Anonymous visit statistics</strong> (pages viewed, country, device type) through Vercel Web Analytics, which uses no cookies.</li>
 </ul>
 <p>We don't use advertising cookies or tracking pixels, and we don't sell or rent your details to anyone.</p>
 <h2>Why we use it</h2>
 <ul>
 <li>To send the emails you asked for. Every email has a one-click unsubscribe.</li>
-<li>To reply to enquiries.</li>
+<li>To reply to enquiries and confirm submissions.</li>
 <li>To read the stories you share and, only with your permission, feature them. We ask again before publishing anything.</li>
 <li>To understand which pages help people, so we can improve them.</li>
 </ul>
 <p>Our legal basis is your consent for emails and stories, and our legitimate interest in answering messages and running the site.</p>
 <h2>Who processes it</h2>
-<p>Form submissions are stored with Supabase (database hosted in the UK). Newsletter subscribers are sent through Substack. The site is hosted by Vercel. Episodes embedded from YouTube load only when you press play, using YouTube's privacy-enhanced mode.</p>
+<p>Form submissions are validated via our Vercel server function and stored with Supabase (database hosted in the UK). Confirmation emails are sent via Resend; weekly newsletter issues are sent through Substack. The site is hosted by Vercel. Episodes embedded from YouTube load only when you press play, using YouTube's privacy-enhanced mode.</p>
 <h2>How long we keep it</h2>
 <p>List emails, circle and session requests are kept until you unsubscribe or ask us to delete them. Declined volunteer applications are deleted after six months. Enquiries are kept for up to two years. Shared stories are kept until you ask us to delete them, or for two years if not featured.</p>
 <h2>Your rights</h2>
 <p>You can ask to see, correct or delete your data, or withdraw consent, at any time: reply to any email we send you, or use the <a href="/speaking#enquire">enquiry form</a> and choose "Something else". We'll act within 30 days. If you're in the UK or EU and unhappy with how we've handled your data, you can complain to your data protection authority (in the UK, the ICO).</p></div></section>
 </main>
-<section class="join-band" id="join">
+<section class="join-band grain-surface" id="join">
   <div class="wrap join-grid">
     <div>
-      <p class="eyebrow">The Comeback File · free, weekly</p>
+      <p class="eyebrow eyebrow-rule">The Comeback File · free, weekly</p>
       <h2 class="h3">One story. One lesson. One move for your week.</h2>
-      <p class="muted">From Sir K, every week. Subscribers also get the Rebuild Playbook first, at the early price.</p>
+      <p class="muted">From Sir K, every Sunday. Subscribers also get The Rebuild Playbook first, at the early price, plus early invites to Rebuild Circles.</p>
     </div>
     <form class="js-form signup" data-table="subscribers" data-list="comeback_file" novalidate>
   

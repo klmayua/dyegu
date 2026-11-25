@@ -1,1 +1,39 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 440" role="img" aria-label="tee mockup"><rect width="460" height="440" fill="#0a0a0a"/><path d="M150 90 l-90 50 35 70 45 -22 v220 h220 V188 l45 22 35 -70 -90 -50 q-20 35 -100 35 t-100 -35z" fill="#141414" stroke="#2b2b2b" stroke-width="3"/><svg x="268" y="150" width="38" height="44" viewBox="465 385 1117 1278"><path fill="#C5A059" fill-rule="evenodd" d="M1133,654 L1105,654 L1077,669 L1062,663 L1043,665 L970,713 L917,731 L946,743 L976,750 L943,871 L994,952 L1024,1007 L1052,954 L1104,870 L1078,788 L1076,759 L1082,736 L1105,699 L1130,674 L1150,663Z M485,405 L506,562 L521,604 L541,631 L716,825 L706,820 L486,651 L548,797 L557,810 L578,828 L793,958 L580,883 L680,1001 L823,1050 L866,1070 L898,1091 L925,1115 L947,1142 L963,1169 L887,1450 L937,1520 L985,1292 L970,1567 L1024,1643 L1078,1566 L1063,1294 L1111,1520 L1160,1451 L1085,1168 L1101,1141 L1119,1119 L1141,1098 L1173,1075 L1225,1050 L1370,1000 L1468,883 L1256,957 L1481,819 L1498,799 L1562,650 L1356,809 L1330,826 L1510,627 L1526,605 L1536,584 L1542,561 L1562,406 L1152,863 L1085,962 L1059,1009 L1024,1084 L966,968 L926,905 L895,863Z"/></svg></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img" aria-label="DYEGU Rise Tee architectural mockup">
+  <defs>
+    <radialGradient id="bg-tee" cx="50%" cy="46%" r="58%">
+      <stop offset="0%" stop-color="#141414"/>
+      <stop offset="68%" stop-color="#050505"/>
+      <stop offset="100%" stop-color="#000000"/>
+    </radialGradient>
+    <linearGradient id="fabric-tee" x1="15%" y1="5%" x2="85%" y2="95%">
+      <stop offset="0%" stop-color="#202020"/>
+      <stop offset="35%" stop-color="#131313"/>
+      <stop offset="100%" stop-color="#0a0a0a"/>
+    </linearGradient>
+    <linearGradient id="collar-tee" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#080808"/>
+      <stop offset="100%" stop-color="#1a1a1a"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="600" fill="url(#bg-tee)"/>
+  <!-- Subtle architectural frame marks -->
+  <path d="M24 44 V24 H44 M556 24 H576 V44 M24 556 V576 H44 M556 576 H576 V556" fill="none" stroke="#C5A059" stroke-opacity="0.32" stroke-width="1"/>
+  <!-- Tee silhouette (heavyweight boxy drape) -->
+  <path d="M214 114 L132 148 L72 224 L136 276 L176 238 L176 492 L424 492 L424 238 L464 276 L528 224 L468 148 L386 114 Q346 154 300 154 Q254 154 214 114 Z" fill="url(#fabric-tee)" stroke="#2b2b2b" stroke-width="1.5"/>
+  <!-- Ribbed crew collar -->
+  <path d="M214 114 Q300 172 386 114 Q374 106 364 104 Q300 144 236 104 Q226 106 214 114 Z" fill="url(#collar-tee)" stroke="#333333" stroke-width="1.2"/>
+  <path d="M222 122 Q300 182 378 122" fill="none" stroke="#2c2c2c" stroke-width="1.2" stroke-dasharray="3 3"/>
+  <!-- Shoulder & sleeve seams -->
+  <path d="M176 238 Q186 186 164 136 M424 238 Q414 186 436 136" fill="none" stroke="#252525" stroke-width="1.2"/>
+  <path d="M90 238 L152 288 M510 238 L448 288" fill="none" stroke="#232323" stroke-width="1" stroke-dasharray="2 3"/>
+  <!-- Subtle drape creases -->
+  <path d="M226 240 Q218 345 224 484 M378 248 Q386 352 376 484" fill="none" stroke="#1d1d1d" stroke-width="1.4" opacity="0.65"/>
+  <!-- Bottom double-needle hem -->
+  <line x1="178" y1="476" x2="422" y2="476" stroke="#252525" stroke-width="1" stroke-dasharray="2 3"/>
+  <!-- Flat gold phoenix mark on left chest (viewer's right) -->
+  <svg x="342" y="198" width="46" height="53" viewBox="465 385 1117 1278">
+    <path fill="#C5A059" fill-rule="evenodd" d="M1133,654 L1105,654 L1077,669 L1062,663 L1043,665 L970,713 L917,731 L946,743 L976,750 L943,871 L994,952 L1024,1007 L1052,954 L1104,870 L1078,788 L1076,759 L1082,736 L1105,699 L1130,674 L1150,663Z M485,405 L506,562 L521,604 L541,631 L716,825 L706,820 L486,651 L548,797 L557,810 L578,828 L793,958 L580,883 L680,1001 L823,1050 L866,1070 L898,1091 L925,1115 L947,1142 L963,1169 L887,1450 L937,1520 L985,1292 L970,1567 L1024,1643 L1078,1566 L1063,1294 L1111,1520 L1160,1451 L1085,1168 L1101,1141 L1119,1119 L1141,1098 L1173,1075 L1225,1050 L1370,1000 L1468,883 L1256,957 L1481,819 L1498,799 L1562,650 L1356,809 L1330,826 L1510,627 L1526,605 L1536,584 L1542,561 L1562,406 L1152,863 L1085,962 L1059,1009 L1024,1084 L966,968 L926,905 L895,863Z"/>
+  </svg>
+  <!-- Subtle technical spec label -->
+  <text x="300" y="552" text-anchor="middle" fill="#6b655c" font-family="Montserrat, Arial, sans-serif" font-size="11" letter-spacing="4">280 GSM HEAVYWEIGHT COTTON · DROP 01</text>
+</svg>

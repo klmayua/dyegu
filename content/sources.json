@@ -2,402 +2,1759 @@
  "steve-jobs": {
   "verified_claims": 49,
   "held_back": 0,
+  "tag_counts": {
+   "V": 13,
+   "E": 29,
+   "T": 7
+  },
   "sources": [
    {
-    "label": "512pixels.net",
-    "url": "https://512pixels.net/?p=13449"
-   },
-   {
     "label": "alvyray.com",
-    "url": "https://www.alvyray.com/Pixar/PixarMyth1.htm"
-   },
-   {
-    "label": "aol.com",
-    "url": "https://www.aol.com/finance/actually-pixar-not-apple-first-174307224.html"
-   },
-   {
-    "label": "appleinsider.com",
-    "url": "https://appleinsider.com/articles/11/12/21/apples_15_years_of_next.html"
-   },
-   {
-    "label": "cartoonbrew.com",
-    "url": "https://cartoonbrew.com/pixar/happy-25th-birthday-pixar-35675.html"
-   },
-   {
-    "label": "computerhistory.org",
-    "url": "https://computerhistory.org/?p=32749"
-   },
-   {
-    "label": "computerhistory.org",
-    "url": "https://computerhistory.org/?p=32951"
-   },
-   {
-    "label": "computerhistory.org",
-    "url": "https://computerhistory.org/?p=4330"
-   },
-   {
-    "label": "computerhistory.org",
-    "url": "https://computerhistory.org/blog/next-steve-jobs-dot-com-ipo-that-never-happened/"
-   },
-   {
-    "label": "computerhistory.org",
-    "url": "https://computerhistory.org/blog/pixars-true-story/"
-   },
-   {
-    "label": "computinghistory.org.uk",
-    "url": "https://www.computinghistory.org.uk/det/5547/Apple-buys-NeXT-and-Steve-Jobs-returns/"
-   },
-   {
-    "label": "cordcuttersnews.com",
-    "url": "https://cordcuttersnews.com/40-years-ago-today-pixar-became-a-reality-launching-an-era-of-computer-animation-magic/"
-   },
-   {
-    "label": "cultofmac.com",
-    "url": "https://www.cultofmac.com/?p=435312"
-   },
-   {
-    "label": "cultofmac.com",
-    "url": "https://www.cultofmac.com/?p=456126"
-   },
-   {
-    "label": "cultofmac.com",
-    "url": "https://www.cultofmac.com/?p=567497"
-   },
-   {
-    "label": "cultofmac.com",
-    "url": "https://www.cultofmac.com/apple-history/apple-buys-next"
-   },
-   {
-    "label": "cultofmac.com",
-    "url": "https://www.cultofmac.com/apple-history/steve-jobs-macintosh-division"
-   },
-   {
-    "label": "engadget.com",
-    "url": "https://www.engadget.com/2007/03/12/blast-from-the-past-apple-acquires-next/"
-   },
-   {
-    "label": "entrepreneur.com",
-    "url": "https://www.entrepreneur.com/growing-a-business/how-steve-jobs-saved-apple/220604"
-   },
-   {
-    "label": "fortune.com",
-    "url": "https://fortune.com/2013/02/05/michael-dell-eats-his-words/"
-   },
-   {
-    "label": "macwelt.de",
-    "url": "https://www.macwelt.de/article/940861/apple-veroeffentlicht-zahlen.html"
-   },
-   {
-    "label": "money.cnn.com",
-    "url": "https://money.cnn.com/1998/10/14/technology/apple/"
-   },
-   {
-    "label": "money.cnn.com",
-    "url": "https://money.cnn.com/magazines/fortune/fortune_archive/1985/08/05/66254/index.htm"
-   },
-   {
-    "label": "money.cnn.com",
-    "url": "https://money.cnn.com/magazines/fortune/fortune_archive/1998/11/09/250834/index.htm"
-   },
-   {
-    "label": "neowin.net",
-    "url": "https://www.neowin.net/news/a-quick-look-back-at-when-microsoft-invested-150-million-in-apple-46-years-ago-today/"
-   },
-   {
-    "label": "news.microsoft.com",
-    "url": "https://news.microsoft.com/1997/08/06/microsoft-and-apple-affirm-commitment-to-build-next-generation-software-for-macintosh/"
-   },
-   {
-    "label": "news.stanford.edu",
-    "url": "https://news.stanford.edu/stories/2005/06/youve-got-find-love-jobs-says"
-   },
-   {
-    "label": "ohiostate.pressbooks.pub",
-    "url": "https://ohiostate.pressbooks.pub/graphicshistory/?p=288"
+    "title": "Alvy Ray Smith (co-founder): Pixar was capitalised by Jobs, not \"bought\"",
+    "url": "https://www.alvyray.com/Pixar/PixarMyth1.htm",
+    "tag": "E",
+    "on_screen": "Pixar founding release, Feb 1986"
    },
    {
     "label": "spokesman.com",
-    "url": "https://www.spokesman.com/stories/1995/nov/30/pixar-stock-surges-from-22-to-39"
+    "title": "AP via Spokesman-Review, 30 Nov 1995",
+    "url": "https://www.spokesman.com/stories/1995/nov/30/pixar-stock-surges-from-22-to-39",
+    "tag": "V",
+    "on_screen": "UPI, 29 Nov 1995"
+   },
+   {
+    "label": "512pixels.net",
+    "title": "Apple press release text",
+    "url": "https://512pixels.net/?p=13449",
+    "tag": "V",
+    "on_screen": "Apple, 20 Dec 1996"
+   },
+   {
+    "label": "appleinsider.com",
+    "title": "AppleInsider, 21 Dec 2011",
+    "url": "https://appleinsider.com/articles/11/12/21/apples_15_years_of_next.html",
+    "tag": "E",
+    "on_screen": "Computer History Museum"
+   },
+   {
+    "label": "cartoonbrew.com",
+    "title": "Cartoon Brew (founding press release)",
+    "url": "https://cartoonbrew.com/pixar/happy-25th-birthday-pixar-35675.html",
+    "tag": "E",
+    "on_screen": "Pixar founding release, Feb 1986"
+   },
+   {
+    "label": "computinghistory.org.uk",
+    "title": "Centre for Computing History",
+    "url": "https://www.computinghistory.org.uk/det/5547/Apple-buys-NeXT-and-Steve-Jobs-returns/",
+    "tag": "V",
+    "on_screen": "Apple, 20 Dec 1996"
+   },
+   {
+    "label": "money.cnn.com",
+    "title": "CNN Money, 14 Oct 1998",
+    "url": "https://money.cnn.com/1998/10/14/technology/apple/",
+    "tag": "V",
+    "on_screen": "Apple results via CNN Money, Oct 1998"
+   },
+   {
+    "label": "computerhistory.org",
+    "title": "Computer History Museum",
+    "url": "https://computerhistory.org/blog/pixars-true-story/",
+    "tag": "E",
+    "on_screen": "Computer History Museum"
+   },
+   {
+    "label": "computerhistory.org",
+    "title": "Computer History Museum",
+    "url": "https://computerhistory.org/?p=32749",
+    "tag": "E",
+    "on_screen": "Computer History Museum"
+   },
+   {
+    "label": "computerhistory.org",
+    "title": "Computer History Museum (NeXT Computer \"Cube\", 1988)",
+    "url": "https://computerhistory.org/blog/next-steve-jobs-dot-com-ipo-that-never-happened/",
+    "tag": "E",
+    "on_screen": "Computer History Museum"
+   },
+   {
+    "label": "computerhistory.org",
+    "title": "Computer History Museum, \"Pixar's True Story\"",
+    "url": "https://computerhistory.org/?p=32951",
+    "tag": "E",
+    "on_screen": "Lawrence Levy, Computer History Museum"
+   },
+   {
+    "label": "computerhistory.org",
+    "title": "Computer History Museum, NeXT draft S-1",
+    "url": "https://computerhistory.org/?p=4330",
+    "tag": "V",
+    "on_screen": "NeXT draft S-1, 1996 (CHM)"
+   },
+   {
+    "label": "cordcuttersnews.com",
+    "title": "Cord Cutters News (image computer)",
+    "url": "https://cordcuttersnews.com/40-years-ago-today-pixar-became-a-reality-launching-an-era-of-computer-animation-magic/",
+    "tag": "E",
+    "on_screen": "Pixar founding release, Feb 1986"
+   },
+   {
+    "label": "cultofmac.com",
+    "title": "Cult of Mac",
+    "url": "https://www.cultofmac.com/apple-history/apple-buys-next",
+    "tag": "E",
+    "on_screen": "Computer History Museum"
+   },
+   {
+    "label": "cultofmac.com",
+    "title": "Cult of Mac",
+    "url": "https://www.cultofmac.com/?p=567497",
+    "tag": "E",
+    "on_screen": "Cult of Mac"
+   },
+   {
+    "label": "cultofmac.com",
+    "title": "Cult of Mac (Pixar IPO)",
+    "url": "https://www.cultofmac.com/?p=456126",
+    "tag": "E",
+    "on_screen": "Cult of Mac"
+   },
+   {
+    "label": "cultofmac.com",
+    "title": "Cult of Mac, \"Steve Jobs loses control of the Mac\"",
+    "url": "https://www.cultofmac.com/apple-history/steve-jobs-macintosh-division",
+    "tag": "E",
+    "on_screen": "Fortune, Aug 1985"
+   },
+   {
+    "label": "cultofmac.com",
+    "title": "Cult of Mac, 27 Jun 1997 entry",
+    "url": "https://www.cultofmac.com/?p=435312",
+    "tag": "E",
+    "on_screen": "Cult of Mac"
+   },
+   {
+    "label": "engadget.com",
+    "title": "Engadget",
+    "url": "https://www.engadget.com/2007/03/12/blast-from-the-past-apple-acquires-next/",
+    "tag": "V",
+    "on_screen": "Apple, 20 Dec 1996"
+   },
+   {
+    "label": "money.cnn.com",
+    "title": "Fortune, 5 Aug 1985",
+    "url": "https://money.cnn.com/magazines/fortune/fortune_archive/1985/08/05/66254/index.htm",
+    "tag": "E",
+    "on_screen": "Fortune, Aug 1985"
+   },
+   {
+    "label": "fortune.com",
+    "title": "Fortune, 5 Feb 2013",
+    "url": "https://fortune.com/2013/02/05/michael-dell-eats-his-words/",
+    "tag": "E",
+    "on_screen": "Gartner Symposium, 6 Oct 1997 (Fortune)"
+   },
+   {
+    "label": "money.cnn.com",
+    "title": "Fortune, 9 Nov 1998",
+    "url": "https://money.cnn.com/magazines/fortune/fortune_archive/1998/11/09/250834/index.htm",
+    "tag": "E",
+    "on_screen": "Fortune, Nov 1998"
+   },
+   {
+    "label": "aol.com",
+    "title": "GOBankingRates via AOL",
+    "url": "https://www.aol.com/finance/actually-pixar-not-apple-first-174307224.html",
+    "tag": "E",
+    "on_screen": "Cult of Mac"
+   },
+   {
+    "label": "entrepreneur.com",
+    "title": "Isaacson biography via Entrepreneur (\"90 days from being insolvent\")",
+    "url": "https://www.entrepreneur.com/growing-a-business/how-steve-jobs-saved-apple/220604",
+    "tag": "T",
+    "on_screen": "Steve Jobs, D8 conference, 2010"
+   },
+   {
+    "label": "news.stanford.edu",
+    "title": "Jobs, Stanford commencement, 12 Jun 2005",
+    "url": "https://news.stanford.edu/stories/2005/06/youve-got-find-love-jobs-says",
+    "tag": "T",
+    "on_screen": "Steve Jobs, Stanford, 2005"
+   },
+   {
+    "label": "macwelt.de",
+    "title": "Macwelt, Oct 1998 (Apple figures)",
+    "url": "https://www.macwelt.de/article/940861/apple-veroeffentlicht-zahlen.html",
+    "tag": "E",
+    "on_screen": "Apple, via Macwelt, Oct 1998"
+   },
+   {
+    "label": "news.microsoft.com",
+    "title": "Microsoft press release, 6 Aug 1997",
+    "url": "https://news.microsoft.com/1997/08/06/microsoft-and-apple-affirm-commitment-to-build-next-generation-software-for-macintosh/",
+    "tag": "V",
+    "on_screen": "Microsoft, 6 Aug 1997"
+   },
+   {
+    "label": "neowin.net",
+    "title": "Neowin",
+    "url": "https://www.neowin.net/news/a-quick-look-back-at-when-microsoft-invested-150-million-in-apple-46-years-ago-today/",
+    "tag": "E",
+    "on_screen": "Cult of Mac"
+   },
+   {
+    "label": "ohiostate.pressbooks.pub",
+    "title": "Ohio State, History of Computer Graphics, ch. 11.3",
+    "url": "https://ohiostate.pressbooks.pub/graphicshistory/?p=288",
+    "tag": "E",
+    "on_screen": "Pixar founding release, Feb 1986"
+   },
+   {
+    "label": "theregister.com",
+    "title": "San Jose Mercury News (1985) quoted by The Register",
+    "url": "https://www.theregister.com/2011/10/06/steve_jobs_bio_1/?page=4",
+    "tag": "E",
+    "on_screen": "Fortune, Aug 1985"
    },
    {
     "label": "tech-insider.org",
-    "url": "https://tech-insider.org/mac/research/1985/0917-d.html"
+    "title": "The New York Times, 17 Sep 1985",
+    "url": "https://tech-insider.org/mac/research/1985/0917-d.html",
+    "tag": "V",
+    "on_screen": "The New York Times, 17 Sep 1985"
    },
    {
     "label": "tech-insider.org",
-    "url": "https://tech-insider.org/mac/research/1985/0918.html"
-   },
-   {
-    "label": "tech-insider.org",
-    "url": "https://tech-insider.org/unix/research/1986/0207.html"
+    "title": "The New York Times, 7 Feb 1986",
+    "url": "https://tech-insider.org/unix/research/1986/0207.html",
+    "tag": "V",
+    "on_screen": "Pixar founding release, Feb 1986"
    },
    {
     "label": "thenextweb.com",
-    "url": "https://thenextweb.com/news/steve-jobs-90-days"
+    "title": "The Next Web, 2 Jun 2010 (D8 conference)",
+    "url": "https://thenextweb.com/news/steve-jobs-90-days",
+    "tag": "T",
+    "on_screen": "Steve Jobs, D8 conference, 2010"
    },
    {
     "label": "theregister.com",
-    "url": "https://www.theregister.com/1998/10/15/apple_posts_106_million_profit/"
+    "title": "The Register",
+    "url": "https://www.theregister.com/2011/10/06/steve_jobs_bio_1/?page=8",
+    "tag": "E",
+    "on_screen": "Computer History Museum"
    },
    {
     "label": "theregister.com",
-    "url": "https://www.theregister.com/2011/10/06/steve_jobs_bio_1/?page=4"
-   },
-   {
-    "label": "theregister.com",
-    "url": "https://www.theregister.com/2011/10/06/steve_jobs_bio_1/?page=8"
+    "title": "The Register, 15 Oct 1998",
+    "url": "https://www.theregister.com/1998/10/15/apple_posts_106_million_profit/",
+    "tag": "V",
+    "on_screen": "Apple results, Oct 1998"
    },
    {
     "label": "theringer.com",
-    "url": "https://www.theringer.com/movies/2022/6/13/23165618/pixar-ipo-business-rise-history-george-lucas-steve-jobs"
+    "title": "The Ringer, 13 Jun 2022",
+    "url": "https://www.theringer.com/movies/2022/6/13/23165618/pixar-ipo-business-rise-history-george-lucas-steve-jobs",
+    "tag": "E",
+    "on_screen": "The Ringer, 2022"
+   },
+   {
+    "label": "tech-insider.org",
+    "title": "The Wall Street Journal, 18 Sep 1985",
+    "url": "https://tech-insider.org/mac/research/1985/0918.html",
+    "tag": "V",
+    "on_screen": "Fortune, Aug 1985"
    },
    {
     "label": "tidbits.com",
-    "url": "https://tidbits.com/1998/10/19/imac-propels-apple-to-106-million-in-earnings-2/"
+    "title": "TidBITS",
+    "url": "https://tidbits.com/?p=13497",
+    "tag": "E",
+    "on_screen": "Gartner Symposium, 6 Oct 1997 (Fortune)"
    },
    {
     "label": "tidbits.com",
-    "url": "https://tidbits.com/?p=13497"
+    "title": "TidBITS, 19 Oct 1998 (Apple release)",
+    "url": "https://tidbits.com/1998/10/19/imac-propels-apple-to-106-million-in-earnings-2/",
+    "tag": "V",
+    "on_screen": "Apple results via CNN Money, Oct 1998"
    },
    {
     "label": "upi.com",
+    "title": "UPI, 29 Nov 1995",
+    "url": "https://www.upi.com/Archives/1995/11/29/Pixar-goes-public-soars/9307817621200/",
+    "tag": "V",
+    "on_screen": "UPI, 29 Nov 1995"
+   }
+  ],
+  "claims": [
+   {
+    "id": "C01",
+    "text": "Jobs and Steve Wozniak started Apple in Jobs's parents' garage when Jobs was 20",
+    "tag": "T",
+    "status": "ATTRIBUTED",
+    "on_screen": "Steve Jobs, Stanford, 2005",
+    "url": "https://news.stanford.edu/stories/2005/06/youve-got-find-love-jobs-says"
+   },
+   {
+    "id": "C02",
+    "text": "In about ten years Apple grew into a $2 billion company with more than 4,000 employees",
+    "tag": "T",
+    "status": "ATTRIBUTED",
+    "on_screen": "Steve Jobs, Stanford, 2005",
+    "url": ""
+   },
+   {
+    "id": "C03",
+    "text": "In April 1985 Sculley told the board he would resign unless Jobs was removed as head of the Macintosh division; the board backed Sculley",
+    "tag": "E",
+    "status": "OK",
+    "on_screen": "Fortune, Aug 1985",
+    "url": "https://www.cultofmac.com/apple-history/steve-jobs-macintosh-division"
+   },
+   {
+    "id": "C04",
+    "text": "At the end of May 1985 Jobs was stripped of every operating role; he kept only the title of chairman",
+    "tag": "E",
+    "status": "OK",
+    "on_screen": "Fortune, Aug 1985",
+    "url": "https://tech-insider.org/mac/research/1985/0918.html"
+   },
+   {
+    "id": "C05",
+    "text": "In the same weeks Apple cut 20% of its workforce, announced its first-ever quarterly loss, and its stock hit a three-year low",
+    "tag": "E",
+    "status": "OK",
+    "on_screen": "Fortune, Aug 1985",
+    "url": ""
+   },
+   {
+    "id": "C06",
+    "text": "Sculley told analysts: \"There is no role for Steve Jobs in the running of this company, either today or in the future\"",
+    "tag": "V",
+    "status": "OK",
+    "on_screen": "The Wall Street Journal, 18 Sep 1985",
+    "url": ""
+   },
+   {
+    "id": "C07",
+    "text": "In September 1985 Jobs resigned as chairman, saying the board had made his plans \"a very hostile situation\"",
+    "tag": "V",
+    "status": "OK",
+    "on_screen": "The New York Times, 17 Sep 1985",
+    "url": "https://tech-insider.org/mac/research/1985/0917-d.html"
+   },
+   {
+    "id": "C08",
+    "text": "He was 30 years old",
+    "tag": "T",
+    "status": "OK",
+    "on_screen": "Steve Jobs, Stanford, 2005",
+    "url": ""
+   },
+   {
+    "id": "C09",
+    "text": "Jobs said he was out \"very publicly\", thought about leaving Silicon Valley, and later called the firing \"the best thing that could have ever happened to me\" and spoke of \"the lightness of being a beginner again\"",
+    "tag": "T",
+    "status": "ATTRIBUTED",
+    "on_screen": "Steve Jobs, Stanford, 2005",
+    "url": ""
+   },
+   {
+    "id": "C10",
+    "text": "He founded NeXT after leaving Apple in 1985",
+    "tag": "E",
+    "status": "OK",
+    "on_screen": "Computer History Museum",
+    "url": "https://computerhistory.org/blog/next-steve-jobs-dot-com-ipo-that-never-happened/"
+   },
+   {
+    "id": "C11",
+    "text": "In February 1986 Jobs paid Lucasfilm $5 million for the graphics group's technology and put another $5 million into the new company, Pixar; Ed Catmull ran it day to day; its first product was a high-end image computer for medical imaging and film effects",
+    "tag": "E",
+    "status": "OK",
+    "on_screen": "Pixar founding release, Feb 1986",
+    "url": "https://ohiostate.pressbooks.pub/graphicshistory/?p=288"
+   },
+   {
+    "id": "C12",
+    "text": "Over the following years Jobs put about $50 million of his own money into Pixar",
+    "tag": "E",
+    "status": "OK",
+    "on_screen": "The Ringer, 2022",
+    "url": "https://www.theringer.com/movies/2022/6/13/23165618/pixar-ipo-business-rise-history-george-lucas-steve-jobs"
+   },
+   {
+    "id": "C13",
+    "text": "NeXT lost between $40 million and $66 million a year for three straight years before a $1.03 million profit in 1994",
+    "tag": "V",
+    "status": "OK",
+    "on_screen": "NeXT draft S-1, 1996 (CHM)",
+    "url": ""
+   },
+   {
+    "id": "C14",
+    "text": "NeXT's computers struggled to find a market and NeXT stopped making its own hardware",
+    "tag": "E",
+    "status": "OK",
+    "on_screen": "Computer History Museum",
+    "url": "https://www.cultofmac.com/apple-history/apple-buys-next"
+   },
+   {
+    "id": "C15",
+    "text": "Toy Story, the first computer-animated feature film, opened on 22 Nov 1995 and became the year's top-grossing film",
+    "tag": "E",
+    "status": "OK",
+    "on_screen": "Computer History Museum",
+    "url": "https://www.theregister.com/2011/10/06/steve_jobs_bio_1/?page=8"
+   },
+   {
+    "id": "C16",
+    "text": "Pixar went public on 29 Nov 1995 at $22 a share and closed its first day at $39; Jobs owned about 80%, which made him a billionaire",
+    "tag": "V",
+    "status": "OK",
+    "on_screen": "UPI, 29 Nov 1995",
     "url": "https://www.upi.com/Archives/1995/11/29/Pixar-goes-public-soars/9307817621200/"
+   },
+   {
+    "id": "C17",
+    "text": "On 20 Dec 1996 Apple announced it would buy NeXT, a deal first announced at $400 million; it closed on 7 Feb 1997 at roughly $427–429 million in cash and stock",
+    "tag": "V",
+    "status": "OK",
+    "on_screen": "Apple, 20 Dec 1996",
+    "url": "https://512pixels.net/?p=13449"
+   },
+   {
+    "id": "C18",
+    "text": "Jobs came back as an adviser to CEO Gil Amelio",
+    "tag": "V",
+    "status": "OK",
+    "on_screen": "Apple, 20 Dec 1996",
+    "url": "https://www.engadget.com/2007/03/12/blast-from-the-past-apple-acquires-next/"
+   },
+   {
+    "id": "C19",
+    "text": "On 6 Aug 1997 at Macworld Boston, Jobs announced Microsoft would invest $150 million in non-voting Apple stock and keep making Office for the Mac",
+    "tag": "V",
+    "status": "OK",
+    "on_screen": "Microsoft, 6 Aug 1997",
+    "url": "https://news.microsoft.com/1997/08/06/microsoft-and-apple-affirm-commitment-to-build-next-generation-software-for-macintosh/"
+   },
+   {
+    "id": "C20",
+    "text": "Jobs became interim CEO in September 1997",
+    "tag": "E",
+    "status": "OK",
+    "on_screen": "Fortune, Nov 1998",
+    "url": "https://money.cnn.com/magazines/fortune/fortune_archive/1998/11/09/250834/index.htm"
+   },
+   {
+    "id": "C21",
+    "text": "On 6 Oct 1997 Michael Dell, asked what he would do with Apple, said: \"I'd shut it down and give the money back to the shareholders\"",
+    "tag": "E",
+    "status": "OK",
+    "on_screen": "Gartner Symposium, 6 Oct 1997 (Fortune)",
+    "url": "https://fortune.com/2013/02/05/michael-dell-eats-his-words/"
+   },
+   {
+    "id": "C22",
+    "text": "Apple lost $1.05 billion in fiscal 1997 on about $7 billion of revenue",
+    "tag": "V",
+    "status": "OK",
+    "on_screen": "Apple results via CNN Money, Oct 1998",
+    "url": "https://money.cnn.com/1998/10/14/technology/apple/"
+   },
+   {
+    "id": "C23",
+    "text": "Jobs later said Apple had been \"90 days from going bankrupt\"",
+    "tag": "T",
+    "status": "ATTRIBUTED",
+    "on_screen": "Steve Jobs, D8 conference, 2010",
+    "url": "https://thenextweb.com/news/steve-jobs-90-days"
+   },
+   {
+    "id": "C24",
+    "text": "The iMac went on sale in mid-August 1998 at $1,299; Apple sold 278,000 in six weeks",
+    "tag": "E",
+    "status": "OK",
+    "on_screen": "Fortune, Nov 1998",
+    "url": ""
+   },
+   {
+    "id": "C25",
+    "text": "Apple made a $309 million profit in fiscal 1998 on $5.9 billion of revenue, its first profitable year since 1995",
+    "tag": "V",
+    "status": "OK",
+    "on_screen": "Apple results via CNN Money, Oct 1998",
+    "url": "https://tidbits.com/1998/10/19/imac-propels-apple-to-106-million-in-earnings-2/"
+   },
+   {
+    "id": "C26",
+    "text": "Technology built at NeXT became the heart of Apple's later revival",
+    "tag": "E",
+    "status": "OK",
+    "on_screen": "Computer History Museum",
+    "url": ""
+   },
+   {
+    "id": "C28",
+    "text": "Pixar's first feature was made under a deal with Disney, which released it",
+    "tag": "E",
+    "status": "OK",
+    "on_screen": "Cult of Mac",
+    "url": "https://www.cultofmac.com/?p=456126"
+   },
+   {
+    "id": "C29",
+    "text": "Gil Amelio left as Apple's CEO in July 1997 after a $56 million quarterly loss; Apple lost about $1.6B under him and announced about 3,000 job cuts",
+    "tag": "E",
+    "status": "OK",
+    "on_screen": "Cult of Mac",
+    "url": "https://www.cultofmac.com/?p=435312"
+   },
+   {
+    "id": "C30",
+    "text": "Apple's own next-generation operating system (Copland) had been abandoned and it needed a replacement",
+    "tag": "E",
+    "status": "OK",
+    "on_screen": "AppleInsider",
+    "url": "https://appleinsider.com/articles/11/12/21/apples_15_years_of_next.html"
+   },
+   {
+    "id": "C31",
+    "text": "Some of the Macworld audience booed the Microsoft announcement",
+    "tag": "E",
+    "status": "OK",
+    "on_screen": "Cult of Mac",
+    "url": "https://www.cultofmac.com/?p=567497"
+   },
+   {
+    "id": "C32",
+    "text": "In 2018 Apple became the first US company valued at $1 trillion",
+    "tag": "E",
+    "status": "OK",
+    "on_screen": "Cult of Mac",
+    "url": ""
+   },
+   {
+    "id": "C33",
+    "text": "Steve Wozniak resigned from Apple in February 1985",
+    "tag": "V",
+    "status": "OK",
+    "on_screen": "The Wall Street Journal, 18 Sep 1985",
+    "url": "https://tech-insider.org/mac/research/1985/0918.html"
+   },
+   {
+    "id": "C34",
+    "text": "Jobs recruited Sculley from the presidency of Pepsi-Cola USA in 1983",
+    "tag": "E",
+    "status": "OK",
+    "on_screen": "Fortune, Aug 1985",
+    "url": "https://money.cnn.com/magazines/fortune/fortune_archive/1985/08/05/66254/index.htm"
+   },
+   {
+    "id": "C35",
+    "text": "At the start of 1985 Jobs owned about 11.3% of Apple, worth around $120 million",
+    "tag": "E",
+    "status": "SECONDARY",
+    "on_screen": "San Jose Mercury News, 1985",
+    "url": "https://www.theregister.com/2011/10/06/steve_jobs_bio_1/?page=4"
+   },
+   {
+    "id": "C36",
+    "text": "NYT, Feb 1986: Pixar had 43 employees; Jobs chairman, Catmull runs daily operations; Jobs said image computing \"will explode\"",
+    "tag": "V",
+    "status": "OK",
+    "on_screen": "The New York Times, 7 Feb 1986",
+    "url": "https://tech-insider.org/unix/research/1986/0207.html"
+   },
+   {
+    "id": "C37",
+    "text": "Luxo Jr. (1986) was nominated for an Oscar; Tin Toy won one",
+    "tag": "E",
+    "status": "OK",
+    "on_screen": "Academy Awards",
+    "url": "https://ohiostate.pressbooks.pub/graphicshistory/?p=288"
+   },
+   {
+    "id": "C38",
+    "text": "In 1991 Jobs shut down Pixar's applications-software effort",
+    "tag": "E",
+    "status": "OK",
+    "on_screen": "History of Computer Graphics (Ohio State)",
+    "url": ""
+   },
+   {
+    "id": "C39",
+    "text": "Pixar CFO Lawrence Levy, who arrived in late 1994, has said he quickly realised the company was doomed",
+    "tag": "T",
+    "status": "ATTRIBUTED",
+    "on_screen": "Lawrence Levy, Computer History Museum",
+    "url": "https://computerhistory.org/?p=32951"
+   },
+   {
+    "id": "C40",
+    "text": "During those years he met his future wife",
+    "tag": "T",
+    "status": "ATTRIBUTED",
+    "on_screen": "Steve Jobs, Stanford, 2005",
+    "url": ""
+   },
+   {
+    "id": "C41",
+    "text": "NeXT drafted (never filed) an IPO S-1 in Nov 1996; by 1996 NeXT's newest software products (WebObjects, OPENSTEP for Windows) brought in $10.1M, about 45% of sales",
+    "tag": "V",
+    "status": "OK",
+    "on_screen": "NeXT draft S-1, 1996 (CHM)",
+    "url": "https://computerhistory.org/?p=4330"
+   },
+   {
+    "id": "C42",
+    "text": "Toy Story took $29M in its opening weekend and grossed about $362M worldwide",
+    "tag": "E",
+    "status": "OK",
+    "on_screen": "Box Office Mojo",
+    "url": ""
+   },
+   {
+    "id": "C43",
+    "text": "After the IPO, Jobs negotiated a new five-picture Disney deal giving Pixar an equal share of profits",
+    "tag": "E",
+    "status": "SECONDARY",
+    "on_screen": "Cult of Mac",
+    "url": "https://www.cultofmac.com/?p=456126"
+   },
+   {
+    "id": "C44",
+    "text": "Apple cut inventory from about $400M to $78M — about six days' supply — by the end of fiscal 1998",
+    "tag": "V",
+    "status": "OK",
+    "on_screen": "Apple results, Oct 1998",
+    "url": "https://tidbits.com/1998/10/19/imac-propels-apple-to-106-million-in-earnings-2/"
+   },
+   {
+    "id": "C45",
+    "text": "Apple's \"Think Different\" campaign featured figures such as Einstein, Miles Davis and John Lennon; 1998 ad budget over $100M",
+    "tag": "E",
+    "status": "OK",
+    "on_screen": "Fortune, Nov 1998",
+    "url": "https://money.cnn.com/magazines/fortune/fortune_archive/1998/11/09/250834/index.htm"
+   },
+   {
+    "id": "C46",
+    "text": "Apple said about 30% of iMac buyers were new to Apple and 12% had switched from Windows",
+    "tag": "E",
+    "status": "OK",
+    "on_screen": "Apple, via Macwelt, Oct 1998",
+    "url": "https://www.macwelt.de/article/940861/apple-veroeffentlicht-zahlen.html"
+   },
+   {
+    "id": "C47",
+    "text": "Disney bought Pixar in 2006 in an all-stock deal worth $7.4B, leaving Jobs with about 7% of Disney",
+    "tag": "E",
+    "status": "OK",
+    "on_screen": "The Walt Disney Company, 2006",
+    "url": "https://www.aol.com/finance/actually-pixar-not-apple-first-174307224.html"
+   },
+   {
+    "id": "C48",
+    "text": "NeXT's first computer, the cube, was introduced in 1988",
+    "tag": "E",
+    "status": "OK",
+    "on_screen": "Computer History Museum",
+    "url": "https://computerhistory.org/blog/next-steve-jobs-dot-com-ipo-that-never-happened/"
+   },
+   {
+    "id": "C49",
+    "text": "Pixar's IPO roadshow screened Toy Story for investors and their families in a rented New York theatre, and a blizzard forced an all-night drive to Boston",
+    "tag": "E",
+    "status": "OK",
+    "on_screen": "Computer History Museum",
+    "url": "https://computerhistory.org/?p=32951"
+   },
+   {
+    "id": "C27",
+    "text": "Gil Amelio said \"I'm not just buying software, I'm buying Steve\"",
+    "tag": "E",
+    "status": "SECONDARY",
+    "on_screen": "",
+    "url": ""
    }
   ]
  },
  "jk-rowling": {
   "verified_claims": 38,
   "held_back": 1,
+  "tag_counts": {
+   "V": 3,
+   "E": 19,
+   "T": 16
+  },
   "sources": [
    {
-    "label": "accio-quote.org",
-    "url": "https://accio-quote.org/articles/1997/0797-herald.html"
-   },
-   {
-    "label": "accio-quote.org",
-    "url": "https://accio-quote.org/articles/1997/0797-scotsman-thompson.html"
-   },
-   {
-    "label": "accio-quote.org",
-    "url": "https://accio-quote.org/articles/1997/spring97-telegraph-reynolds.htm"
-   },
-   {
-    "label": "accio-quote.org",
-    "url": "https://accio-quote.org/articles/1998/1298-PW-flying.html"
-   },
-   {
-    "label": "accio-quote.org",
-    "url": "https://accio-quote.org/articles/2001/0401-guardian-seaton.htm"
-   },
-   {
     "label": "agbi.com",
-    "url": "https://www.agbi.com/?p=49851"
+    "title": "AGBI",
+    "url": "https://www.agbi.com/?p=49851",
+    "tag": "E",
+    "on_screen": "Bloomsbury, 2022"
    },
    {
     "label": "bigissue.com",
-    "url": "https://bigissue.com/culture/books/jk-rowling-interview-harry-potter-21st-century"
+    "title": "Big Issue interview",
+    "url": "https://bigissue.com/culture/books/jk-rowling-interview-harry-potter-21st-century",
+    "tag": "E",
+    "on_screen": "Big Issue"
    },
    {
     "label": "biography.com",
-    "url": "https://www.biography.com/authors-writers/a88027773/jk-rowling-harry-potter-author-rags-to-riches-billionaire"
-   },
-   {
-    "label": "blogs.ubc.ca",
-    "url": "https://blogs.ubc.ca/harrypotterfirsteditioncollection/?p=11"
+    "title": "Biography.com",
+    "url": "https://www.biography.com/authors-writers/a88027773/jk-rowling-harry-potter-author-rags-to-riches-billionaire",
+    "tag": "E",
+    "on_screen": "Biography.com"
    },
    {
     "label": "ebsco.com",
-    "url": "https://www.ebsco.com/research-starters/literature-and-writing/j-k-rowling"
+    "title": "EBSCO Research Starters",
+    "url": "https://www.ebsco.com/research-starters/literature-and-writing/j-k-rowling",
+    "tag": "E",
+    "on_screen": "The Scotsman, July 1997"
    },
    {
     "label": "edinburghnews.scotsman.com",
-    "url": "https://www.edinburghnews.scotsman.com/whats-on/arts-and-entertainment/harry-potter-turns-25-how-jk-rowlings-global-literary-phenomenon-was-born-3744319"
-   },
-   {
-    "label": "everand.com",
-    "url": "https://www.everand.com/article/578829897/There-Was-Practically-A-Riot-At-King-s-Cross-An-Oral-History-Of-Harry-Potter-At-25"
-   },
-   {
-    "label": "jackfrischer.github.io",
-    "url": "https://jackfrischer.github.io/iffall2018/microsite/www/books.html"
-   },
-   {
-    "label": "jkrowling.com",
-    "url": "https://www.jkrowling.com/about/"
-   },
-   {
-    "label": "mugglenet.com",
-    "url": "https://mugglenet.com/?p=9"
+    "title": "Edinburgh Evening News",
+    "url": "https://www.edinburghnews.scotsman.com/whats-on/arts-and-entertainment/harry-potter-turns-25-how-jk-rowlings-global-literary-phenomenon-was-born-3744319",
+    "tag": "E",
+    "on_screen": "Bloomsbury, 26 June 1997"
    },
    {
     "label": "news.harvard.edu",
-    "url": "https://news.harvard.edu/gazette/story/2008/06/text-of-j-k-rowling-speech/"
+    "title": "Harvard Gazette, text of speech",
+    "url": "https://news.harvard.edu/gazette/story/2008/06/text-of-j-k-rowling-speech/",
+    "tag": "T",
+    "on_screen": "J.K. Rowling, Harvard, 5 June 2008"
    },
    {
-    "label": "nzherald.co.nz",
-    "url": "https://nzherald.co.nz/lifestyle/revealed-the-eight-year-old-girl-who-saved-harry-potter/UTQCYL6RAEUSL4V5JH7MMP3WTE"
+    "label": "jkrowling.com",
+    "title": "jkrowling.com",
+    "url": "https://www.jkrowling.com/about/",
+    "tag": "E",
+    "on_screen": "jkrowling.com"
    },
    {
     "label": "oc-mccu.squarespace.com",
-    "url": "https://oc-mccu.squarespace.com/mccu-blog-1/against-all-odds-jk-rowling"
+    "title": "MCCU profile",
+    "url": "https://oc-mccu.squarespace.com/mccu-blog-1/against-all-odds-jk-rowling",
+    "tag": "E",
+    "on_screen": "jkrowling.com"
    },
    {
-    "label": "oocities.org",
-    "url": "https://www.oocities.org/aberforths_goat/archive/Aug97_Dunn_Telegraph.htm"
+    "label": "mugglenet.com",
+    "title": "MuggleNet",
+    "url": "https://mugglenet.com/?p=9",
+    "tag": "E",
+    "on_screen": "MuggleNet"
    },
    {
-    "label": "scotsman.com",
-    "url": "https://www.scotsman.com/node/3744319"
+    "label": "nzherald.co.nz",
+    "title": "Nigel Newton to Reuters / NZ Herald",
+    "url": "https://nzherald.co.nz/lifestyle/revealed-the-eight-year-old-girl-who-saved-harry-potter/UTQCYL6RAEUSL4V5JH7MMP3WTE",
+    "tag": "T",
+    "on_screen": "Nigel Newton, Bloomsbury"
+   },
+   {
+    "label": "jackfrischer.github.io",
+    "title": "Potter Books microsite",
+    "url": "https://jackfrischer.github.io/iffall2018/microsite/www/books.html",
+    "tag": "E",
+    "on_screen": "The Scotsman"
+   },
+   {
+    "label": "accio-quote.org",
+    "title": "Publishers Weekly, Dec 1998",
+    "url": "https://accio-quote.org/articles/1998/1298-PW-flying.html",
+    "tag": "V",
+    "on_screen": "Publishers Weekly, 1998"
    },
    {
     "label": "shush.substack.com",
-    "url": "https://shush.substack.com/p/as-lucky-as-its-possible-to-get"
+    "title": "SHuSH newsletter (Sutherland House)",
+    "url": "https://shush.substack.com/p/as-lucky-as-its-possible-to-get",
+    "tag": "E",
+    "on_screen": "Nigel Newton, Bloomsbury"
+   },
+   {
+    "label": "oocities.org",
+    "title": "The Daily Telegraph, 2 Aug 1997 (interview)",
+    "url": "https://www.oocities.org/aberforths_goat/archive/Aug97_Dunn_Telegraph.htm",
+    "tag": "T",
+    "on_screen": "Rowling to The Daily Telegraph, 1997"
+   },
+   {
+    "label": "accio-quote.org",
+    "title": "The Daily Telegraph, spring 1997",
+    "url": "https://accio-quote.org/articles/1997/spring97-telegraph-reynolds.htm",
+    "tag": "V",
+    "on_screen": "The Scotsman, July 1997"
+   },
+   {
+    "label": "accio-quote.org",
+    "title": "The Guardian, 18 Apr 2001 (aged 45)",
+    "url": "https://accio-quote.org/articles/2001/0401-guardian-seaton.htm",
+    "tag": "E",
+    "on_screen": "The Guardian, 2001"
+   },
+   {
+    "label": "everand.com",
+    "title": "The Guardian/Observer oral history, 2022 (\"notoriously turned down by 12 publishers\")",
+    "url": "https://www.everand.com/article/578829897/There-Was-Practically-A-Riot-At-King-s-Cross-An-Oral-History-Of-Harry-Potter-At-25",
+    "tag": "E",
+    "on_screen": "The Guardian, 2022"
+   },
+   {
+    "label": "accio-quote.org",
+    "title": "The Herald, 8 Jul 1997 (\"written in an Edinburgh cafe\")",
+    "url": "https://accio-quote.org/articles/1997/0797-herald.html",
+    "tag": "E",
+    "on_screen": "The Herald, 8 July 1997"
+   },
+   {
+    "label": "scotsman.com",
+    "title": "The Scotsman",
+    "url": "https://www.scotsman.com/node/3744319",
+    "tag": "E",
+    "on_screen": "The Scotsman"
+   },
+   {
+    "label": "accio-quote.org",
+    "title": "The Scotsman, Jul 1997",
+    "url": "https://accio-quote.org/articles/1997/0797-scotsman-thompson.html",
+    "tag": "V",
+    "on_screen": "The Scotsman, July 1997"
    },
    {
     "label": "stylist.co.uk",
+    "title": "The Times, 2000, quoted by Stylist",
+    "url": "https://stylist.co.uk/people/interviews-and-profiles/how-jk-changed-the-face-of-literature/173288",
+    "tag": "T",
+    "on_screen": "Rowling to The Times, 2000"
+   },
+   {
+    "label": "blogs.ubc.ca",
+    "title": "UBC Library",
+    "url": "https://blogs.ubc.ca/harrypotterfirsteditioncollection/?p=11",
+    "tag": "E",
+    "on_screen": "The Guardian, 2022"
+   }
+  ],
+  "claims": [
+   {
+    "id": "C01",
+    "text": "Joanne Rowling was born on 31 July 1965 in Yate, England",
+    "tag": "E",
+    "status": "OK",
+    "on_screen": "jkrowling.com",
+    "url": "https://www.jkrowling.com/about/"
+   },
+   {
+    "id": "C02",
+    "text": "In 1990 the idea for Harry Potter came to her on a delayed train; she was stuck for about four hours with nothing to write on",
+    "tag": "T",
+    "status": "ATTRIBUTED",
+    "on_screen": "Rowling to The Daily Telegraph, 1997",
+    "url": "https://www.oocities.org/aberforths_goat/archive/Aug97_Dunn_Telegraph.htm"
+   },
+   {
+    "id": "C03",
+    "text": "She was an Exeter University graduate working in London, including for Amnesty International, when she started the books",
+    "tag": "E",
+    "status": "OK",
+    "on_screen": "Big Issue",
+    "url": "https://bigissue.com/culture/books/jk-rowling-interview-harry-potter-21st-century"
+   },
+   {
+    "id": "C04",
+    "text": "Her mother, Anne, had multiple sclerosis and died in 1990, aged 45",
+    "tag": "E",
+    "status": "OK",
+    "on_screen": "The Guardian, 2001",
+    "url": "https://accio-quote.org/articles/2001/0401-guardian-seaton.htm"
+   },
+   {
+    "id": "C05",
+    "text": "She had begun writing the first book months before her mother died (The Guardian says six; the Telegraph, three)",
+    "tag": "T",
+    "status": "ATTRIBUTED",
+    "on_screen": "Rowling to The Guardian, 2001",
+    "url": ""
+   },
+   {
+    "id": "C06",
+    "text": "She moved to northern Portugal to teach English (afternoons and evenings, writing in the mornings), married Jorge Arantes in 1992 and had a daughter, Jessica, in 1993",
+    "tag": "E",
+    "status": "OK",
+    "on_screen": "jkrowling.com",
+    "url": "https://oc-mccu.squarespace.com/mccu-blog-1/against-all-odds-jk-rowling"
+   },
+   {
+    "id": "C07",
+    "text": "The marriage broke up when Jessica was about three and a half months old; Rowling went to stay with her younger sister, Di, in Edinburgh at Christmas 1993",
+    "tag": "T",
+    "status": "ATTRIBUTED",
+    "on_screen": "Rowling to The Daily Telegraph, 1997",
+    "url": ""
+   },
+   {
+    "id": "C08",
+    "text": "She arrived with the first three chapters of Harry Potter",
+    "tag": "E",
+    "status": "OK",
+    "on_screen": "Biography.com",
+    "url": "https://www.biography.com/authors-writers/a88027773/jk-rowling-harry-potter-author-rags-to-riches-billionaire"
+   },
+   {
+    "id": "C09",
+    "text": "In Edinburgh she lived on state benefits (income support)",
+    "tag": "E",
+    "status": "OK",
+    "on_screen": "The Daily Telegraph, 1997",
+    "url": ""
+   },
+   {
+    "id": "C10",
+    "text": "Harvard, 5 Jun 2008: seven years after graduating, her short marriage \"had imploded\"; she was jobless, a lone parent, and \"as poor as it is possible to be in modern Britain, without being homeless\"",
+    "tag": "T",
+    "status": "ATTRIBUTED",
+    "on_screen": "J.K. Rowling, Harvard, 5 June 2008",
+    "url": "https://news.harvard.edu/gazette/story/2008/06/text-of-j-k-rowling-speech/"
+   },
+   {
+    "id": "C11",
+    "text": "Harvard: by every usual measure she was \"the biggest failure I knew\"; failure was \"a stripping away of the inessential\"; rock bottom became \"the solid foundation on which I rebuilt my life\"",
+    "tag": "T",
+    "status": "ATTRIBUTED",
+    "on_screen": "J.K. Rowling, Harvard, 5 June 2008",
+    "url": ""
+   },
+   {
+    "id": "C12",
+    "text": "She has said: \"Depression is the most unpleasant thing I have ever experienced\"",
+    "tag": "T",
+    "status": "ATTRIBUTED",
+    "on_screen": "Rowling to The Times, 2000",
     "url": "https://stylist.co.uk/people/interviews-and-profiles/how-jk-changed-the-face-of-literature/173288"
+   },
+   {
+    "id": "C13",
+    "text": "She wrote much of the first book in Edinburgh cafés",
+    "tag": "E",
+    "status": "OK",
+    "on_screen": "The Herald, 8 July 1997",
+    "url": "https://accio-quote.org/articles/1997/0797-herald.html"
+   },
+   {
+    "id": "C14",
+    "text": "The Christopher Little Literary Agency took her on after a reader there liked the first three chapters",
+    "tag": "E",
+    "status": "OK",
+    "on_screen": "The Scotsman",
+    "url": "https://jackfrischer.github.io/iffall2018/microsite/www/books.html"
+   },
+   {
+    "id": "C15",
+    "text": "Little took about a year to find a publisher; the manuscript was turned down by twelve publishers (the widely reported figure; she has never named them)",
+    "tag": "E",
+    "status": "OK",
+    "on_screen": "The Guardian, 2022",
+    "url": "https://www.everand.com/article/578829897/There-Was-Practically-A-Riot-At-King-s-Cross-An-Oral-History-Of-Harry-Potter-At-25"
+   },
+   {
+    "id": "C16",
+    "text": "Bloomsbury chairman Nigel Newton took the sample home and gave it to his eight-year-old daughter, Alice, who came back about an hour later asking for more",
+    "tag": "T",
+    "status": "ATTRIBUTED",
+    "on_screen": "Nigel Newton, Bloomsbury",
+    "url": "https://nzherald.co.nz/lifestyle/revealed-the-eight-year-old-girl-who-saved-harry-potter/UTQCYL6RAEUSL4V5JH7MMP3WTE"
+   },
+   {
+    "id": "C17",
+    "text": "Editor Barry Cunningham championed the book and Bloomsbury's children's list took it on",
+    "tag": "E",
+    "status": "OK",
+    "on_screen": "The Guardian, 2022",
+    "url": ""
+   },
+   {
+    "id": "C18",
+    "text": "Bloomsbury asked for initials so boys would not be put off by a woman's name; she had no middle name and added K for her grandmother Kathleen",
+    "tag": "E",
+    "status": "OK",
+    "on_screen": "The Scotsman",
+    "url": "https://oc-mccu.squarespace.com/mccu-blog-1/against-all-odds-jk-rowling"
+   },
+   {
+    "id": "C19",
+    "text": "Harry Potter and the Philosopher's Stone was published on 26 June 1997",
+    "tag": "E",
+    "status": "OK",
+    "on_screen": "Bloomsbury, 26 June 1997",
+    "url": "https://www.edinburghnews.scotsman.com/whats-on/arts-and-entertainment/harry-potter-turns-25-how-jk-rowlings-global-literary-phenomenon-was-born-3744319"
+   },
+   {
+    "id": "C20",
+    "text": "The first hardback print run was 500 copies, about 300 of them for libraries",
+    "tag": "E",
+    "status": "OK",
+    "on_screen": "UBC Library",
+    "url": ""
+   },
+   {
+    "id": "C21",
+    "text": "The Scottish Arts Council gave her £8,000, its largest award to a children's writer, which she spent partly on a word processor; the second book, Chamber of Secrets, was published in 1998",
+    "tag": "V",
+    "status": "OK",
+    "on_screen": "The Scotsman, July 1997",
+    "url": "https://accio-quote.org/articles/1997/0797-scotsman-thompson.html"
+   },
+   {
+    "id": "C22",
+    "text": "Scholastic won a US auction for the rights at $105,000; she said \"I nearly died\" when told",
+    "tag": "V",
+    "status": "OK",
+    "on_screen": "Publishers Weekly, 1998",
+    "url": "https://accio-quote.org/articles/1998/1298-PW-flying.html"
+   },
+   {
+    "id": "C23",
+    "text": "Hollywood studios competed for the film rights within weeks; Warner Bros. later bought rights to the first two books",
+    "tag": "E",
+    "status": "OK",
+    "on_screen": "The Scotsman, July 1997",
+    "url": "https://www.ebsco.com/research-starters/literature-and-writing/j-k-rowling"
+   },
+   {
+    "id": "C24",
+    "text": "The series (seven books, eight films, a stage play) has sold more than 500 million copies (figure reached by 2022)",
+    "tag": "E",
+    "status": "OK",
+    "on_screen": "Bloomsbury, 2022",
+    "url": "https://www.agbi.com/?p=49851"
+   },
+   {
+    "id": "C25",
+    "text": "She became an ambassador for One Parent Families (now Gingerbread) and its president in 2007",
+    "tag": "E",
+    "status": "SECONDARY",
+    "on_screen": "MuggleNet",
+    "url": "https://mugglenet.com/?p=9"
+   },
+   {
+    "id": "C26",
+    "text": "The Anne Rowling Regenerative Neurology Clinic in Edinburgh, named after her mother, opened in 2013",
+    "tag": "E",
+    "status": "SECONDARY",
+    "on_screen": "University of Edinburgh",
+    "url": ""
+   },
+   {
+    "id": "C27",
+    "text": "She gave the Harvard commencement address on 5 June 2008",
+    "tag": "V",
+    "status": "OK",
+    "on_screen": "Harvard Gazette",
+    "url": ""
+   },
+   {
+    "id": "C29",
+    "text": "Her parents, from poor backgrounds, wanted a practical degree; her imagination \"would never pay a mortgage, or secure a pension\"; she studied Modern Languages, then Classics; what she feared most \"was not poverty, but failure\"",
+    "tag": "T",
+    "status": "ATTRIBUTED",
+    "on_screen": "J.K. Rowling, Harvard, 5 June 2008",
+    "url": ""
+   },
+   {
+    "id": "C30",
+    "text": "In her early twenties she worked in Amnesty International's African research department in London, read smuggled letters and torture testimony, and said it gave her \"literal nightmares\"",
+    "tag": "T",
+    "status": "ATTRIBUTED",
+    "on_screen": "J.K. Rowling, Harvard, 5 June 2008",
+    "url": ""
+   },
+   {
+    "id": "C31",
+    "text": "By 1990 she worked in an office job in Manchester; the train was from Manchester to London",
+    "tag": "T",
+    "status": "ATTRIBUTED",
+    "on_screen": "Rowling to The Daily Telegraph, 1997",
+    "url": ""
+   },
+   {
+    "id": "C32",
+    "text": "She said she felt guilty about not being there when her mother died, and her mother never read her writing",
+    "tag": "T",
+    "status": "ATTRIBUTED",
+    "on_screen": "Rowling to The Daily Telegraph, 1997",
+    "url": ""
+   },
+   {
+    "id": "C33",
+    "text": "In Edinburgh she told her sister Di the story; Di's laughter encouraged her to keep going",
+    "tag": "T",
+    "status": "ATTRIBUTED",
+    "on_screen": "Rowling to The Daily Telegraph, 1997",
+    "url": ""
+   },
+   {
+    "id": "C34",
+    "text": "She said there were nights she skipped meals so Jessica could eat; life on benefits was \"soul-destroying\"; she had \"no intention, no desire, to remain on benefits\"; she worried about a \"poverty trap\"",
+    "tag": "T",
+    "status": "ATTRIBUTED",
+    "on_screen": "Rowling to The Daily Telegraph, 1997",
+    "url": ""
+   },
+   {
+    "id": "C35",
+    "text": "She wrote longhand at Nicolson's café in Edinburgh while Jessica slept, ordering espresso and water; writing \"really saved my sanity\"; she later took a part-time job",
+    "tag": "T",
+    "status": "ATTRIBUTED",
+    "on_screen": "Rowling to The Daily Telegraph, 1997",
+    "url": ""
+   },
+   {
+    "id": "C36",
+    "text": "Harvard: a life is not a checklist of acquisition or achievement; failure showed her a strong will and more discipline than she suspected, friends \"truly above the price of rubies\"; imagination's most important use is empathy; \"We do not need magic to change the world\"",
+    "tag": "T",
+    "status": "ATTRIBUTED",
+    "on_screen": "J.K. Rowling, Harvard, 5 June 2008",
+    "url": ""
+   },
+   {
+    "id": "C37",
+    "text": "She named her daughter after Jessica Mitford, whose sense of humour she admired",
+    "tag": "T",
+    "status": "ATTRIBUTED",
+    "on_screen": "Rowling to The Daily Telegraph, 1997",
+    "url": ""
+   },
+   {
+    "id": "C38",
+    "text": "A former library copy of the first-edition hardback later sold at auction for $88,140",
+    "tag": "E",
+    "status": "SECONDARY",
+    "on_screen": "Auction record (SHuSH)",
+    "url": "https://shush.substack.com/p/as-lucky-as-its-possible-to-get"
+   },
+   {
+    "id": "C39",
+    "text": "The £8,000 grant was more than triple her advance; the US auction involved about ten publishers",
+    "tag": "E",
+    "status": "SECONDARY",
+    "on_screen": "SHuSH",
+    "url": ""
    }
   ]
  },
  "tyler-perry": {
   "verified_claims": 44,
   "held_back": 0,
+  "tag_counts": {
+   "V": 4,
+   "E": 22,
+   "T": 18
+  },
   "sources": [
    {
     "label": "11alive.com",
-    "url": "https://www.11alive.com/article/news/tyler-perry/85-1f902309-7c7d-44d6-bea0-26bf398a82b3"
+    "title": "11Alive",
+    "url": "https://www.11alive.com/article/news/tyler-perry/85-1f902309-7c7d-44d6-bea0-26bf398a82b3",
+    "tag": "E",
+    "on_screen": "11Alive"
    },
    {
     "label": "aarp.org",
-    "url": "https://www.aarp.org/entertainment/celebrities/info-2022/tyler-perry.html"
+    "title": "AARP, 2022 interview",
+    "url": "https://www.aarp.org/entertainment/celebrities/info-2022/tyler-perry.html",
+    "tag": "T",
+    "on_screen": "Tyler Perry to AARP, 2022"
    },
    {
     "label": "actingmagazine.com",
-    "url": "https://actingmagazine.com/2019/02/actor-stories-tyler-perry/"
+    "title": "Acting Magazine",
+    "url": "https://actingmagazine.com/2019/02/actor-stories-tyler-perry/",
+    "tag": "E",
+    "on_screen": "BlackPast"
    },
    {
     "label": "ajc.com",
-    "url": "https://ajc.com/blog/radiotvtalk/tyler-perry-brings-back-house-payne-for-bet-adds-assistant-living-and-young-dylan/LoRQS4onn0vIvODwecj5ZJ"
+    "title": "AJC",
+    "url": "https://www.ajc.com/news/local-govt--politics/director-actor-and-now-developer-tyler-perry-opens-studios-with-gala/iDQTGetVBf318f1FEzbmoN",
+    "tag": "V",
+    "on_screen": "AP, 5 October 2019"
    },
    {
     "label": "ajc.com",
-    "url": "https://ajc.com/news/world/tyler-perry-reveals-atlanta-studio-was-once-confederate-army-base-during-bet-awards-acceptance-speech/5AAY0iHvZ65yVLi6tKgaUL"
+    "title": "AJC",
+    "url": "https://www.ajc.com/news/national/own-your-way-tyler-perry-encourages-viewers-star-studded-crowd-2019-bet-awards-speech/xUc0a0byZaAUsj8LJ66PpN",
+    "tag": "T",
+    "on_screen": "Tyler Perry, BET Awards, 2019"
    },
    {
     "label": "ajc.com",
-    "url": "https://www.ajc.com/lifestyles/just-how-big-tyler-perry-studios-look-the-massive-property-that-will-host-the-democratic-debate/xGTRQWmQqWKIc4aOc2MkPI"
+    "title": "AJC, 20 Dec 2019",
+    "url": "https://ajc.com/blog/radiotvtalk/tyler-perry-brings-back-house-payne-for-bet-adds-assistant-living-and-young-dylan/LoRQS4onn0vIvODwecj5ZJ",
+    "tag": "V",
+    "on_screen": "Debmar-Mercury / AJC"
    },
    {
     "label": "ajc.com",
-    "url": "https://www.ajc.com/news/local-govt--politics/director-actor-and-now-developer-tyler-perry-opens-studios-with-gala/iDQTGetVBf318f1FEzbmoN"
-   },
-   {
-    "label": "ajc.com",
-    "url": "https://www.ajc.com/news/national/own-your-way-tyler-perry-encourages-viewers-star-studded-crowd-2019-bet-awards-speech/xUc0a0byZaAUsj8LJ66PpN"
-   },
-   {
-    "label": "ajc.com",
-    "url": "https://www.ajc.com/news/tyler-perry-new-studio-won-shut-out-neighbors/J7oF5Zlm5U3hlzm0veYDCJ"
+    "title": "AJC, 24 Jun 2019",
+    "url": "https://ajc.com/news/world/tyler-perry-reveals-atlanta-studio-was-once-confederate-army-base-during-bet-awards-acceptance-speech/5AAY0iHvZ65yVLi6tKgaUL",
+    "tag": "E",
+    "on_screen": "Atlanta Journal-Constitution"
    },
    {
     "label": "amctheatres.com",
-    "url": "https://www.amctheatres.com/amc-scene/how-tyler-perry-built-an-empire"
-   },
-   {
-    "label": "atlantablackstar.com",
-    "url": "https://atlantablackstar.com/2025/04/04/tyler-perry-studios-on-military-base-in-atlanta/"
-   },
-   {
-    "label": "blackpast.org",
-    "url": "https://blackpast.org/african-american-history/tyler-perry-1969"
-   },
-   {
-    "label": "broadcastingcable.com",
-    "url": "https://www.broadcastingcable.com/news/debmar-mercury-asserts-sitcom-independence-80786"
-   },
-   {
-    "label": "broadcastingcable.com",
-    "url": "https://www.broadcastingcable.com/news/tbs-take-third-shot-tyler-perry-111890"
-   },
-   {
-    "label": "businessinsider.in",
-    "url": "https://businessinsider.in/thelife/news/tyler-perry-is-officially-a-billionaire-according-to-forbes-estimates-take-a-look-at-how-the-hollywood-mogul-makes-and-spends-his-fortune-/slidelist/77941691.cms"
-   },
-   {
-    "label": "cbsnews.com",
-    "url": "https://www.cbsnews.com/amp/detroit/news/what-does-it-take-to-succeed-in-hollywood-just-ask-tyler-perry"
-   },
-   {
-    "label": "christianpost.com",
-    "url": "https://christianpost.com/news/tyler-perry-says-life-success-shifted-started-living-serve-others-163717"
-   },
-   {
-    "label": "en.wikipedia.org",
-    "url": "https://en.wikipedia.org/wiki/Tyler_Perry_Studios"
-   },
-   {
-    "label": "essence.com",
-    "url": "https://www.essence.com/news/diary-of-a-brilliant-black-man"
+    "title": "AMC Theatres",
+    "url": "https://www.amctheatres.com/amc-scene/how-tyler-perry-built-an-empire",
+    "tag": "E",
+    "on_screen": "AMC Theatres"
    },
    {
     "label": "gpb.org",
-    "url": "https://www.gpb.org/news/2019/10/09/tyler-perry-brings-opportunities-optimism-new-studio-opening"
+    "title": "AP via GPB",
+    "url": "https://www.gpb.org/news/2019/10/09/tyler-perry-brings-opportunities-optimism-new-studio-opening",
+    "tag": "E",
+    "on_screen": "Atlanta Business Chronicle, Oct 2019"
    },
    {
-    "label": "hollywoodreporter.com",
-    "url": "https://www.hollywoodreporter.com/news/tyler-perry-delivers-powerful-uplifting-speech-at-bet-awards-1220521"
-   },
-   {
-    "label": "inquirer.com",
-    "url": "https://inquirer.com/philly/columnists/20070508_Ellen_Gray__.html"
-   },
-   {
-    "label": "news.yahoo.com",
-    "url": "https://news.yahoo.com/tyler-perry-posts-photo-same-181134862.html"
-   },
-   {
-    "label": "newsfeed.time.com",
-    "url": "https://newsfeed.time.com/2013/07/11/stars-who-were-once-homeless/slide/tyler-perry/"
-   },
-   {
-    "label": "nexttv.com",
-    "url": "https://www.nexttv.com/news/once-he-got-going-nothing-could-stop-him-129133"
-   },
-   {
-    "label": "paramount.com",
-    "url": "https://paramount.com/news/how-tyler-perry-turned-an-army-base-into-a-major-studio"
-   },
-   {
-    "label": "projectcasting.com",
-    "url": "https://www.projectcasting.com/blog/?p=25922"
-   },
-   {
-    "label": "rollingstone.com",
-    "url": "https://www.rollingstone.com/tv-movies/tv-movie-news/tyler-perry-bet-awards-ultimate-icon-award-speech-851597/"
+    "label": "atlantablackstar.com",
+    "title": "Atlanta Black Star, 4 Apr 2025",
+    "url": "https://atlantablackstar.com/2025/04/04/tyler-perry-studios-on-military-base-in-atlanta/",
+    "tag": "E",
+    "on_screen": "AARP, 2022"
    },
    {
     "label": "saportareport.com",
-    "url": "https://saportareport.com/a-rival-to-hollywood-tyler-perry-unveils-his-new-atlanta-studios-for-the-world/sections/abcarticles/maria_saporta/"
+    "title": "Atlanta Business Chronicle, 4 Oct 2019",
+    "url": "https://saportareport.com/a-rival-to-hollywood-tyler-perry-unveils-his-new-atlanta-studios-for-the-world/sections/abcarticles/maria_saporta/",
+    "tag": "E",
+    "on_screen": "Atlanta Business Chronicle, Oct 2019"
+   },
+   {
+    "label": "ajc.com",
+    "title": "Atlanta Journal-Constitution",
+    "url": "https://www.ajc.com/news/tyler-perry-new-studio-won-shut-out-neighbors/J7oF5Zlm5U3hlzm0veYDCJ",
+    "tag": "V",
+    "on_screen": "Atlanta Journal-Constitution"
+   },
+   {
+    "label": "ajc.com",
+    "title": "Atlanta Journal-Constitution",
+    "url": "https://www.ajc.com/lifestyles/just-how-big-tyler-perry-studios-look-the-massive-property-that-will-host-the-democratic-debate/xGTRQWmQqWKIc4aOc2MkPI",
+    "tag": "E",
+    "on_screen": "Atlanta Journal-Constitution"
+   },
+   {
+    "label": "blackpast.org",
+    "title": "BlackPast",
+    "url": "https://blackpast.org/african-american-history/tyler-perry-1969",
+    "tag": "E",
+    "on_screen": "BlackPast"
+   },
+   {
+    "label": "broadcastingcable.com",
+    "title": "Broadcasting & Cable",
+    "url": "https://www.broadcastingcable.com/news/tbs-take-third-shot-tyler-perry-111890",
+    "tag": "E",
+    "on_screen": "Broadcasting & Cable"
+   },
+   {
+    "label": "nexttv.com",
+    "title": "Broadcasting & Cable / NextTV",
+    "url": "https://www.nexttv.com/news/once-he-got-going-nothing-could-stop-him-129133",
+    "tag": "E",
+    "on_screen": "Broadcasting & Cable"
+   },
+   {
+    "label": "businessinsider.in",
+    "title": "Business Insider citing Forbes",
+    "url": "https://businessinsider.in/thelife/news/tyler-perry-is-officially-a-billionaire-according-to-forbes-estimates-take-a-look-at-how-the-hollywood-mogul-makes-and-spends-his-fortune-/slidelist/77941691.cms",
+    "tag": "E",
+    "on_screen": "Forbes, 2020"
+   },
+   {
+    "label": "cbsnews.com",
+    "title": "CBS Detroit interview",
+    "url": "https://www.cbsnews.com/amp/detroit/news/what-does-it-take-to-succeed-in-hollywood-just-ask-tyler-perry",
+    "tag": "T",
+    "on_screen": "Tyler Perry to CBS Detroit"
+   },
+   {
+    "label": "broadcastingcable.com",
+    "title": "Debmar-Mercury via Broadcasting & Cable",
+    "url": "https://www.broadcastingcable.com/news/debmar-mercury-asserts-sitcom-independence-80786",
+    "tag": "V",
+    "on_screen": "Debmar-Mercury / AJC"
+   },
+   {
+    "label": "essence.com",
+    "title": "Essence",
+    "url": "https://www.essence.com/news/diary-of-a-brilliant-black-man",
+    "tag": "T",
+    "on_screen": "Tyler Perry to AARP, 2022"
+   },
+   {
+    "label": "paramount.com",
+    "title": "Paramount",
+    "url": "https://paramount.com/news/how-tyler-perry-turned-an-army-base-into-a-major-studio",
+    "tag": "E",
+    "on_screen": "Atlanta Business Chronicle, Oct 2019"
+   },
+   {
+    "label": "news.yahoo.com",
+    "title": "Perry's Instagram via Blavity/Yahoo",
+    "url": "https://news.yahoo.com/tyler-perry-posts-photo-same-181134862.html",
+    "tag": "T",
+    "on_screen": "Tyler Perry, Instagram"
+   },
+   {
+    "label": "yahoo.com",
+    "title": "Perry, BET Awards speech, 23 Jun 2019, via Deadline/Yahoo",
+    "url": "https://www.yahoo.com/entertainment/tyler-perry-tells-bet-awards-032616581.html",
+    "tag": "T",
+    "on_screen": "Tyler Perry, BET Awards, 2019"
+   },
+   {
+    "label": "christianpost.com",
+    "title": "Perry, Tuskegee University commencement, 2019, via Project Casting",
+    "url": "https://christianpost.com/news/tyler-perry-says-life-success-shifted-started-living-serve-others-163717",
+    "tag": "T",
+    "on_screen": "Tyler Perry, Tuskegee University, 2019"
+   },
+   {
+    "label": "projectcasting.com",
+    "title": "Perry, Tuskegee University commencement, 2019, via Project Casting",
+    "url": "https://www.projectcasting.com/blog/?p=25922",
+    "tag": "T",
+    "on_screen": "Tyler Perry, Tuskegee University, 2019"
+   },
+   {
+    "label": "inquirer.com",
+    "title": "Philadelphia Inquirer, 8 May 2007",
+    "url": "https://inquirer.com/philly/columnists/20070508_Ellen_Gray__.html",
+    "tag": "E",
+    "on_screen": "Philadelphia Inquirer, 2007"
+   },
+   {
+    "label": "rollingstone.com",
+    "title": "Rolling Stone",
+    "url": "https://www.rollingstone.com/tv-movies/tv-movie-news/tyler-perry-bet-awards-ultimate-icon-award-speech-851597/",
+    "tag": "V",
+    "on_screen": "BET Awards, 23 June 2019"
+   },
+   {
+    "label": "hollywoodreporter.com",
+    "title": "The Hollywood Reporter",
+    "url": "https://www.hollywoodreporter.com/news/tyler-perry-delivers-powerful-uplifting-speech-at-bet-awards-1220521",
+    "tag": "V",
+    "on_screen": "BET Awards, 23 June 2019"
+   },
+   {
+    "label": "newsfeed.time.com",
+    "title": "TIME, 11 Jul 2013 (citing his Oprah interview)",
+    "url": "https://newsfeed.time.com/2013/07/11/stars-who-were-once-homeless/slide/tyler-perry/",
+    "tag": "T",
+    "on_screen": "TIME, 2013"
    },
    {
     "label": "tvguide.com",
-    "url": "https://www.tvguide.com/news/tyler-perry-calls-35682/"
+    "title": "TV Guide, 2007",
+    "url": "https://www.tvguide.com/news/tyler-perry-calls-35682/",
+    "tag": "E",
+    "on_screen": "Philadelphia Inquirer, 2007"
+   },
+   {
+    "label": "yahoo.com",
+    "title": "VIBE via Yahoo",
+    "url": "https://www.yahoo.com/entertainment/tyler-perry-drives-old-geo-144251061.html",
+    "tag": "E",
+    "on_screen": "BlackPast"
+   },
+   {
+    "label": "en.wikipedia.org",
+    "title": "Wikipedia, Tyler Perry Studios",
+    "url": "https://en.wikipedia.org/wiki/Tyler_Perry_Studios",
+    "tag": "E",
+    "on_screen": "Box office, Feb 2006"
    },
    {
     "label": "worldscreen.com",
-    "url": "https://worldscreen.com/?p=85138"
+    "title": "World Screen, 23 Aug 2006",
+    "url": "https://worldscreen.com/?p=85138",
+    "tag": "V",
+    "on_screen": "Debmar-Mercury / AJC"
    },
    {
     "label": "wsbtv.com",
-    "url": "https://www.wsbtv.com/news/local/director-actor-and-now-developer-tyler-perry-to-open-studios-with-gala/993726220"
+    "title": "WSB-TV",
+    "url": "https://www.wsbtv.com/news/local/director-actor-and-now-developer-tyler-perry-to-open-studios-with-gala/993726220",
+    "tag": "V",
+    "on_screen": "Atlanta Journal-Constitution"
+   }
+  ],
+  "claims": [
+   {
+    "id": "C01",
+    "text": "Tyler Perry was born in 1969 and grew up in New Orleans",
+    "tag": "E",
+    "status": "OK",
+    "on_screen": "BlackPast",
+    "url": "https://blackpast.org/african-american-history/tyler-perry-1969"
    },
    {
-    "label": "yahoo.com",
-    "url": "https://www.yahoo.com/entertainment/tyler-perry-drives-old-geo-144251061.html"
+    "id": "C02",
+    "text": "His mother grew up in the Jim Crow South; he has described growing up with an abusive, alcoholic father in an area marked by poverty, and credits his mother, aunts and grandmother",
+    "tag": "T",
+    "status": "ATTRIBUTED",
+    "on_screen": "Tyler Perry to AARP, 2022",
+    "url": "https://www.aarp.org/entertainment/celebrities/info-2022/tyler-perry.html"
    },
    {
-    "label": "yahoo.com",
+    "id": "C03",
+    "text": "He dropped out of high school",
+    "tag": "E",
+    "status": "OK",
+    "on_screen": "Forbes",
+    "url": ""
+   },
+   {
+    "id": "C04",
+    "text": "After watching Oprah Winfrey talk about writing as a way to work through pain, he began writing letters to himself, which became the basis of his first play, I Know I've Been Changed",
+    "tag": "E",
+    "status": "OK",
+    "on_screen": "BlackPast",
+    "url": ""
+   },
+   {
+    "id": "C05",
+    "text": "The play was about survivors of child abuse and the power of prayer",
+    "tag": "E",
+    "status": "OK",
+    "on_screen": "AARP, 2022",
+    "url": ""
+   },
+   {
+    "id": "C06",
+    "text": "He moved to Atlanta to launch the play",
+    "tag": "T",
+    "status": "ATTRIBUTED",
+    "on_screen": "Tyler Perry, Tuskegee University, 2019",
+    "url": "https://www.projectcasting.com/blog/?p=25922"
+   },
+   {
+    "id": "C07",
+    "text": "He worked as a bill collector, sold used cars and worked in hotels, and saved $12,000, including a tax refund",
+    "tag": "T",
+    "status": "ATTRIBUTED",
+    "on_screen": "Tyler Perry to AARP, 2022",
+    "url": ""
+   },
+   {
+    "id": "C08",
+    "text": "In 1992 he spent all of it renting a theatre space and staging the play in Atlanta; he expected 1,200 people that weekend and about 30 came",
+    "tag": "T",
+    "status": "ATTRIBUTED",
+    "on_screen": "Tyler Perry, Tuskegee University, 2019",
+    "url": ""
+   },
+   {
+    "id": "C09",
+    "text": "His rent and car payment were tied up in it and he ended up homeless",
+    "tag": "T",
+    "status": "ATTRIBUTED",
+    "on_screen": "Tyler Perry, Tuskegee University, 2019",
+    "url": ""
+   },
+   {
+    "id": "C10",
+    "text": "\"For three months, I lived in a Geo Metro that I was hiding from the repo man\"; he is six foot five",
+    "tag": "T",
+    "status": "ATTRIBUTED",
+    "on_screen": "Tyler Perry to AARP, 2022",
+    "url": ""
+   },
+   {
+    "id": "C11",
+    "text": "Over those years he was homeless on and off, including living in a pay-by-the-week hotel",
+    "tag": "T",
+    "status": "ATTRIBUTED",
+    "on_screen": "TIME, 2013",
+    "url": "https://newsfeed.time.com/2013/07/11/stars-who-were-once-homeless/slide/tyler-perry/"
+   },
+   {
+    "id": "C12",
+    "text": "He took jobs between attempts and quit each time to work on the play",
+    "tag": "T",
+    "status": "ATTRIBUTED",
+    "on_screen": "Tyler Perry to AARP, 2022",
+    "url": ""
+   },
+   {
+    "id": "C13",
+    "text": "He staged the play about once a year — 1992, 1993, 1994 — and \"every year it would fail, until 1998, the seventh year\"; he was about to give up",
+    "tag": "T",
+    "status": "ATTRIBUTED",
+    "on_screen": "Tyler Perry, Tuskegee University, 2019",
+    "url": ""
+   },
+   {
+    "id": "C14",
+    "text": "Audience members told him the play had changed their lives, and he began to see the value of serving others",
+    "tag": "T",
+    "status": "ATTRIBUTED",
+    "on_screen": "Tyler Perry, Tuskegee University, 2019",
+    "url": ""
+   },
+   {
+    "id": "C15",
+    "text": "In 1998 he staged it again at the House of Blues in Atlanta; it became a hit and he toured it from 1998 to 2000, filling theatres",
+    "tag": "E",
+    "status": "OK",
+    "on_screen": "BlackPast",
+    "url": ""
+   },
+   {
+    "id": "C16",
+    "text": "He has said the show saved his life and \"gave me permission to heal\"",
+    "tag": "T",
+    "status": "SECONDARY",
+    "on_screen": "Tyler Perry (via Acting Magazine)",
+    "url": ""
+   },
+   {
+    "id": "C17",
+    "text": "He created Madea (played by Perry himself in drag) in the 2000 play I Can Do Bad All by Myself",
+    "tag": "E",
+    "status": "SECONDARY",
+    "on_screen": "AMC Theatres",
+    "url": "https://www.amctheatres.com/amc-scene/how-tyler-perry-built-an-empire"
+   },
+   {
+    "id": "C18",
+    "text": "Diary of a Mad Black Woman (2005), the first film made from his plays, opened at No. 1 in the US and introduced Madea to mainstream audiences",
+    "tag": "E",
+    "status": "OK",
+    "on_screen": "AARP, 2022",
+    "url": ""
+   },
+   {
+    "id": "C19",
+    "text": "Madea's Family Reunion opened at No. 1 with $30.3 million in February 2006",
+    "tag": "E",
+    "status": "SECONDARY",
+    "on_screen": "Box office, Feb 2006",
+    "url": "https://en.wikipedia.org/wiki/Tyler_Perry_Studios"
+   },
+   {
+    "id": "C20",
+    "text": "In 2015 he bought 330 acres of the former Fort McPherson army post (488 acres in all) for $30 million",
+    "tag": "V",
+    "status": "OK",
+    "on_screen": "Atlanta Journal-Constitution",
+    "url": "https://www.ajc.com/news/tyler-perry-new-studio-won-shut-out-neighbors/J7oF5Zlm5U3hlzm0veYDCJ"
+   },
+   {
+    "id": "C21",
+    "text": "Part of that land was once used as a Confederate army base",
+    "tag": "E",
+    "status": "OK",
+    "on_screen": "AARP, 2022",
+    "url": "https://atlantablackstar.com/2025/04/04/tyler-perry-studios-on-military-base-in-atlanta/"
+   },
+   {
+    "id": "C22",
+    "text": "He has said he buried Bibles beneath the soundstages",
+    "tag": "T",
+    "status": "ATTRIBUTED",
+    "on_screen": "Tyler Perry to AARP, 2022",
+    "url": ""
+   },
+   {
+    "id": "C23",
+    "text": "He estimated his total investment at about $250 million; the lot has 12 soundstages and about 200 acres of green space, including historic homes on the old officers' row and a full-scale White House set",
+    "tag": "E",
+    "status": "OK",
+    "on_screen": "Atlanta Business Chronicle, Oct 2019",
+    "url": "https://saportareport.com/a-rival-to-hollywood-tyler-perry-unveils-his-new-atlanta-studios-for-the-world/sections/abcarticles/maria_saporta/"
+   },
+   {
+    "id": "C24",
+    "text": "For comparison, Warner Bros.' Burbank studio lot is about 110 acres",
+    "tag": "E",
+    "status": "OK",
+    "on_screen": "Atlanta Journal-Constitution",
+    "url": "https://www.ajc.com/lifestyles/just-how-big-tyler-perry-studios-look-the-massive-property-that-will-host-the-democratic-debate/xGTRQWmQqWKIc4aOc2MkPI"
+   },
+   {
+    "id": "C25",
+    "text": "The studio's grand opening gala was on 5 Oct 2019",
+    "tag": "V",
+    "status": "OK",
+    "on_screen": "AP, 5 October 2019",
+    "url": "https://www.ajc.com/news/local-govt--politics/director-actor-and-now-developer-tyler-perry-opens-studios-with-gala/iDQTGetVBf318f1FEzbmoN"
+   },
+   {
+    "id": "C26",
+    "text": "It is widely reported as making him the first African American to own a major film studio outright",
+    "tag": "E",
+    "status": "SECONDARY",
+    "on_screen": "Widely reported",
+    "url": ""
+   },
+   {
+    "id": "C27",
+    "text": "The studio hosted a 2020 Democratic presidential debate in November 2019",
+    "tag": "E",
+    "status": "OK",
+    "on_screen": "Atlanta Journal-Constitution",
+    "url": ""
+   },
+   {
+    "id": "C28",
+    "text": "The studio provides hundreds of production jobs, including for former prisoners",
+    "tag": "T",
+    "status": "ATTRIBUTED",
+    "on_screen": "AARP, 2022",
+    "url": ""
+   },
+   {
+    "id": "C29",
+    "text": "Forbes estimated him a billionaire in 2020",
+    "tag": "E",
+    "status": "OK",
+    "on_screen": "Forbes, 2020",
+    "url": "https://businessinsider.in/thelife/news/tyler-perry-is-officially-a-billionaire-according-to-forbes-estimates-take-a-look-at-how-the-hollywood-mogul-makes-and-spends-his-fortune-/slidelist/77941691.cms"
+   },
+   {
+    "id": "C30",
+    "text": "He still takes a Geo Metro out now and then as a reminder of the car he once lived in, and posted that looking back at how far you've come should make you thankful",
+    "tag": "T",
+    "status": "ATTRIBUTED",
+    "on_screen": "Tyler Perry, Instagram",
+    "url": "https://news.yahoo.com/tyler-perry-posts-photo-same-181134862.html"
+   },
+   {
+    "id": "C31",
+    "text": "\"If you find the lessons in what you perceive to be failures, then you won't ever fail at anything\"",
+    "tag": "T",
+    "status": "ATTRIBUTED",
+    "on_screen": "Tyler Perry, Tuskegee University, 2019",
+    "url": ""
+   },
+   {
+    "id": "C32",
+    "text": "He says \"I just did the work\", that he had \"no other choice than to follow my dream\", and that his humility comes from remembering that car",
+    "tag": "T",
+    "status": "ATTRIBUTED",
+    "on_screen": "Tyler Perry to AARP, 2022",
+    "url": ""
+   },
+   {
+    "id": "C33",
+    "text": "Oprah Winfrey later became his business partner and his son's godmother",
+    "tag": "E",
+    "status": "OK",
+    "on_screen": "AARP, 2022",
+    "url": ""
+   },
+   {
+    "id": "C34",
+    "text": "His first two Madea films earned back their production budgets about ten times over",
+    "tag": "E",
+    "status": "SECONDARY",
+    "on_screen": "AMC Theatres",
+    "url": ""
+   },
+   {
+    "id": "C35",
+    "text": "As a small child he imitated the women his mother played cards with, to make her laugh",
+    "tag": "T",
+    "status": "ATTRIBUTED",
+    "on_screen": "Tyler Perry, BET Awards, 2019",
     "url": "https://www.yahoo.com/entertainment/tyler-perry-tells-bet-awards-032616581.html"
+   },
+   {
+    "id": "C36",
+    "text": "His entrepreneurial style clashed with the studio system; in 2006 he self-financed 10 episodes of House of Payne and tested them on a handful of stations",
+    "tag": "E",
+    "status": "OK",
+    "on_screen": "Broadcasting & Cable",
+    "url": "https://www.nexttv.com/news/once-he-got-going-nothing-could-stop-him-129133"
+   },
+   {
+    "id": "C37",
+    "text": "TBS ordered an unprecedented 100 episodes; Perry owned the rights (\"Tyler Perry owns all the rights and we distribute it\" — Debmar-Mercury); he delivered 100 episodes in one calendar year at his Atlanta studio; the first run totalled 254 episodes",
+    "tag": "V",
+    "status": "OK",
+    "on_screen": "Debmar-Mercury / AJC",
+    "url": "https://www.broadcastingcable.com/news/debmar-mercury-asserts-sitcom-independence-80786"
+   },
+   {
+    "id": "C38",
+    "text": "BET Awards, 23 Jun 2019: he said Confederate soldiers had once planned on that ground how to keep millions enslaved, and \"Now that land is owned by one Negro\"; closed with \"Own your stuff, own your business, own your way\" and \"rather than being an icon, I want to be an inspiration\"; presenter Taraji P. Henson said he was \"the first to pay me my exact worth\"",
+    "tag": "V",
+    "status": "OK",
+    "on_screen": "BET Awards, 23 June 2019",
+    "url": "https://www.hollywoodreporter.com/news/tyler-perry-delivers-powerful-uplifting-speech-at-bet-awards-1220521"
+   },
+   {
+    "id": "C39",
+    "text": "Between attempts he worked odd jobs while revising the show",
+    "tag": "E",
+    "status": "OK",
+    "on_screen": "BlackPast",
+    "url": ""
+   },
+   {
+    "id": "C40",
+    "text": "He has advised creators to build their base inside their own community first, saying Lionsgate would not have dealt with him had he not grown it \"homegrown first\"",
+    "tag": "T",
+    "status": "ATTRIBUTED",
+    "on_screen": "Tyler Perry to CBS Detroit",
+    "url": "https://www.cbsnews.com/amp/detroit/news/what-does-it-take-to-succeed-in-hollywood-just-ask-tyler-perry"
+   },
+   {
+    "id": "C41",
+    "text": "Black Panther was the first film shot on the new stages",
+    "tag": "E",
+    "status": "OK",
+    "on_screen": "Atlanta Journal-Constitution",
+    "url": "https://ajc.com/news/world/tyler-perry-reveals-atlanta-studio-was-once-confederate-army-base-during-bet-awards-acceptance-speech/5AAY0iHvZ65yVLi6tKgaUL"
+   },
+   {
+    "id": "C42",
+    "text": "Some residents near the old base were frustrated and questioned how much the studio gives back; the redevelopment authority said it was listening",
+    "tag": "E",
+    "status": "OK",
+    "on_screen": "11Alive",
+    "url": "https://www.11alive.com/article/news/tyler-perry/85-1f902309-7c7d-44d6-bea0-26bf398a82b3"
+   },
+   {
+    "id": "C43",
+    "text": "Network sitcoms typically take nearly five seasons to reach 100 episodes, when syndication deals become possible; in 2007 he said \"coming off being homeless, I wanted something that would speak to people\"",
+    "tag": "E",
+    "status": "OK",
+    "on_screen": "Philadelphia Inquirer, 2007",
+    "url": "https://inquirer.com/philly/columnists/20070508_Ellen_Gray__.html"
+   },
+   {
+    "id": "C44",
+    "text": "Forbes's 2020 breakdown of his fortune included cash and investments, his BET+ stake and Tyler Perry Studios",
+    "tag": "E",
+    "status": "OK",
+    "on_screen": "Forbes, 2020",
+    "url": ""
    }
   ]
  }

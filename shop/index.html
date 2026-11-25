@@ -10,7 +10,7 @@
 <meta name="theme-color" content="#000000">
 <meta property="og:type" content="website"><meta property="og:site_name" content="DYEGU">
 <meta property="og:title" content="Shop — Drop 01: Rise · DYEGU"><meta property="og:description" content="The DYEGU studio mug, Rise tee and hoodie, phoenix cap and Rebuild Journal. Join the drop list for first access.">
-<meta property="og:url" content="https://dyegu.co/shop"><meta property="og:image" content="https://dyegu.co/assets/og.jpg">
+<meta property="og:url" content="https://dyegu.co/shop"><meta property="og:image" content="https://dyegu.co/assets/og/shop.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
@@ -18,12 +18,13 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/styles.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://dyegu.co/"}, {"@type": "ListItem", "position": 2, "name": "Shop · Drop 01", "item": "https://dyegu.co/shop"}]}</script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="site-header">
   <div class="wrap header-row">
-    <a class="brand" href="/" aria-label="DYEGU home"><img src="/assets/dyegu-wordmark-sm.webp" alt="DYEGU" width="560" height="139"></a>
+    <a class="brand" href="/" aria-label="DYEGU home"><img src="/assets/dyegu-wordmark-sm.webp" srcset="/assets/dyegu-wordmark-sm.webp 1x, /assets/dyegu-wordmark.webp 2x" alt="DYEGU" width="560" height="139"></a>
     <nav class="nav" aria-label="Main"><a href="/#start">Find your story</a><a href="/stories">Stories</a><a href="/community">Community</a><a href="/playbook">Playbook</a><a href="/shop" aria-current=page>Shop</a><a href="/speaking">Speaking</a></nav>
     <a class="btn btn-gold btn-sm header-cta" href="#join">Join free</a>
     <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-nav">Menu</button>
@@ -37,41 +38,55 @@
     <img class="mark-sm" src="/assets/phoenix.svg" alt="" width="56" height="64">
     <p class="eyebrow">DYEGU Shop · Drop 01</p>
     <h1 class="display-sm">Rise</h1>
-    <p class="lede">A few things worth keeping close on the hard days. Black, gold, the phoenix and the words. Made in small runs, never discounted.</p>
+    <p class="lede">Five restrained objects worth keeping close on the hard days. Matte black, flat `#C5A059` gold, the phoenix and the words. Made in small runs, never discounted.</p>
   </div>
 </section>
 <section class="section-tight">
   <div class="wrap">
-    <div class="products"><label class="product">
-  <img src="/assets/products/mug.svg" alt="The Studio Mug, illustrative mockup" width="460" height="440" loading="lazy">
-  <h3>The Studio Mug</h3><p>Matte black, gold phoenix. The one on Sir K&#x27;s table in every episode.</p>
-  <span class="want"><input type="checkbox" name="interest" value="mug" form="drop-form"> I'd want this</span>
-</label><label class="product">
-  <img src="/assets/products/tee.svg" alt="Rise Tee, illustrative mockup" width="460" height="440" loading="lazy">
-  <h3>Rise Tee</h3><p>Heavyweight black cotton. Small gold phoenix on the chest; DON&#x27;T YOU EVER GIVE UP across the back.</p>
-  <span class="want"><input type="checkbox" name="interest" value="tee" form="drop-form"> I'd want this</span>
-</label><label class="product">
-  <img src="/assets/products/hoodie.svg" alt="Rise Hoodie, illustrative mockup" width="460" height="440" loading="lazy">
-  <h3>Rise Hoodie</h3><p>Heavyweight black fleece, same placement as the tee. For the long nights.</p>
-  <span class="want"><input type="checkbox" name="interest" value="hoodie" form="drop-form"> I'd want this</span>
-</label><label class="product">
-  <img src="/assets/products/cap.svg" alt="Phoenix Cap, illustrative mockup" width="460" height="440" loading="lazy">
-  <h3>Phoenix Cap</h3><p>Black, embroidered gold phoenix. Nothing else.</p>
-  <span class="want"><input type="checkbox" name="interest" value="cap" form="drop-form"> I'd want this</span>
-</label><label class="product">
-  <img src="/assets/products/journal.svg" alt="Rebuild Journal, illustrative mockup" width="460" height="440" loading="lazy">
-  <h3>Rebuild Journal</h3><p>A black notebook made to sit beside the Rebuild Playbook.</p>
-  <span class="want"><input type="checkbox" name="interest" value="journal" form="drop-form"> I'd want this</span>
+    <div class="products"><label class="product" data-reveal>
+  <div class="product-img-wrap"><img src="/assets/products/mug.webp" alt="The Studio Mug, pre-production studio render" width="600" height="600" loading="lazy"></div>
+  <span class="product-spec">12 oz matte-black ceramic · flat gold phoenix</span>
+  <h3>The Studio Mug</h3>
+  <p>Matte black, gold phoenix. The straight-walled ceramic mug on Sir K&#x27;s desk in every episode.</p>
+  <span class="want"><input type="checkbox" name="interest" value="mug" data-label="The Studio Mug" form="drop-form"> Reserve interest</span>
+</label><label class="product" data-reveal>
+  <div class="product-img-wrap"><img src="/assets/products/tee.svg" alt="Rise Tee, pre-production studio render" width="600" height="600" loading="lazy"></div>
+  <span class="product-spec">280 gsm heavyweight black cotton · chest mark + back script</span>
+  <h3>Rise Tee</h3>
+  <p>Heavyweight black cotton. Small gold phoenix on the chest; DON&#x27;T YOU EVER GIVE UP across the back.</p>
+  <span class="want"><input type="checkbox" name="interest" value="tee" data-label="Rise Tee" form="drop-form"> Reserve interest</span>
+</label><label class="product" data-reveal>
+  <div class="product-img-wrap"><img src="/assets/products/hoodie.svg" alt="Rise Hoodie, pre-production studio render" width="600" height="600" loading="lazy"></div>
+  <span class="product-spec">420 gsm brushed black fleece · structured hood</span>
+  <h3>Rise Hoodie</h3>
+  <p>Heavyweight black fleece, same restrained placement as the tee. Built for the long nights.</p>
+  <span class="want"><input type="checkbox" name="interest" value="hoodie" data-label="Rise Hoodie" form="drop-form"> Reserve interest</span>
+</label><label class="product" data-reveal>
+  <div class="product-img-wrap"><img src="/assets/products/cap.svg" alt="Phoenix Cap, pre-production studio render" width="600" height="600" loading="lazy"></div>
+  <span class="product-spec">6-panel matte cotton twill · flat gold stitch</span>
+  <h3>Phoenix Cap</h3>
+  <p>Structured matte black with an embroidered gold phoenix. Nothing else.</p>
+  <span class="want"><input type="checkbox" name="interest" value="cap" data-label="Phoenix Cap" form="drop-form"> Reserve interest</span>
+</label><label class="product" data-reveal>
+  <div class="product-img-wrap"><img src="/assets/products/journal.webp" alt="Rebuild Journal, pre-production studio render" width="600" height="600" loading="lazy"></div>
+  <span class="product-spec">A5 linen hardcover · 192 dot-grid pages · gold ribbon</span>
+  <h3>Rebuild Journal</h3>
+  <p>A matte-black linen notebook designed to sit beside The Rebuild Playbook.</p>
+  <span class="want"><input type="checkbox" name="interest" value="journal" data-label="Rebuild Journal" form="drop-form"> Reserve interest</span>
 </label></div>
-    <p class="muted small center">Illustrative mockups. Final products may differ.</p>
+    <p class="muted small center" style="margin-top:20px">Pre-production studio renders &amp; technical plates. Nothing ships until physical samples match our canonical matte black and flat gold.</p>
+    <div class="shop-tray" id="shop-tray" hidden>
+      <p data-tray-text></p>
+      <a class="btn btn-gold btn-sm" href="#drop">Join drop list →</a>
+    </div>
   </div>
 </section>
-<section class="section section-alt" id="drop">
+<section class="section section-alt grain-surface" id="drop">
   <div class="wrap narrow center">
-    <p class="eyebrow">Not on sale yet</p>
+    <p class="eyebrow">First access · Drop 01</p>
     <h2 class="h2">Join the drop list.</h2>
-    <p class="lede">We're matching the gold on real samples before anything ships. Tick what you'd want above, leave your email, and you'll get first access and the launch date before anyone else.</p>
-    <form id="drop-form" class="js-form signup signup-center" data-table="subscribers" data-list="merch_waitlist" data-success="You&#x27;re on the drop list. You&#x27;ll hear first when Rise opens." novalidate>
+    <p class="lede">Tick what you'd wear or keep on your desk above, leave your email, and you'll get first access and launch timing before public release.</p>
+    <form id="drop-form" class="js-form signup signup-center" data-table="subscribers" data-list="merch_waitlist" data-success="You&#x27;re on the Drop 01 list. You&#x27;ll hear first when Rise opens." novalidate>
   
   <label class="sr-only" for="u14-email">Email address</label>
   <div class="field-row">
@@ -86,12 +101,12 @@
   </div>
 </section>
 </main>
-<section class="join-band" id="join">
+<section class="join-band grain-surface" id="join">
   <div class="wrap join-grid">
     <div>
-      <p class="eyebrow">The Comeback File · free, weekly</p>
+      <p class="eyebrow eyebrow-rule">The Comeback File · free, weekly</p>
       <h2 class="h3">One story. One lesson. One move for your week.</h2>
-      <p class="muted">From Sir K, every week. Subscribers also get the Rebuild Playbook first, at the early price.</p>
+      <p class="muted">From Sir K, every Sunday. Subscribers also get The Rebuild Playbook first, at the early price, plus early invites to Rebuild Circles.</p>
     </div>
     <form class="js-form signup" data-table="subscribers" data-list="comeback_file" novalidate>
   
