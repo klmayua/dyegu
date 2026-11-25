@@ -5,11 +5,11 @@ CALSCALE:GREGORIAN
 METHOD:PUBLISH
 BEGIN:VEVENT
 UID:ep01-steve-jobs@dyegu.co
-DTSTAMP:20261125T221518Z
+DTSTAMP:20261125T231059Z
 DTSTART:20261206T140000Z
 DTEND:20261206T143000Z
 SUMMARY:DYEGU Episode 01 Premiere: Steve Jobs
-DESCRIPTION:Forced out of Apple\, the company he co-founded\, at 30. Watch on YouTube (@DYEGUOfficial) or read verified sources at https://dyegu.co/stories.
-URL:https://www.youtube.com/@DYEGUOfficial
+DESCRIPTION:Stripped of every operating role at Apple at 30. An office\, a title\, and no job. Watch on YouTube (@dyegulive) or read verified sources at https://dyegu.co/stories.
+URL:https://www.youtube.com/@dyegulive
 END:VEVENT
 END:VCALENDAR

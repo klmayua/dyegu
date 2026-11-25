@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://dyegu.co/</loc></url>
+  <url><loc>https://dyegu.co/reset</loc></url>
+  <url><loc>https://dyegu.co/field-note</loc></url>
   <url><loc>https://dyegu.co/start/job</loc></url>
   <url><loc>https://dyegu.co/start/money</loc></url>
   <url><loc>https://dyegu.co/start/breakup</loc></url>

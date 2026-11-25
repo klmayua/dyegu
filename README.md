@@ -31,11 +31,11 @@ python tools/check_site.py
 
 | Variable | Required | Purpose |
 | :--- | :--- | :--- |
-| `YT_CHANNEL_ID` | Recommended | `UC…` channel ID for `@DYEGUOfficial` (powers live player & card thumbnails) |
+| `YT_CHANNEL_ID` | Recommended | `UC…` channel ID for `@dyegulive` (powers live player & card thumbnails) |
 | `SUPABASE_URL` | Optional | Defaults to `https://hhnvirsisuxumwchntjf.supabase.co` |
 | `SUPABASE_SERVICE_ROLE_KEY` | Recommended | Enables server-side `priority_flag = 'care_review'` writes & `ops_cli.py` |
 | `RESEND_API_KEY` | Recommended | Sends Void & Gold branded confirmation emails on every form submission |
-| `RESEND_FROM` | Optional | Defaults to `Sir K · DYEGU <hello@dyegu.co>` |
+| `RESEND_FROM` | Optional | Defaults to `DYEGU <hello@dyegu.co>` |
 | `TEAM_ALERT_WEBHOOK_URL` | Recommended | n8n / Slack / Telegram webhook alerted immediately on Enquiries, Volunteers & Care-Review stories |
 | `TURNSTILE_SECRET_KEY` | Optional | Enables Cloudflare Turnstile verification in `api/submit.js` |
 

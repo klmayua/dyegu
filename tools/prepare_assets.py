@@ -48,6 +48,26 @@ def copy_sting():
         print(f"copied brand/sting.mp4 -> site/assets/sting.mp4 ({os.path.getsize(dst) // 1024} KB)")
 
 
+def export_archival_cards():
+    """Exports canonical episode headline cards into site/assets/cards/ so web matches 4K films."""
+    from PIL import Image
+
+    cards_out = os.path.join(ASSETS_DIR, "cards")
+    os.makedirs(cards_out, exist_ok=True)
+    mapping = [
+        (os.path.join(PROJECT_ROOT, "episodes", "ep01_steve-jobs", "06_visuals", "cards", "S013.png"), "ep01-fortune-1985.webp"),
+    ]
+    for src, name in mapping:
+        if not os.path.isfile(src):
+            continue
+        im = Image.open(src).convert("RGB")
+        if im.width > 1200:
+            im = im.resize((1200, int(1200 * im.height / im.width)), Image.Resampling.LANCZOS)
+        dst = os.path.join(cards_out, name)
+        im.save(dst, "WEBP", quality=88, method=6)
+        print(f"exported archival card -> site/assets/cards/{name} ({os.path.getsize(dst)//1024} KB)")
+
+
 def apply_editorial_vignette(img, strength: float = 0.52):
     """Subtle dark-room vignette melting photo edges toward pure void #000000."""
     from PIL import Image, ImageChops, ImageDraw, ImageFilter
@@ -285,6 +305,7 @@ def main():
         return
 
     process_sir_k_portrait()
+    export_archival_cards()
     # Optional CLI args for studio renders: key=path
     renders = {}
     for arg in sys.argv[1:]:

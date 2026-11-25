@@ -1,5 +1,5 @@
 // GET /api/episodes — DYEGU long-form uploads from YouTube's public RSS feed.
-// Set the Vercel env var YT_CHANNEL_ID (starts with "UC") once @DYEGUOfficial is live.
+// Set the Vercel env var YT_CHANNEL_ID (starts with "UC") once @dyegulive is live.
 // Uses the long-form-only uploads playlist (UULF…), so Shorts never appear in the library,
 // and matches uploads to Season 1 story slugs for automatic card upgrades.
 

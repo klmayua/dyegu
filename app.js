@@ -1,4 +1,4 @@
-/* DYEGU site — behavioral consolation & conversion runtime v3. */
+/* DYEGU site — runtime v6 (@dyegulive unified across board). */
 (() => {
   document.documentElement.classList.add("js-ready");
 
@@ -8,8 +8,9 @@
     supabaseKey: "sb_publishable_m0LM4mqYT7DFhAocUafywQ_Pr00cwIJ",
     site: "dyegu",
     premiere: "2026-12-06T14:00:00Z",
+    youtubeUrl: "https://www.youtube.com/@dyegulive?sub_confirmation=1",
     follow: [
-      ["YouTube", "https://www.youtube.com/@DYEGUOfficial"],
+      ["YouTube", "https://www.youtube.com/@dyegulive"],
       ["Instagram", "https://www.instagram.com/dyegulive"],
       ["X", "https://x.com/dyegulive"],
       ["Facebook", "https://www.facebook.com/dyegulive"],
@@ -34,26 +35,6 @@
   };
 
   $$("[data-year]").forEach(el => (el.textContent = new Date().getFullYear()));
-
-  /* Optional Day / Quiet-Night Reading Comfort Toggle (E-14) */
-  const comfortBtn = $("[data-comfort-toggle]");
-  const savedComfort = local.get("dyegu_comfort");
-  if (savedComfort === "night") document.documentElement.dataset.comfort = "night";
-  const syncComfortBtn = () => {
-    if (!comfortBtn) return;
-    const isNight = document.documentElement.dataset.comfort === "night";
-    comfortBtn.textContent = isNight ? "Daylight" : "Night";
-    comfortBtn.setAttribute("aria-pressed", String(isNight));
-  };
-  syncComfortBtn();
-  comfortBtn?.addEventListener("click", () => {
-    const next = document.documentElement.dataset.comfort === "night" ? "" : "night";
-    if (next) document.documentElement.dataset.comfort = next;
-    else delete document.documentElement.dataset.comfort;
-    local.set("dyegu_comfort", next);
-    syncComfortBtn();
-    track("reading_comfort", { mode: next || "daylight" });
-  });
 
   /* Reading progress hairline */
   const progressBar = $(".read-progress");
@@ -97,7 +78,7 @@
     });
   });
 
-  /* Social-Media Arrival Context Personalization + Campaign Attribution + Stage Memory (E-09, W-06) */
+  /* Social-Media Arrival Context + Attribution + Stage Memory */
   (() => {
     const p = new URLSearchParams(location.search);
     const parts = [];
@@ -119,23 +100,20 @@
 
     const ribbon = $("[data-arrival-banner]");
     if (ribbon) {
-      const from = (p.get("from") || p.get("utm_source") || "").toLowerCase();
+      const from = (p.get("from") || "").toLowerCase();
       const story = (p.get("story") || "").toLowerCase();
-      let msg = "";
-      let linkHref = "/#start", linkText = "Tell us what you're carrying ↓";
-      if (from === "friend" || from === "whatsapp") {
-        msg = "<strong>Sent by someone in your corner.</strong> Take your time here — zero pressure, no hype.";
+      let msg = "", linkHref = "/#start", linkText = "Start here →";
+      if (from === "friend") {
+        msg = "<strong>Sent by someone in your corner.</strong> Take your time here — no hype, no pressure.";
       } else if (story === "steve-jobs") {
-        msg = "<strong>Arriving from Steve Jobs's story?</strong> Read all 49 verified sources or pick where you are today.";
-        linkHref = "/stories/steve-jobs"; linkText = "Open Steve Jobs dossier →";
+        msg = "<strong>Arriving from Steve Jobs's story?</strong> Read all 49 verified sources or pick your own chapter below.";
+        linkHref = "/stories/steve-jobs"; linkText = "Open Episode 01 dossier →";
       } else if (story === "jk-rowling") {
-        msg = "<strong>Arriving from J.K. Rowling's story?</strong> Explore the verified timeline or start with your own chapter.";
-        linkHref = "/stories/jk-rowling"; linkText = "Open J.K. Rowling dossier →";
+        msg = "<strong>Arriving from J.K. Rowling's story?</strong> Read the verified dossier or start where you are below.";
+        linkHref = "/stories/jk-rowling"; linkText = "Open Episode 02 dossier →";
       } else if (story === "tyler-perry") {
-        msg = "<strong>Arriving from Tyler Perry's story?</strong> Explore the full dossier or pick one small move for tonight.";
-        linkHref = "/stories/tyler-perry"; linkText = "Open Tyler Perry dossier →";
-      } else if (from === "youtube" || from === "yt" || from === "instagram" || from === "ig" || from === "tiktok" || from === "x") {
-        msg = "<strong>Glad you found your way here.</strong> Start with what you're carrying today — everything below is free.";
+        msg = "<strong>Arriving from Tyler Perry's story?</strong> Explore the full dossier or pick one steady move below.";
+        linkHref = "/stories/tyler-perry"; linkText = "Open Episode 03 dossier →";
       }
       if (msg) {
         ribbon.hidden = false;
@@ -147,7 +125,7 @@
     }
   })();
 
-  /* Dates in visitor's own local time */
+  /* Local dates */
   const fmtDay = d => d.toLocaleDateString(undefined, { weekday: "short", day: "numeric", month: "short" });
   const fmtLong = d => d.toLocaleDateString(undefined, { weekday: "long", day: "numeric", month: "long", year: "numeric" });
   const fmtTime = d => d.toLocaleTimeString(undefined, { hour: "2-digit", minute: "2-digit" });
@@ -169,20 +147,16 @@
     } catch (_) {}
   });
 
-  /* Time zone auto-fill */
   const fillTz = () => {
     try { const tz = Intl.DateTimeFormat().resolvedOptions().timeZone; $$("[data-tz]").forEach(i => (i.value = tz)); } catch (_) {}
   };
   fillTz();
 
-  /* Official Ident Cinema Modal (sting.mp4 — calm, click-to-play) */
+  /* Official Ident Modal (sting.mp4) */
   const stingModal = $("#sting-modal");
   if (stingModal) {
     const vid = $("video", stingModal);
-    const close = () => {
-      stingModal.hidden = true;
-      if (vid) { vid.pause(); vid.currentTime = 0; }
-    };
+    const close = () => { stingModal.hidden = true; if (vid) { vid.pause(); vid.currentTime = 0; } };
     $$("[data-open-sting]").forEach(btn => btn.addEventListener("click", () => {
       stingModal.hidden = false;
       if (vid) { vid.currentTime = 0; vid.play().catch(() => {}); }
@@ -193,71 +167,7 @@
     document.addEventListener("keydown", e => { if (e.key === "Escape" && !stingModal.hidden) close(); });
   }
 
-  /* 3-State Emotional Readiness Switch (E-03) */
-  const readinessWrap = $("[data-readiness]");
-  if (readinessWrap) {
-    const tabs = $$("[data-readiness-tab]", readinessWrap);
-    const panes = $$("[data-readiness-pane]", readinessWrap);
-    tabs.forEach(tab => {
-      tab.addEventListener("click", () => {
-        const mode = tab.dataset.readinessTab;
-        tabs.forEach(t => {
-          const on = t === tab;
-          t.classList.toggle("active", on);
-          t.setAttribute("aria-selected", String(on));
-        });
-        panes.forEach(p => { p.hidden = p.dataset.readinessPane !== mode; });
-        track("readiness_mode", { mode });
-      });
-    });
-  }
-
-  /* 60-Second Physiological Sigh Grounding Ritual (4s in · 6s out) (E-04) */
-  const breathBtn = $("[data-breath-start]");
-  const breathRing = $("[data-breath-ring]");
-  const breathCue = $("[data-breath-cue]");
-  if (breathBtn && breathRing && breathCue) {
-    let timer = null, running = false, cycle = 0;
-    const stop = () => {
-      running = false;
-      clearTimeout(timer);
-      breathRing.className = "breath-ring";
-      breathRing.textContent = "Ready";
-      breathCue.textContent = "Six slow cycles · 4 seconds in, 6 seconds out.";
-      breathBtn.textContent = "Start 60-second exhale";
-    };
-    const step = () => {
-      if (!running) return;
-      if (cycle >= 6) {
-        running = false;
-        breathRing.className = "breath-ring";
-        breathRing.textContent = "Steady";
-        breathCue.textContent = "Well done. Take your time — nothing here is rushing you.";
-        breathBtn.textContent = "Run again";
-        return;
-      }
-      cycle++;
-      breathRing.className = "breath-ring inhale";
-      breathRing.textContent = "Breathe in";
-      breathCue.textContent = `Cycle ${cycle} of 6 · Slow breath in through your nose (4 seconds)…`;
-      timer = setTimeout(() => {
-        if (!running) return;
-        breathRing.className = "breath-ring exhale";
-        breathRing.textContent = "Let go";
-        breathCue.textContent = `Cycle ${cycle} of 6 · Long, unhurried breath out (6 seconds)…`;
-        timer = setTimeout(step, 6000);
-      }, 4000);
-    };
-    breathBtn.addEventListener("click", () => {
-      if (running) return stop();
-      running = true; cycle = 0;
-      breathBtn.textContent = "Pause";
-      track("exhale_started");
-      step();
-    });
-  }
-
-  /* Inline Pure-White Consolation & Proof Engine on Home (E-05) */
+  /* Pure-White Interactive Story Mirror on Home */
   const stageDataEl = $("#stage-data");
   const consolationPanel = $("#consolation-panel");
   if (stageDataEl && consolationPanel) {
@@ -270,10 +180,10 @@
       session.set("stage", key);
       stageButtons.forEach(b => b.classList.toggle("is-active", b.dataset.inlineStage === key));
       consolationPanel.hidden = false;
-      $("[data-cp-tag]", consolationPanel).textContent = `${s.tag} · ${s.short}`;
-      $("[data-cp-exhale]", consolationPanel).textContent = `“${s.exhale}”`;
-      $("[data-cp-proof]", consolationPanel).innerHTML = `<strong>Real proof (${esc(s.proof_person)}):</strong> ${esc(s.proof_line)}`;
-      $("[data-cp-move-day]", consolationPanel).textContent = `${s.move1_day} · First 15-minute move`;
+      $("[data-cp-tag]", consolationPanel).textContent = `${s.tag} · ${s.proof_person}`;
+      $("[data-cp-scene]", consolationPanel).textContent = s.scene;
+      $("[data-cp-exhale]", consolationPanel).textContent = s.exhale;
+      $("[data-cp-move-day]", consolationPanel).textContent = `${s.move1_day} · First move tonight`;
       $("[data-cp-move-title]", consolationPanel).textContent = s.move1_title;
       $("[data-cp-move-desc]", consolationPanel).textContent = s.move1_desc;
       const fullLink = $("[data-cp-full-link]", consolationPanel);
@@ -294,20 +204,29 @@
       if (scroll) consolationPanel.scrollIntoView({ behavior: "smooth", block: "nearest" });
       track("stage_selected", { stage: key });
     };
-    stageButtons.forEach(btn => {
-      btn.addEventListener("click", ev => {
-        ev.preventDefault();
-        activateStage(btn.dataset.inlineStage, true);
-      });
-    });
+    stageButtons.forEach(btn => btn.addEventListener("click", () => activateStage(btn.dataset.inlineStage, true)));
     const urlStage = new URLSearchParams(location.search).get("stage");
     if (urlStage && STAGE_DATA[urlStage]) activateStage(urlStage, false);
   }
 
-  /* Dignified Friend-Share & Save-to-Myself Native Sharing (E-03, E-14) */
+  /* Zero-Nav /reset Squeeze Page 1-Tap Stage Chips */
+  const squeezeForm = $("#reset-form");
+  if (squeezeForm) {
+    $$("[data-reset-stage]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const key = btn.dataset.resetStage;
+        $$("[data-reset-stage]").forEach(b => b.classList.toggle("active", b === btn));
+        squeezeForm.dataset.stage = key;
+        session.set("stage", key);
+        $('input[name="email"]', squeezeForm)?.focus();
+      });
+    });
+  }
+
+  /* Quiet Friend-Share & Save-to-Phone */
   $$("[data-share-whatsapp]").forEach(btn => {
     btn.addEventListener("click", () => {
-      const msg = btn.dataset.shareMsg || "Thinking of you today.";
+      const msg = btn.dataset.shareMsg || "Thinking of you today. Came across this quiet place for real comebacks — no hype:";
       const url = `${location.origin}/?from=friend`;
       window.open(`https://wa.me/?text=${encodeURIComponent(`${msg} ${url}`)}`, "_blank", "noopener");
       track("friend_share_clicked", { channel: "whatsapp" });
@@ -315,52 +234,21 @@
   });
   $$("[data-share-copy]").forEach(btn => {
     btn.addEventListener("click", async () => {
-      const msg = btn.dataset.shareMsg || "";
       const url = btn.dataset.shareSelf ? location.href : `${location.origin}/?from=friend`;
-      const text = msg ? `${msg} ${url}` : url;
       if (btn.dataset.shareSelf && navigator.share) {
-        try {
-          await navigator.share({ title: document.title, text: "Saved from DYEGU for later", url });
-          track("save_to_self", { method: "native" });
-          return;
-        } catch (_) {}
+        try { await navigator.share({ title: document.title, url }); track("save_to_self", { method: "native" }); return; } catch (_) {}
       }
       try {
-        await navigator.clipboard.writeText(text);
+        await navigator.clipboard.writeText(url);
         const prev = btn.textContent;
-        btn.textContent = "Copied";
+        btn.textContent = "Link copied";
         setTimeout(() => (btn.textContent = prev), 1800);
         track(btn.dataset.shareSelf ? "save_to_self" : "friend_share_clicked", { channel: "copy" });
       } catch (_) {}
     });
   });
 
-  /* 2-Step Micro-Yes Conversion Flow (E-07) */
-  const microWrap = $("[data-micro-yes]");
-  if (microWrap) {
-    const pills = $$("[data-micro-choice]", microWrap);
-    const heading = $("[data-micro-heading]", microWrap);
-    const form = $("form.js-form", microWrap);
-    const COPY = {
-      clarity: "Your Clarity Reset + Sunday Comeback File is ready — where should we send it?",
-      proof: "Real documented comebacks (with every source) + your 7-Day Reset — where should we send them?",
-      grounding: "One calm, hype-free Sunday email + a 7-Day Reset for tonight — where should we send it?",
-      people: "Get Sunday's Comeback File + early invitations to free Rebuild Circles at your stage:",
-    };
-    pills.forEach(pill => {
-      pill.addEventListener("click", () => {
-        const key = pill.dataset.microChoice;
-        pills.forEach(p => p.classList.toggle("active", p === pill));
-        if (heading && COPY[key]) heading.textContent = COPY[key];
-        if (form) form.dataset.microIntent = key;
-        const emailInput = form && $('input[name="email"]', form);
-        emailInput?.focus();
-        track("micro_yes_step1", { choice: key });
-      });
-    });
-  }
-
-  /* Stories Archive Live Filtering */
+  /* Stories Archive Filter */
   const storyFilterBar = $("[data-story-filters]");
   if (storyFilterBar) {
     const cards = $$("[data-episodes] .ep");
@@ -390,7 +278,7 @@
     applyFilter();
   }
 
-  /* Verification Ledger [V]/[E]/[T] Filtering */
+  /* Verification Ledger Filter */
   const ledgerWrap = $("[data-ledger]");
   if (ledgerWrap) {
     const items = $$(".ledger-item", ledgerWrap);
@@ -407,7 +295,7 @@
     });
   }
 
-  /* Interactive 7-Day Stage Checklist + Print One-Pager */
+  /* Interactive 7-Day Stage Checklist + Print */
   const checklist = $("[data-checklist]");
   if (checklist) {
     const key = `dyegu_moves_${checklist.dataset.checklist}`;
@@ -417,7 +305,7 @@
     const syncUi = () => {
       const done = boxes.filter(b => b.checked).length;
       boxes.forEach(b => b.closest("li")?.classList.toggle("is-done", b.checked));
-      if (statusEl) statusEl.innerHTML = `<strong>${done} of ${boxes.length}</strong> moves completed this week (stored privately on your device only)`;
+      if (statusEl) statusEl.innerHTML = `<strong>${done} of ${boxes.length}</strong> moves completed this week (stored privately on your device)`;
     };
     boxes.forEach((b, idx) => {
       if (saved.includes(idx)) b.checked = true;
@@ -429,11 +317,8 @@
       });
     });
     syncUi();
-    $$("[data-print-plan]").forEach(btn => btn.addEventListener("click", () => {
-      track("plan_printed", { stage: checklist.dataset.checklist });
-      window.print();
-    }));
   }
+  $$("[data-print-plan]").forEach(btn => btn.addEventListener("click", () => { track("plan_printed"); window.print(); }));
 
   /* Shop Selection Tray */
   const dropForm = $("#drop-form");
@@ -454,15 +339,14 @@
     updateTray();
   }
 
-  /* Speaking: Copy Bio + Keynote Quick-Select */
+  /* Speaking Copy & Prefill */
   $$("[data-copy-target]").forEach(btn => {
     btn.addEventListener("click", async () => {
       const el = document.getElementById(btn.dataset.copyTarget);
       if (!el) return;
       try {
         await navigator.clipboard.writeText(el.textContent.trim());
-        const prev = btn.textContent;
-        btn.textContent = "Copied";
+        const prev = btn.textContent; btn.textContent = "Copied";
         setTimeout(() => (btn.textContent = prev), 1800);
       } catch (_) {}
     });
@@ -474,41 +358,30 @@
       const msg = $('textarea[name="message"]', form);
       const kind = $('select[name="kind"]', form);
       if (kind && btn.dataset.prefillKind) kind.value = btn.dataset.prefillKind;
-      if (msg && !msg.value.trim()) {
-        msg.value = `We're interested in "${btn.dataset.prefillTopic}" for our upcoming gathering.\n\nDetails: `;
-      }
+      if (msg && !msg.value.trim()) msg.value = `We're interested in "${btn.dataset.prefillTopic}" for our upcoming gathering.\n\nDetails: `;
       form.scrollIntoView({ behavior: "smooth", block: "start" });
       msg?.focus();
     });
   });
 
-  /* Shareable DYEGU Rule Canvas Quote Card Generator */
+  /* Shareable DYEGU Rule Canvas Quote Card */
   $$("[data-quote-card]").forEach(btn => {
     btn.addEventListener("click", () => {
-      const quote = btn.dataset.quote || "";
-      const subject = btn.dataset.subject || "DYEGU";
-      const ep = btn.dataset.ep || "";
+      const quote = btn.dataset.quote || "", subject = btn.dataset.subject || "DYEGU", ep = btn.dataset.ep || "";
       const canvas = document.createElement("canvas");
       canvas.width = 1080; canvas.height = 1350;
       const ctx = canvas.getContext("2d");
       if (!ctx) return;
-
-      ctx.fillStyle = "#000000";
-      ctx.fillRect(0, 0, 1080, 1350);
-      ctx.strokeStyle = "#262626"; ctx.lineWidth = 2;
-      ctx.strokeRect(48, 48, 984, 1254);
+      ctx.fillStyle = "#000000"; ctx.fillRect(0, 0, 1080, 1350);
+      ctx.strokeStyle = "#262626"; ctx.lineWidth = 2; ctx.strokeRect(48, 48, 984, 1254);
       ctx.strokeStyle = "#C5A059"; ctx.lineWidth = 3;
       [[48, 48, 36, 36], [1032, 48, -36, 36], [48, 1302, 36, -36], [1032, 1302, -36, -36]].forEach(([x, y, dx, dy]) => {
         ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x + dx, y); ctx.moveTo(x, y); ctx.lineTo(x, y + dy); ctx.stroke();
       });
-
-      ctx.fillStyle = "#C5A059";
-      ctx.font = '600 22px "Montserrat", Arial, sans-serif';
+      ctx.fillStyle = "#C5A059"; ctx.font = '600 22px "Montserrat", Arial, sans-serif';
       ctx.fillText(`THE DYEGU RULE  ·  ${ep ? `EPISODE ${ep} · ` : ""}${subject.toUpperCase()}`, 108, 165);
       ctx.fillRect(108, 198, 96, 2);
-
-      ctx.fillStyle = "#ECE7DC";
-      ctx.font = 'italic 500 54px "Cormorant Garamond", Georgia, serif';
+      ctx.fillStyle = "#ECE7DC"; ctx.font = 'italic 500 54px "Cormorant Garamond", Georgia, serif';
       const words = `“${quote}”`.split(/\s+/);
       let line = "", y = 330;
       for (const w of words) {
@@ -517,15 +390,11 @@
         else line = test;
       }
       if (line) ctx.fillText(line, 108, y);
-
       ctx.fillStyle = "#444444"; ctx.fillRect(108, 1110, 864, 2);
-      ctx.fillStyle = "#C5A059";
-      ctx.font = '600 26px "Montserrat", Arial, sans-serif';
+      ctx.fillStyle = "#C5A059"; ctx.font = '600 26px "Montserrat", Arial, sans-serif';
       ctx.fillText("D Y E G U  ·  DON'T YOU EVER GIVE UP", 108, 1178);
-      ctx.fillStyle = "#A39E93";
-      ctx.font = '400 22px "Montserrat", Arial, sans-serif';
-      ctx.fillText("dyegu.co", 108, 1222);
-
+      ctx.fillStyle = "#A39E93"; ctx.font = '400 22px "Montserrat", Arial, sans-serif';
+      ctx.fillText("@dyegulive  ·  dyegu.co", 108, 1222);
       const a = document.createElement("a");
       a.download = `dyegu-rule-${subject.toLowerCase().replace(/[^a-z0-9]+/g, "-")}.png`;
       a.href = canvas.toDataURL("image/png");
@@ -534,7 +403,7 @@
     });
   });
 
-  /* Share Page: Blank-Page Starter Prompts + Character Counter + Crisis Awareness (E-12, W-10) */
+  /* Share Page: Starter Prompts + Counter + Gentle Crisis Notice */
   const storyArea = $('textarea[name="story"]');
   if (storyArea) {
     const countEl = $("[data-story-count]");
@@ -545,33 +414,13 @@
       if (careBanner) careBanner.hidden = !CARE_RX.test(storyArea.value);
     };
     storyArea.addEventListener("input", syncStory);
-    $$("[data-starter-text]").forEach(btn => {
-      btn.addEventListener("click", () => {
-        if (!storyArea.value.trim()) storyArea.value = btn.dataset.starterText;
-        else storyArea.value = `${storyArea.value.trimEnd()}\n\n${btn.dataset.starterText}`;
-        storyArea.focus();
-        syncStory();
-      });
-    });
+    $$("[data-starter-text]").forEach(btn => btn.addEventListener("click", () => {
+      storyArea.value = storyArea.value.trim() ? `${storyArea.value.trimEnd()}\n\n${btn.dataset.starterText}` : btn.dataset.starterText;
+      storyArea.focus(); syncStory();
+    }));
   }
 
-  /* Quiet Dismissible Mobile Bottom Bar (E-14) */
-  const mobileDock = $("#mobile-dock");
-  if (mobileDock) {
-    let dismissed = session.get("dock_dismissed") === "1";
-    const checkScroll = () => {
-      if (dismissed) return;
-      mobileDock.classList.toggle("is-shown", window.scrollY > 520);
-    };
-    window.addEventListener("scroll", checkScroll, { passive: true });
-    $("[data-dock-close]", mobileDock)?.addEventListener("click", () => {
-      dismissed = true;
-      session.set("dock_dismissed", "1");
-      mobileDock.classList.remove("is-shown");
-    });
-  }
-
-  /* Forms → Hardened /api/submit + Rich Post-Signup Consolation & Momentum Card (E-08, W-02) */
+  /* Forms → Hardened /api/submit + Instant Field Note & YouTube Bridge Post-Signup */
   async function submitDirect(table, row, attempt = 0) {
     const r = await fetch(`${CONFIG.supabaseUrl}/rest/v1/${table}`, {
       method: "POST",
@@ -619,19 +468,18 @@
       return;
     }
     const stageKey = row.stage || session.get("stage");
-    const resetHref = stageKey ? `/start/${stageKey}` : "/#start";
-    const circleHref = stageKey ? `/community/circles?stage=${stageKey}` : "/community/circles";
+    const stageHref = stageKey ? `/start/${stageKey}` : "/field-note";
     const card = document.createElement("div");
     card.className = "post-submit-card";
     card.setAttribute("role", "status");
     card.innerHTML = `
-      <p class="eyebrow" style="margin-bottom:6px">${status === "exists" ? "Already in your corner" : "You're in — no need to wait until Sunday"}</p>
-      <h3>${status === "exists" ? "You're already subscribed." : "Welcome. Take your first step tonight."}</h3>
-      <p>${esc(okText)} While you wait for Sunday's Comeback File, your interactive 7-day move checklist and free community doors are open right now:</p>
+      <p class="eyebrow" style="margin-bottom:6px">${status === "exists" ? "Already subscribed" : "Unlocked right now"}</p>
+      <h3>${status === "exists" ? "You're already on the list." : "Your 1-Page Wilderness Field Note is ready."}</h3>
+      <p>${esc(okText)} You don't have to wait until Sunday — open your Field Note tonight, and subscribe on YouTube so Episode 01 finds you on 6 December:</p>
       <div class="post-submit-actions">
-        <a class="btn btn-gold btn-sm" href="${resetHref}">Open your 7-Day Reset →</a>
-        <a class="btn btn-ghost btn-sm" href="${circleHref}">Explore free Rebuild Circles</a>
-        <a class="btn btn-subtle btn-sm" href="/assets/calendar/ep01-steve-jobs.ics" download>Add Ep 01 to calendar (.ics)</a>
+        <a class="btn btn-gold btn-sm" href="/field-note">Open the 1-Page Field Note →</a>
+        <a class="btn btn-dark btn-sm" href="${CONFIG.youtubeUrl}" target="_blank" rel="noopener">Subscribe on YouTube (@dyegulive)</a>
+        ${stageKey ? `<a class="btn btn-subtle btn-sm" href="${stageHref}">See your 3 moves</a>` : ""}
       </div>`;
     form.hidden = true;
     form.insertAdjacentElement("afterend", card);
@@ -642,15 +490,12 @@
     const t = form.dataset.table;
     if (t === "subscribers") {
       const interest = fd.getAll("interest").map(String);
-      const intent = form.dataset.microIntent ? `intent=${form.dataset.microIntent}` : "";
-      const baseUtm = session.get("utm") || "";
-      const combinedUtm = [baseUtm, intent].filter(Boolean).join("&").slice(0, 300) || null;
       return {
         email: v("email"), list: form.dataset.list || "comeback_file", site: CONFIG.site, consent: true,
         stage: form.dataset.stage || v("stage") || session.get("stage") || null,
         interest: interest.length ? interest : null,
         source: form.dataset.list || "comeback_file", page: location.pathname.slice(0, 120),
-        utm: combinedUtm,
+        utm: session.get("utm"),
       };
     }
     if (t === "enquiries") {
@@ -704,8 +549,7 @@
       if (btn) btn.disabled = true;
       try {
         const res = await submitRow(form.dataset.table, row, honeypot);
-        form.reset();
-        fillTz();
+        form.reset(); fillTz();
         showPostSubmitCard(form, row, res.status, ok);
         track("signup_completed", { table: form.dataset.table, list: row.list || "", stage: row.stage || "" });
       } catch (err) {
@@ -749,10 +593,7 @@
           const v = d.bySlug[card.dataset.slug];
           if (v && !$(".ep-thumb", card)) {
             const img = document.createElement("img");
-            img.className = "ep-thumb";
-            img.src = v.thumb || v.thumbFallback;
-            img.alt = v.title;
-            img.loading = "lazy";
+            img.className = "ep-thumb"; img.src = v.thumb || v.thumbFallback; img.alt = v.title; img.loading = "lazy";
             card.prepend(img);
           }
         });

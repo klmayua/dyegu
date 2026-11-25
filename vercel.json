@@ -1,6 +1,13 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    { "source": "/ep1", "destination": "/stories/steve-jobs", "permanent": false },
+    { "source": "/ep2", "destination": "/stories/jk-rowling", "permanent": false },
+    { "source": "/ep3", "destination": "/stories/tyler-perry", "permanent": false },
+    { "source": "/circle", "destination": "/community/circles", "permanent": false },
+    { "source": "/watch", "destination": "https://www.youtube.com/@dyegulive?sub_confirmation=1", "permanent": false }
+  ],
   "headers": [
     {
       "source": "/(.*)",

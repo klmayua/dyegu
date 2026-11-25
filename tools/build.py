@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
-"""Builds every HTML page, .ics calendar feed, and sitemap of dyegu.co.
+"""Builds every HTML page, .ics calendar feed, and sitemap of dyegu.co (v6).
 
 Design philosophy:
   - The visitor navigating a setback is the hero — never a guru, preacher, or host.
+  - Ultra-minimalist Void Black Hero (3 elements, 50%+ open space) built for social/ad arrivals.
   - High-contrast architectural cadence: Void Black (#000000) <-> Pure Crisp White (#FFFFFF) <-> Warm Paper (#FAF7F2)
     with canonical Flat Gold (#C5A059 / accessible #8A6826 on white).
-  - Consolation-wired and conversion-wired across all 26 pages.
+  - Unified @dyegulive handle across YouTube, X, Instagram, and Facebook.
 
 Usage:
   python tools/build.py            # rebuild all HTML + calendars + sitemap
@@ -22,10 +23,12 @@ import urllib.parse
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from content import (
-    ANTI_HYPE,
     CIRCLE_SAFETY_PROMISES,
     CIRCLE_WEEKS,
-    FRIEND_MESSAGES,
+    EP01_EXCERPT,
+    FACEBOOK,
+    HANDLE,
+    INSTAGRAM,
     PLAYBOOK_CHAPTERS,
     PLAYBOOK_SAMPLE,
     PRODUCTS,
@@ -36,9 +39,9 @@ from content import (
     STAGES,
     STORIES,
     SUPPORT_URL,
-    VERBATIM_VOICES,
     VOLUNTEER_FORMATS,
     WILDERNESS_TIMELINE,
+    X_URL,
     YOUTUBE,
 )
 
@@ -53,12 +56,10 @@ FONTS = (
 )
 
 NAV = [
-    ("/#start", "Start here"),
     ("/stories", "Stories"),
     ("/community", "Community"),
     ("/playbook", "Playbook"),
     ("/shop", "Shop"),
-    ("/share", "Share"),
 ]
 
 STAGE_ICONS = {
@@ -151,7 +152,7 @@ def generate_calendars() -> list[str]:
     all_events = []
     for s in STORIES:
         ev_title = f"DYEGU Episode {s['no']} Premiere: {s['subject']}"
-        ev_desc = f"{s['fall']} Watch on YouTube (@DYEGUOfficial) or read verified sources at {SITE}/stories."
+        ev_desc = f"{s['fall']} Watch on YouTube ({HANDLE}) or read verified sources at {SITE}/stories."
         ev = build_ics_event(f"ep{s['no']}-{s['slug']}", ev_title, s["date"], ev_desc)
         all_events.append(ev)
         if s.get("live_page"):
@@ -206,25 +207,39 @@ def layout(
     ld: list[dict] | None = None,
     join_href: str = "#join",
     reading_bar: bool = False,
-    mobile_dock: bool = True,
+    minimal_header: bool = False,
 ) -> str:
     url = SITE + (path if path != "/" else "/")
     nav = "".join(
-        f'<a href="{h}"{" aria-current=page" if (h == path or (h != "/#start" and path.startswith(h + "/"))) else ""}>{t}</a>'
+        f'<a href="{h}"{" aria-current=page" if (h == path or path.startswith(h + "/")) else ""}>{t}</a>'
         for h, t in NAV
     )
     band = join_form_band(path) if join_band else ""
     og_img = og_image_for(og_file)
     progress = '<div class="read-progress" aria-hidden="true"></div>' if reading_bar else ""
-    dock = (
-        f'<div class="mobile-dock" id="mobile-dock" role="region" aria-label="Quick start">'
-        f'<p><strong>Not alone in this</strong>Free 7-Day Reset + Sunday Story</p>'
-        f'<a class="btn btn-gold btn-sm" href="{join_href}">Get it free</a>'
-        f'<button class="mobile-dock-close" type="button" data-dock-close aria-label="Dismiss">×</button>'
-        f'</div>'
-        if mobile_dock
-        else ""
+
+    brand_html = (
+        '<a class="brand" href="/" aria-label="DYEGU home">'
+        '<img src="/assets/dyegu-wordmark-sm.webp" srcset="/assets/dyegu-wordmark-sm.webp 1x, /assets/dyegu-wordmark.webp 2x" alt="DYEGU" width="560" height="139">'
+        '</a>'
     )
+    if minimal_header:
+        header_html = f"""<header class="site-header">
+  <div class="wrap header-row minimal">
+    {brand_html}
+  </div>
+</header>"""
+    else:
+        header_html = f"""<header class="site-header">
+  <div class="wrap header-row">
+    {brand_html}
+    <nav class="nav" aria-label="Main">{nav}</nav>
+    <a class="btn btn-gold btn-sm header-cta" href="{join_href}">The Comeback File</a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-nav">Menu</button>
+  </div>
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile" hidden>{nav}<a href="{join_href}">The Comeback File</a></nav>
+</header>"""
+
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -248,16 +263,7 @@ def layout(
 {jsonld_tags(ld)}</head>
 <body>
 {progress}<a class="skip" href="#main">Skip to content</a>
-<header class="site-header">
-  <div class="wrap header-row">
-    <a class="brand" href="/" aria-label="DYEGU home"><img src="/assets/dyegu-wordmark-sm.webp" srcset="/assets/dyegu-wordmark-sm.webp 1x, /assets/dyegu-wordmark.webp 2x" alt="DYEGU" width="560" height="139"></a>
-    <nav class="nav" aria-label="Main">{nav}</nav>
-    <button class="comfort-btn" type="button" data-comfort-toggle aria-pressed="false" title="Switch reading light comfort">Night</button>
-    <a class="btn btn-gold btn-sm header-cta" href="{join_href}">Get the Comeback File</a>
-    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-nav">Menu</button>
-  </div>
-  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile" hidden>{nav}</nav>
-</header>
+{header_html}
 <div class="arrival-ribbon" data-arrival-banner hidden>
   <div class="wrap arrival-ribbon-row">
     <span data-arrival-text></span>
@@ -268,16 +274,15 @@ def layout(
 {body}
 </main>
 {band}
-{dock}
 <footer class="site-footer">
   <div class="wrap footer-grid">
     <div><img src="/assets/dyegu-lockup.webp" alt="DYEGU — Don't You Ever Give Up" width="1400" height="424" class="footer-lockup" loading="lazy"></div>
     <div class="footer-cols">
-      <div><p class="eyebrow">What you're carrying</p>{''.join(f'<a href="/start/{s["key"]}">{e(s["short"])}</a>' for s in STAGES)}</div>
-      <div><p class="eyebrow">Community · Free</p><a href="/community/circles">Rebuild Circles</a><a href="/community/sessions">Free expert sessions</a><a href="/volunteer">Volunteer as an expert</a><a href="/community/guidelines">Safety &amp; guidelines</a></div>
-      <div><p class="eyebrow">DYEGU</p><a href="/stories">Stories</a><a href="/playbook">Rebuild Playbook</a><a href="/shop">Shop · Drop 01</a><a href="/share">Share your rebuild</a><a href="/about">About DYEGU</a></div>
+      <div><p class="eyebrow">Where it broke</p>{''.join(f'<a href="/start/{s["key"]}">{e(s["short"])}</a>' for s in STAGES)}</div>
+      <div><p class="eyebrow">Community · Free</p><a href="/community/circles">Rebuild Circles</a><a href="/community/sessions">Free expert sessions</a><a href="/volunteer">Volunteer an hour</a><a href="/community/guidelines">Safety &amp; guidelines</a></div>
+      <div><p class="eyebrow">DYEGU</p><a href="/stories">Stories</a><a href="/field-note">1-Page Field Note</a><a href="/playbook">Rebuild Playbook</a><a href="/shop">Shop · Drop 01</a><a href="/share">Share your rebuild</a><a href="/about">About DYEGU</a></div>
       <div><p class="eyebrow">Work with us</p><a href="/speaking">Talks &amp; workshops</a><a href="/studio">Sponsors &amp; partners</a><a href="/privacy">Privacy</a></div>
-      <div><p class="eyebrow">Follow</p><div class="follow-links" data-follow></div></div>
+      <div><p class="eyebrow">Follow · {e(HANDLE)}</p><div class="follow-links" data-follow></div></div>
     </div>
   </div>
   <div class="wrap support-line">
@@ -305,7 +310,7 @@ def stage_select(name="stage", required=False, label="What chapter are you in ri
 
 def signup_form(
     list_="comeback_file",
-    button="Send me the 7-Day Reset + Sunday Story",
+    button="Open the Field Note",
     stage=None,
     fine="Private. Never shared. One-click unsubscribe. Zero spam, ever.",
     success="Your first Sunday Comeback File arrives with Episode 01.",
@@ -313,15 +318,17 @@ def signup_form(
     center=False,
     placeholder="Your email address",
     extra="",
+    form_id: str | None = None,
 ):
     u = uid()
+    id_attr = f' id="{e(form_id)}"' if form_id else ""
     attrs = f'data-table="subscribers" data-list="{list_}"'
     if stage:
         attrs += f' data-stage="{stage}"'
     if success:
         attrs += f' data-success="{e(success)}"'
     sel = stage_select().replace("{uid}", u) if ask_stage else ""
-    return f"""<form class="js-form signup{' signup-center' if center else ''}" {attrs} novalidate>
+    return f"""<form{id_attr} class="js-form signup{' signup-center' if center else ''}" {attrs} novalidate>
   {extra}
   <label class="sr-only" for="{u}-email">Email address</label>
   <div class="field-row">
@@ -337,18 +344,12 @@ def signup_form(
 
 def join_form_band(path: str) -> str:
     stage = path.split("/start/")[1] if path.startswith("/start/") else None
-    return f"""<section class="join-band band-light" id="join" data-micro-yes>
+    return f"""<section class="join-band band-light" id="join">
   <div class="wrap narrow center">
     <p class="eyebrow">The Comeback File · Free every Sunday</p>
-    <h2 class="h2" data-micro-heading>What would help you most this week?</h2>
-    <p class="lede">Pick one quiet focus below — we'll send your free 7-Day Rebuild Reset right away, plus one documented comeback every Sunday.</p>
-    <div class="micro-pills" role="group" aria-label="Choose your focus for this week">
-      <button class="micro-pill" type="button" data-micro-choice="clarity">Clarity on my next move</button>
-      <button class="micro-pill" type="button" data-micro-choice="proof">Proof I'm not too late</button>
-      <button class="micro-pill" type="button" data-micro-choice="grounding">A quiet weekly reset</button>
-      <button class="micro-pill" type="button" data-micro-choice="people">People walking the same road</button>
-    </div>
-    {signup_form(stage=stage, ask_stage=not stage, center=True, button="Send it free")}
+    <h2 class="h2">No sermons. No slogans. Just what actually happened.</h2>
+    <p class="lede">Enter your email to open the 1-Page Wilderness Field Note tonight — plus one documented comeback quietly in your inbox every Sunday.</p>
+    {signup_form(stage=stage, ask_stage=not stage, center=True, button="Open the Field Note")}
   </div>
 </section>"""
 
@@ -386,7 +387,7 @@ def premiere_card(
     gcal = gcal_url(
         f"DYEGU Episode {ep_no} Premiere: {subject}",
         iso_date,
-        f"Watch Episode {ep_no} ({subject}) on YouTube @DYEGUOfficial.",
+        f"Watch Episode {ep_no} ({subject}) on YouTube ({HANDLE}).",
     )
     return f"""<div class="premiere-card" id="premiere">
   <img class="premiere-mark" src="/assets/phoenix.svg" alt="" width="76" height="86">
@@ -394,7 +395,7 @@ def premiere_card(
   <p class="premiere-date">{date_label}</p>
   <p class="premiere-time" data-premiere-time>15:00 WAT · 14:00 GMT · 09:00 ET</p>
   <div class="premiere-actions">
-    <a class="btn btn-gold btn-sm" href="{YOUTUBE}?sub_confirmation=1" rel="noopener" target="_blank">Subscribe on YouTube</a>
+    <a class="btn btn-gold btn-sm" href="{YOUTUBE}?sub_confirmation=1" rel="noopener" target="_blank">Subscribe on YouTube ({e(HANDLE)})</a>
     <a class="btn btn-ghost btn-sm" href="{ics_path}" download>Add to calendar (.ics)</a>
   </div>
   <div class="premiere-cal">
@@ -419,15 +420,14 @@ def portrait_card(caption: str = "Just another rebuilder") -> str:
 def page_home():
     live = [s for s in STORIES if s.get("live_page")]
 
-    # Inline JSON payload for Pure White instant consolation engine
     stage_payload = {
         s["key"]: {
             "short": s["short"],
             "tag": s["tag"],
+            "scene": s["scene"],
             "exhale": s["exhale"],
             "proof_person": s["proof_person"],
             "proof_slug": s["proof_slug"],
-            "proof_line": s["proof_line"],
             "move1_title": s["moves"][0][0],
             "move1_desc": s["moves"][0][1],
             "move1_day": s["moves"][0][2],
@@ -435,26 +435,19 @@ def page_home():
         for s in STAGES
     }
 
-    stage_buttons = []
+    mirror_rows = []
     for s in STAGES:
-        cnt = sum(1 for st in STORIES if s["key"] in st.get("stages", []))
         icon = STAGE_ICONS.get(s["key"], "")
-        stage_buttons.append(
-            f'<button class="stage-tile" type="button" data-inline-stage="{s["key"]}">'
-            f'<div class="stage-tile-top">{icon}<span class="stage-count">{cnt} {"story" if cnt == 1 else "stories"}</span></div>'
-            f'<div><span class="stage-tile-title">{e(s["short"])}</span><span class="stage-tile-sub">{e(s["sub"])}</span></div>'
-            f'<div class="stage-tile-foot"><span>See proof &amp; move #1</span><span aria-hidden="true">↓</span></div>'
+        mirror_rows.append(
+            f'<button class="mirror-row" type="button" data-inline-stage="{s["key"]}">'
+            f'<span class="mirror-row-left">{icon}'
+            f'<span><span class="mirror-title">{e(s["mirror"])}</span>'
+            f'<span class="mirror-sub">{e(s["sub"])}</span></span></span>'
+            f'<span class="mirror-arrow" aria-hidden="true">→</span>'
             f'</button>'
         )
 
-    friend_cards = "".join(
-        f'<article class="friend-card"><div><h3>{e(label)}</h3><p>“{e(msg)}”</p></div>'
-        f'<div class="friend-actions">'
-        f'<button class="btn btn-gold btn-sm" type="button" data-share-whatsapp data-share-msg="{e(msg)}">Send on WhatsApp</button>'
-        f'<button class="btn btn-subtle btn-sm" type="button" data-share-copy data-share-msg="{e(msg)}">Copy note + link</button>'
-        f'</div></article>'
-        for label, msg in FRIEND_MESSAGES
-    )
+    excerpt_paras = "".join(f"<p>{e(p)}</p>" for p in EP01_EXCERPT["paragraphs"])
 
     wilderness_rows = "".join(
         f'<li><span class="w-person">{e(w["person"])}</span>'
@@ -464,19 +457,10 @@ def page_home():
         for w in WILDERNESS_TIMELINE
     )
 
-    voices_html = "".join(
-        f'<article class="voice-card" data-reveal><blockquote>“{e(v["quote"])}”</blockquote>'
-        f'<div class="voice-meta"><strong>{e(v["person"])}</strong>{e(v["source"])} · <a class="link-gold" href="/stories/{v["slug"]}">Read dossier →</a></div></article>'
-        for v in VERBATIM_VOICES
-    )
-
     safety_cards = "".join(
         f'<div class="safety-card"><h4>{e(t)}</h4><p>{e(d)}</p></div>'
         for t, d in CIRCLE_SAFETY_PROMISES
     )
-
-    never_items = "".join(f"<li>{e(x)}</li>" for x in ANTI_HYPE["never"])
-    always_items = "".join(f"<li>{e(x)}</li>" for x in ANTI_HYPE["always"])
 
     sting_modal = """<div class="modal" id="sting-modal" role="dialog" aria-modal="true" aria-label="DYEGU Official Ident" hidden>
   <div class="modal-card">
@@ -489,124 +473,91 @@ def page_home():
 </div>"""
 
     body = f"""
-<!-- BAND 1: VOID BLACK HERO — 100% ABOUT THE VISITOR (ZERO SELF-PROMOTION) -->
-<section class="hero band-dark">
-  <div class="wrap hero-grid">
-    <div>
-      <p class="eyebrow eyebrow-rule">Don't You Ever Give Up</p>
-      <h1 class="display">Your lowest chapter is <em>not your last.</em></h1>
-      <p class="lede">If life just knocked the floor out from under you, take a breath. You are not broken — and you are not the first to rebuild from zero. Documented comebacks, honest timelines, and one steady move for this week.</p>
-      <div class="hero-capture">
-        {signup_form(button="Get the 7-Day Reset + Sunday Story", placeholder="Enter your email for instant access", fine="Free. Instant 7-day move guide tonight + one quiet email every Sunday. Unsubscribe in 1 click.")}
-      </div>
-      <div class="hero-secondary">
-        <a href="#start">Not ready to subscribe? Tell us what you're carrying ↓</a>
-        <button type="button" data-open-sting><span class="play-dot" aria-hidden="true">▶</span> Watch 4s Official Ident</button>
-      </div>
+<!-- BAND 1: ULTRA-MINIMALIST VOID BLACK HERO (3 ELEMENTS ONLY · 50%+ OPEN SPACE) -->
+<section class="hero-minimal band-dark">
+  <div class="wrap hero-inner">
+    <h1 class="display">Everything broke.<br><em>Your story didn't.</em></h1>
+    <p class="lede">Everyone talks about the comeback. Almost nobody tells you what year three actually felt like. Real people, real dates, and one steady step for the road back.</p>
+    <div class="hero-cta-wrap">
+      <a class="btn btn-gold" href="#start">Where did the floor give way? →</a>
+      <p class="hero-whisper">New documentary every Sunday · 15:00 WAT on <a href="{YOUTUBE}?sub_confirmation=1" target="_blank" rel="noopener">{e(HANDLE)}</a></p>
     </div>
-
-    <aside class="hero-proof-card" aria-label="Documented wilderness timelines">
-      <p class="eyebrow" style="margin-bottom:6px">Real lives · Real timelines</p>
-      <h2 class="h3" style="margin-bottom:6px">Every comeback took longer than people admit.</h2>
-      <ul class="proof-rows">
-        <li><div class="p-arc"><strong>Steve Jobs</strong>Stripped of every Apple role at 30 → returned to rebuild it</div><span class="p-span">11 yrs</span></li>
-        <li><div class="p-arc"><strong>J.K. Rowling</strong>On benefits in Edinburgh, 12 rejections → one reader said yes</div><span class="p-span">3 yrs</span></li>
-        <li><div class="p-arc"><strong>Tyler Perry</strong>30 people came to his play, slept in a car → 330-acre studio</div><span class="p-span">6 yrs</span></li>
-      </ul>
-      <div class="hero-proof-foot">
-        <span>Episode 01 premieres Sun 6 Dec · 15:00 WAT</span>
-        <a href="/assets/calendar/ep01-steve-jobs.ics" download>Add to calendar (.ics) →</a>
-      </div>
-    </aside>
   </div>
 </section>
 
-<!-- BAND 2: PURE CRISP WHITE — INSTANT CONSOLATION & 3-STATE READINESS ENGINE -->
-<section class="section band-light" id="start" data-readiness>
+<!-- BAND 2: PURE CRISP WHITE — BORDER-LIGHT STORY MIRRORS & INSTANT FIRST MOVE -->
+<section class="section band-light" id="start">
   <div class="wrap">
     <p class="eyebrow eyebrow-rule">Start where you actually are</p>
-    <h2 class="h2">What are you carrying today?</h2>
-    <p class="lede">Nobody walks in the same emotional state. Choose what fits tonight — zero pressure, zero motivational noise.</p>
+    <h2 class="h2">Where did the floor give way?</h2>
+    <p class="lede">Pick the line that sounds like your week. One real scene from the middle of someone else's storm, and one quiet move for tonight.</p>
 
-    <div class="readiness-tabs" role="tablist" aria-label="Choose how you want to start">
-      <button class="readiness-tab active" type="button" role="tab" aria-selected="true" data-readiness-tab="move">I'm ready for one small move</button>
-      <button class="readiness-tab" type="button" role="tab" aria-selected="false" data-readiness-tab="heavy">Tonight is heavy — just steady me</button>
-      <button class="readiness-tab" type="button" role="tab" aria-selected="false" data-readiness-tab="friend">I'm here for someone I love</button>
-    </div>
+    <div class="mirror-grid">{''.join(mirror_rows)}</div>
 
-    <!-- PANE 1: 8-Stage Inline Consolation & First-Step Engine -->
-    <div class="readiness-pane" data-readiness-pane="move">
-      <div class="stage-grid">{''.join(stage_buttons)}</div>
-
-      <div class="consolation-panel" id="consolation-panel" hidden>
-        <div class="consolation-grid">
-          <div>
-            <p class="eyebrow" data-cp-tag>Your chapter</p>
-            <p class="consolation-exhale" data-cp-exhale></p>
-            <div class="consolation-proof" data-cp-proof></div>
-            <div class="consolation-move">
-              <span class="move-day" data-cp-move-day>Move I</span>
-              <h4 data-cp-move-title></h4>
-              <p data-cp-move-desc></p>
-            </div>
-          </div>
-          <div class="consolation-cta-box">
-            <p class="eyebrow" style="margin-bottom:8px">Keep going at your own pace</p>
-            <h3 class="h3">Get the full 7-Day Reset + Sunday Comeback File</h3>
-            <p class="muted small" style="margin:0 0 16px">Tailored to this exact chapter. Free every Sunday, unsubscribe anytime.</p>
-            {signup_form(button="Send my 7-Day Reset", placeholder="Your email", fine="Private. Never shared. Zero spam.")}
-            <div class="consolation-links">
-              <a class="link-gold" data-cp-full-link href="/start/job">Open all 3 moves &amp; printable plan →</a>
-              <a class="link-gold" data-cp-circle-link href="/community/circles">Join a free Rebuild Circle →</a>
-              <a class="link-gold" data-cp-story-link href="/stories/steve-jobs">Read the verified dossier →</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- PANE 2: Heavy Tonight — Parasympathetic 60-Second Physiological Sigh -->
-    <div class="readiness-pane" data-readiness-pane="heavy" hidden>
-      <div class="heavy-box">
+    <div class="consolation-panel" id="consolation-panel" hidden>
+      <div class="consolation-grid">
         <div>
-          <p class="eyebrow">No homework tonight</p>
-          <h3 class="h2" style="margin-bottom:14px">You do not have to fix your whole life tonight.</h3>
-          <p class="lede">When a hard blow lands, your nervous system stays on high alert and makes every hour feel permanent. Give yourself sixty quiet seconds to let your shoulders drop. That is enough for tonight.</p>
-          <div class="hero-actions" style="display:flex;gap:12px;flex-wrap:wrap">
-            <a class="btn btn-dark btn-sm" href="#join">Get one quiet email on Sundays</a>
-            <a class="btn btn-subtle btn-sm" href="{SUPPORT_URL}" target="_blank" rel="noopener">Need to talk to someone right now?</a>
+          <p class="eyebrow" data-cp-tag>Documented proof</p>
+          <p class="consolation-scene" data-cp-scene></p>
+          <p class="consolation-exhale" data-cp-exhale></p>
+          <div class="consolation-move">
+            <span class="move-day" data-cp-move-day>Move I</span>
+            <h4 data-cp-move-title></h4>
+            <p data-cp-move-desc></p>
           </div>
         </div>
-        <div class="breath-stage">
-          <div class="breath-ring" data-breath-ring>Ready</div>
-          <p class="breath-cue" data-breath-cue>Six slow cycles · 4 seconds in, 6 seconds out.</p>
-          <button class="btn btn-gold btn-sm" type="button" data-breath-start>Start 60-second exhale</button>
+        <div class="consolation-cta-box">
+          <p class="eyebrow" style="margin-bottom:8px">Free tonight</p>
+          <h3 class="h3">Open the 1-Page Wilderness Field Note</h3>
+          <p class="muted small" style="margin:0 0 16px">Plus one documented comeback quietly in your inbox every Sunday.</p>
+          {signup_form(button="Open the Field Note", placeholder="Your email address", fine="Instant 1-page printable sheet + Sunday Comeback File. Unsubscribe in 1 click.")}
+          <div class="consolation-links">
+            <a class="link-gold" data-cp-full-link href="/start/job">Open all 3 moves &amp; printable plan →</a>
+            <a class="link-gold" data-cp-circle-link href="/community/circles">Join a free Rebuild Circle →</a>
+            <a class="link-gold" data-cp-story-link href="/stories/steve-jobs">Read the verified dossier →</a>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- PANE 3: Helping Someone You Love — Dignified Viral Friend-Share -->
-    <div class="readiness-pane" data-readiness-pane="friend" hidden>
-      <p class="lede" style="margin-bottom:20px">When someone you love is hurting, loud advice rarely helps. Send one quiet, zero-cringe note that lets them know they aren't alone — when they open it, DYEGU will welcome them gently.</p>
-      <div class="friend-grid">{friend_cards}</div>
+    <div class="quiet-friend-strip">
+      <span><strong>Sending this to someone carrying a heavy week?</strong> Quiet, zero-cringe note — no hype.</span>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <button class="btn btn-subtle btn-sm" type="button" data-share-whatsapp data-share-msg="Thinking of you today. Came across this quiet place for real comebacks — no hype, just proof:">Send on WhatsApp</button>
+        <button class="btn btn-subtle btn-sm" type="button" data-share-copy>Copy private link</button>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- BAND 3: WARM EDITORIAL PAPER — WILDERNESS DURATION REFRAME + VERBATIM VOICES -->
+<!-- BAND 3: WARM EDITORIAL PAPER — SHOW, DON'T TELL (EP01 SCRIPT EXCERPT + WILDERNESS GRAPH) -->
 <section class="section band-warm">
   <div class="wrap">
-    <div class="narrow">
-      <p class="eyebrow eyebrow-rule">Perspective when it feels endless</p>
-      <h2 class="h2">How long the wilderness actually lasted.</h2>
-      <p class="lede">Despair happens when you assume month four is the final verdict. Look at the documented gap between rock bottom and breakthrough across Season 1 — you are not failing, you are simply in the middle.</p>
+    <div class="excerpt-grid">
+      <figure class="archival-plate" style="margin:0" data-reveal>
+        <img src="{EP01_EXCERPT['card_img']}" alt="{e(EP01_EXCERPT['card_alt'])}" width="1280" height="720" loading="lazy">
+        <figcaption class="archival-caption">Archival plate · Episode 01 · Fortune, 5 August 1985</figcaption>
+      </figure>
+      <div class="excerpt-prose">
+        <p class="eyebrow eyebrow-rule">{e(EP01_EXCERPT['eyebrow'])}</p>
+        <h2 class="h2">{e(EP01_EXCERPT['title'])}</h2>
+        {excerpt_paras}
+        <a class="link-gold" href="/stories/steve-jobs">Read Episode 01 dossier &amp; 49 verified sources →</a>
+      </div>
     </div>
-    <ul class="wilderness-list" data-reveal>{wilderness_rows}</ul>
-    <div class="voices-grid">{voices_html}</div>
+
+    <div class="wilderness-block">
+      <div class="narrow">
+        <p class="eyebrow eyebrow-rule">Perspective when year two feels endless</p>
+        <h2 class="h2">How long the wilderness actually lasted.</h2>
+        <p class="lede">Every real comeback took longer than anyone admits. Look at the documented gap between rock bottom and breakthrough across Season 1 — you are not failing, you are in the middle.</p>
+      </div>
+      <ul class="wilderness-list" data-reveal>{wilderness_rows}</ul>
+    </div>
   </div>
 </section>
 
-<!-- BAND 4: VOID BLACK CINEMA GALLERY — SEASON 1 DOCUMENTARIES -->
+<!-- BAND 4: VOID BLACK — SEASON 1 CINEMA GALLERY & SUNDAY YOUTUBE RITUAL (GATE C) -->
 <section class="section band-dark" id="episodes">
   <div class="wrap">
     <div class="section-head">
@@ -614,46 +565,23 @@ def page_home():
       <a class="link-gold" href="/stories">Explore all 14 Season 1 stories →</a>
     </div>
     <div class="episodes" data-episodes>{''.join(story_card(s) for s in live)}</div>
-  </div>
-</section>
 
-<!-- BAND 5: PURE CRISP WHITE — ANTI-HYPE COVENANT + TANGIBLE COMEBACK FILE SPECIMEN -->
-<section class="section band-light" id="standard">
-  <div class="wrap trust-split">
-    <div>
-      <p class="eyebrow eyebrow-rule">Our covenant with you</p>
-      <h2 class="h2">Hope with receipts — never hype.</h2>
-      <p class="lede">When you've lost something real, slogans feel insulting. Every story here is audited against primary records before it is ever told.</p>
-      <div class="covenant-grid">
-        <div class="covenant-col never">
-          <h3>What DYEGU will never be</h3>
-          <ul>{never_items}</ul>
-        </div>
-        <div class="covenant-col always">
-          <h3>What you can hold us to</h3>
-          <ul>{always_items}</ul>
-        </div>
+    <div class="sunday-ritual" data-reveal>
+      <div>
+        <p class="eyebrow" style="margin-bottom:4px">Sunday ritual · 15:00 WAT · 14:00 GMT · 09:00 ET</p>
+        <h3 class="h3" style="margin:0">Watch every documentary free on YouTube</h3>
+        <p>Subscribe to {e(HANDLE)} so Episode 01 finds your living room on 6 December 2026.</p>
+      </div>
+      <div class="sunday-ritual-actions">
+        <a class="btn btn-gold btn-sm" href="{YOUTUBE}?sub_confirmation=1" target="_blank" rel="noopener">Subscribe ({e(HANDLE)})</a>
+        <button class="btn btn-ghost btn-sm" type="button" data-open-sting>▶ Watch 4s Ident</button>
+        <a class="btn btn-subtle btn-sm" href="/assets/calendar/dyegu-season1.ics" download>Add Sundays (.ics)</a>
       </div>
     </div>
-
-    <aside class="specimen-card" data-reveal aria-label="Sample preview of The Comeback File email">
-      <div class="specimen-meta">
-        <span>Sample · The Comeback File</span>
-        <span>Every Sunday · 4-min read</span>
-      </div>
-      <h3>Issue 01 · What Eleven Years in Exile Built</h3>
-      <p class="muted small" style="margin:0">What lands quietly in your inbox every Sunday afternoon:</p>
-      <ul class="specimen-parts">
-        <li><strong>1. The 3-Minute Story</strong>How Steve Jobs turned public dismissal at 30 into NeXT, Pixar, and a return to Apple.</li>
-        <li><strong>2. Three Primary Receipts</strong>Direct links to the 1985 Fortune &amp; WSJ filings and the 1996 NeXT S-1 — check every fact yourself.</li>
-        <li><strong>3. The DYEGU Rule</strong>“Sometimes losing the version of your life you outgrew is how you build the one that lasts.”</li>
-        <li><strong>4. One 30-Minute Move</strong>One calm, concrete step for your week — never a ten-step hustle lecture.</li>
-      </ul>
-    </aside>
   </div>
 </section>
 
-<!-- BAND 6: WARM PAPER — FREE COMMUNITY + 4-PROMISE PSYCHOLOGICAL SAFETY -->
+<!-- BAND 5: WARM EDITORIAL PAPER — FREE COMMUNITY + COMPACT PLAYBOOK/SHOP SHELF -->
 <section class="section band-warm">
   <div class="wrap">
     <div class="section-head">
@@ -666,35 +594,53 @@ def page_home():
       <a class="door" href="/volunteer"><p class="eyebrow">Walk beside others</p><h3 class="h3">Volunteer an hour</h3><p>Been through it yourself or carry useful professional skills? Give one hour a month to someone starting over.</p><span class="link-gold">Apply to volunteer →</span></a>
     </div>
     <div class="safety-grid" aria-label="Community psychological safety promises">{safety_cards}</div>
-  </div>
-</section>
 
-<!-- BAND 7: VOID BLACK — PLAYBOOK & DROP 01 LUXURY STUDIO SHOWCASE -->
-<section class="section band-dark">
-  <div class="wrap">
-    <div class="section-head">
-      <div><p class="eyebrow eyebrow-rule">Built to keep beside you</p><h2 class="h2">The Playbook &amp; Drop 01</h2></div>
-      <a class="link-gold" href="/share">Or share your own rebuild story →</a>
-    </div>
-    <div class="offer-grid">
-      <a class="offer offer-link offer-shop" href="/playbook" data-reveal>
-        <img src="{product_img('playbook')}" alt="The Rebuild Playbook cover" width="460" height="460" loading="lazy">
+    <div class="shelf-pair" data-reveal>
+      <a class="shelf-item" href="/playbook">
+        <img src="{product_img('playbook')}" alt="The Rebuild Playbook cover" width="320" height="320" loading="lazy">
         <div>
-          <p class="eyebrow">Coming January 2027 · $19</p>
-          <h3 class="h3">The Rebuild Playbook</h3>
-          <p>The documented patterns across Season 1, turned into a 7-chapter practical workbook. Free Chapter 1 sample inside.</p>
-          <span class="link-gold">Read Chapter 1 sample →</span>
+          <p class="eyebrow" style="margin-bottom:2px">January 2027 · $19</p>
+          <h3>The Rebuild Playbook</h3>
+          <p>Seven chapters &amp; worksheets drawn from Season 1. Free Chapter 1 sample inside.</p>
+          <span class="link-gold">Read Chapter 1 →</span>
         </div>
       </a>
-      <a class="offer offer-link offer-shop" href="/shop" data-reveal>
-        <img src="{product_img('mug')}" alt="The DYEGU Studio Mug" width="460" height="460" loading="lazy">
+      <a class="shelf-item" href="/shop">
+        <img src="{product_img('mug')}" alt="The DYEGU Studio Mug" width="320" height="320" loading="lazy">
         <div>
-          <p class="eyebrow">Drop 01 · Rise</p>
-          <h3 class="h3">Quiet daily reminders</h3>
-          <p>The matte-black Studio Mug, heavyweight Rise tee and hoodie, phoenix cap, and linen Rebuild Journal.</p>
+          <p class="eyebrow" style="margin-bottom:2px">Drop 01 · Rise</p>
+          <h3>Quiet daily objects</h3>
+          <p>The matte-black Studio Mug, Rise tee &amp; hoodie, Phoenix Cap and Rebuild Journal.</p>
           <span class="link-gold">Preview Drop 01 →</span>
         </div>
       </a>
+    </div>
+  </div>
+</section>
+
+<!-- BAND 6: PURE CRISP WHITE — SPECIMEN PREVIEW + SINGLE-FIELD CONVERSION -->
+<section class="section band-light" id="join">
+  <div class="wrap convert-split">
+    <aside class="specimen-card" data-reveal aria-label="Sample preview of The Comeback File email">
+      <div class="specimen-meta">
+        <span>Sample · The Comeback File</span>
+        <span>Every Sunday · 4-min read</span>
+      </div>
+      <h3>Issue 01 · What Eleven Years in Exile Built</h3>
+      <ul class="specimen-parts">
+        <li><strong>1. The 3-Minute Story</strong>How Steve Jobs turned public dismissal at 30 into NeXT, Pixar, and a return to Apple.</li>
+        <li><strong>2. Three Primary Receipts</strong>Direct links to the 1985 Fortune &amp; WSJ filings and the 1996 NeXT S-1 — check every fact yourself.</li>
+        <li><strong>3. The DYEGU Rule</strong>“Sometimes losing the version of your life you outgrew is how you build the one that lasts.”</li>
+        <li><strong>4. One Quiet Move</strong>One calm, concrete step for your week — never a ten-step hustle lecture.</li>
+      </ul>
+    </aside>
+
+    <div>
+      <p class="eyebrow eyebrow-rule">The Comeback File · Free every Sunday</p>
+      <h2 class="h2">No sermons. No slogans. Just what actually happened.</h2>
+      <p class="lede">Enter your email to open the printable 1-Page Wilderness Field Note right now — plus one documented comeback quietly in your inbox every Sunday.</p>
+      {signup_form(button="Open the Field Note", placeholder="Your email address", fine="Private. Instant access tonight + one quiet email every Sunday. Unsubscribe in 1 click.")}
+      <p class="small muted" style="margin-top:16px">Carrying a rebuild of your own? <a class="link-gold" href="/share">Share it with us privately →</a></p>
     </div>
   </div>
 </section>
@@ -709,14 +655,128 @@ def page_home():
             "name": "DYEGU — Don't You Ever Give Up",
             "url": SITE,
             "logo": f"{SITE}/assets/icon-512.png",
-            "sameAs": [YOUTUBE, "https://www.instagram.com/dyegulive", "https://x.com/dyegulive", "https://www.facebook.com/dyegulive"],
+            "sameAs": [YOUTUBE, INSTAGRAM, X_URL, FACEBOOK],
         },
     ]
     return layout(
         "/",
-        "DYEGU — Don't You Ever Give Up · Your lowest chapter is not your last",
-        "Real documented comebacks, honest timelines, free peer Rebuild Circles, and one calm move for your week. No hype, no toxic positivity — just real proof that rebuilding is possible.",
+        "DYEGU — Don't You Ever Give Up · Everything broke. Your story didn't.",
+        "Real people, real dates, and one steady step for the road back. Primary-sourced comeback documentaries, free peer Rebuild Circles, and the Sunday Comeback File.",
         body,
+        join_band=False,
+        ld=ld,
+    )
+
+
+def page_reset():
+    chips = "".join(
+        f'<button class="squeeze-chip" type="button" data-reset-stage="{s["key"]}">{e(s["short"])}</button>'
+        for s in STAGES
+    )
+    body = f"""
+<section class="squeeze-hero band-dark">
+  <div class="wrap narrow">
+    <p class="eyebrow">Free · Takes 60 seconds</p>
+    <h1 class="display-sm">Everything broke.<br><em>Take one steady page.</em></h1>
+    <p class="lede" style="margin-left:auto;margin-right:auto">Enter your email to open the printable 1-Page Wilderness Field Note immediately — plus one documented comeback every Sunday on The Comeback File.</p>
+  </div>
+</section>
+
+<section class="section-tight band-light" style="padding-top:0">
+  <div class="wrap">
+    <div class="squeeze-card">
+      <p class="eyebrow" style="margin-bottom:6px">Optional · Where did the floor give way?</p>
+      <div class="squeeze-chips" role="group" aria-label="Choose your chapter">{chips}</div>
+      {signup_form(form_id="reset-form", button="Open my 1-Page Field Note", placeholder="Enter your email address", fine="Private. Instant access tonight + one quiet email every Sunday. Unsubscribe in 1 click.")}
+      <p class="small muted center" style="margin-top:22px">Prefer to look around first? <a class="link-gold" href="/">Explore DYEGU →</a> · <a class="link-gold" href="{YOUTUBE}?sub_confirmation=1" target="_blank" rel="noopener">Watch on YouTube ({e(HANDLE)})</a></p>
+    </div>
+  </div>
+</section>"""
+    return layout(
+        "/reset",
+        "Get the 1-Page Wilderness Field Note · DYEGU",
+        "Free 1-Page Wilderness Field Note + one documented comeback every Sunday. No sermons, no slogans — just what actually happened.",
+        body,
+        join_band=False,
+        minimal_header=True,
+    )
+
+
+def page_field_note():
+    lines_5 = "".join("<li></li>" for _ in range(5))
+    lines_3 = "".join("<li></li>" for _ in range(3))
+    timelines = "".join(
+        f'<li><span class="w-person">{e(w["person"])}</span>'
+        f'<div class="w-track"><span class="w-note">{e(w["note"])}</span></div>'
+        f'<span class="w-span">{e(w["span"])}</span></li>'
+        for w in WILDERNESS_TIMELINE
+    )
+    body = f"""
+<section class="section-tight band-warm">
+  <div class="wrap">
+    <div class="no-print" style="max-width:780px;margin:0 auto 22px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+      <p class="small muted" style="margin:0">Keep this on your desk or save it as a 1-page PDF.</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <button class="btn btn-gold btn-sm" type="button" data-print-plan>Print / Save PDF</button>
+        <a class="btn btn-dark btn-sm" href="{YOUTUBE}?sub_confirmation=1" target="_blank" rel="noopener">Subscribe on YouTube ({e(HANDLE)})</a>
+        <a class="btn btn-subtle btn-sm" href="/stories">Season 1 Stories</a>
+      </div>
+    </div>
+
+    <article class="field-sheet">
+      <p class="eyebrow eyebrow-rule">DYEGU · The Wilderness Field Note</p>
+      <h1 class="display-sm" style="margin-bottom:12px">Put the facts on one clean page.</h1>
+      <p class="lede" style="margin-bottom:24px">Before a single comeback in Season 1 began, someone separated what actually happened from the verdict looping in their head at 2 a.m. Take ten quiet minutes with a pen.</p>
+
+      <h2 class="h3">1. The Two-Column Reality Audit</h2>
+      <div class="audit-cols">
+        <div class="audit-box">
+          <h3>Column A · Documented Facts</h3>
+          <p class="small muted" style="margin:0">Write 5 lines a journalist could verify with dates and figures. Zero adjectives about your worth.</p>
+          <ul class="audit-lines">{lines_5}</ul>
+        </div>
+        <div class="audit-box">
+          <h3>Column B · The Verdict You Added</h3>
+          <p class="small muted" style="margin:0">Write the private sentences looping at 2 a.m. (“I ruined everything”, “I’m too late”). Draw one straight line through each.</p>
+          <ul class="audit-lines">{lines_5}</ul>
+        </div>
+      </div>
+
+      <h2 class="h3">2. What Survived the Wreck</h2>
+      <div class="audit-cols">
+        <div class="audit-box">
+          <h3>Three things nobody can repossess</h3>
+          <p class="small muted" style="margin:0">Skills, judgement, hard-won lessons, or craft you still carry.</p>
+          <ul class="audit-lines">{lines_3}</ul>
+        </div>
+        <div class="audit-box">
+          <h3>Three people who know your work</h3>
+          <p class="small muted" style="margin:0">Not to beg — one fifteen-minute honest conversation this week.</p>
+          <ul class="audit-lines">{lines_3}</ul>
+        </div>
+      </div>
+
+      <div class="audit-box" style="margin-bottom:28px">
+        <h3>One finishable move for the next 7 days</h3>
+        <p class="small muted" style="margin:0">Not a five-year plan. One phone call, one draft, one boundary, or one clean sheet of numbers you can finish before Sunday.</p>
+        <ul class="audit-lines"><li></li><li></li></ul>
+      </div>
+
+      <h2 class="h3">3. Perspective Check · How Long the Wilderness Lasted</h2>
+      <ul class="wilderness-list" style="margin-top:12px">{timelines}</ul>
+
+      <p class="small muted" style="margin:28px 0 0;padding-top:16px;border-top:1px solid #E7E1D7">DYEGU — Don't You Ever Give Up · dyegu.co · YouTube, X, Instagram &amp; Facebook: {e(HANDLE)}</p>
+    </article>
+  </div>
+</section>"""
+    ld = [breadcrumb_ld([("Home", "/"), ("1-Page Field Note", "/field-note")])]
+    return layout(
+        "/field-note",
+        "The 1-Page Wilderness Field Note · DYEGU",
+        "A printable one-page reality audit and perspective check for anyone standing in the middle of a hard rebuild.",
+        body,
+        join_band=False,
+        join_href="/#join",
         ld=ld,
     )
 
@@ -742,9 +802,9 @@ def page_stage(s: dict):
     body = f"""
 <section class="page-hero band-dark">
   <div class="wrap narrow">
-    <p class="eyebrow"><a href="/#start">What you're carrying</a> · {e(s['tag'])}</p>
+    <p class="eyebrow"><a href="/#start">Where the floor gave way</a> · {e(s['tag'])}</p>
     <h1 class="display-sm">{e(s['title'])}</h1>
-    <p class="lede">{e(s['exhale'])}</p>
+    <p class="lede">{e(s['scene'])}</p>
     <div class="stage-rule-banner">
       <p class="eyebrow" style="margin-bottom:6px">A grounding truth</p>
       <blockquote>“{e(s['rule_preview'])}”</blockquote>
@@ -756,6 +816,7 @@ def page_stage(s: dict):
   <div class="wrap narrow">
     <p class="eyebrow eyebrow-rule">Small, honest momentum</p>
     <h2 class="h3">Your 7-day rebuild moves</h2>
+    <p class="muted">{e(s['exhale'])}</p>
     <div class="checklist-bar">
       <span class="checklist-status" data-checklist-status><strong>0 of 3</strong> moves completed this week</span>
       <div style="display:flex;gap:8px;flex-wrap:wrap">
@@ -789,8 +850,8 @@ def page_stage(s: dict):
   <div class="wrap narrow center">
     <p class="eyebrow">{e(s["short"])}</p>
     <h2 class="h2">One real story and one calm move every Sunday.</h2>
-    <p class="lede">Picked for where you are right now. Free, quiet, and built for real life — never loud hype.</p>
-    {signup_form(stage=s['key'], button="Send me the Comeback File", center=True, success="You're in. Until Sunday's issue arrives, start gently with Move I above.")}
+    <p class="lede">Open the 1-Page Wilderness Field Note tonight, plus one documented comeback every Sunday.</p>
+    {signup_form(stage=s['key'], button="Open the Field Note", center=True, success="You're in. Until Sunday's issue arrives, start gently with Move I above.")}
   </div>
 </section>
 
@@ -825,8 +886,9 @@ def page_stories():
     <p class="eyebrow eyebrow-rule">Season 1 · 14 Sundays · 6 December 2026 – 7 March 2027</p>
     <h1 class="display-sm">Stories you can check.</h1>
     <p class="lede">Every episode follows someone who lost real status, health, livelihood or direction and took the long road back. Every published dossier lists its primary sources openly.</p>
-    <div style="margin-top:8px">
-      <a class="btn btn-ghost btn-sm" href="/assets/calendar/dyegu-season1.ics" download>Add all 14 Sunday premieres to calendar (.ics)</a>
+    <div style="margin-top:8px;display:flex;gap:10px;flex-wrap:wrap">
+      <a class="btn btn-gold btn-sm" href="{YOUTUBE}?sub_confirmation=1" target="_blank" rel="noopener">Subscribe on YouTube ({e(HANDLE)})</a>
+      <a class="btn btn-ghost btn-sm" href="/assets/calendar/dyegu-season1.ics" download>Add all 14 Sunday premieres (.ics)</a>
     </div>
   </div>
 </section>
@@ -962,7 +1024,7 @@ def page_story(i: int, s: dict):
 
 <section class="section-tight band-light" id="sources">
   <div class="wrap narrow" data-ledger>
-    <p class="eyebrow eyebrow-rule">Receipts &amp; verification ledger</p>
+    <p class="eyebrow eyebrow-rule">Primary source ledger</p>
     <h2 class="h3">{src['verified_claims']} claims checked against {len(src.get('sources', []))} sources</h2>
     <p class="muted">Every claim was verified against a primary record <strong>[V]</strong>, established reporting <strong>[E]</strong>, or attributed directly to the subject's own words <strong>[T]</strong>.</p>
     {honesty_html}
@@ -1046,7 +1108,7 @@ def page_shop():
     <p class="eyebrow">First access · Drop 01</p>
     <h2 class="h2">Join the drop list.</h2>
     <p class="lede">Tick what you'd keep on your desk or wear above, leave your email, and you'll hear first before public release.</p>
-    {signup_form(list_='merch_waitlist', button='Join the drop list', center=True, fine='One email when Drop 01 opens. Nothing else unless you subscribe.', success="You're on the Drop 01 list. You'll hear first when Rise opens.").replace('<form ', '<form id="drop-form" ', 1)}
+    {signup_form(form_id="drop-form", list_='merch_waitlist', button='Join the drop list', center=True, fine='One email when Drop 01 opens. Nothing else unless you subscribe.', success="You're on the Drop 01 list. You'll hear first when Rise opens.")}
   </div>
 </section>"""
     ld = [breadcrumb_ld([("Home", "/"), ("Shop · Drop 01", "/shop")])]
@@ -1098,6 +1160,7 @@ def page_playbook():
       <summary>Look inside · {e(PLAYBOOK_SAMPLE['chapter'])}: {e(PLAYBOOK_SAMPLE['title'])}</summary>
       <p class="muted" style="margin-top:16px">{e(PLAYBOOK_SAMPLE['intro'])}</p>
       <div class="sample-prompts">{sample_items}</div>
+      <p style="margin:18px 0 0"><a class="link-gold" href="/field-note">Open the printable 1-Page Field Note free tonight →</a></p>
     </details>
   </div>
 </section>
@@ -1672,7 +1735,11 @@ def main():
     SOURCES, EPISODES = load_data()
     cals = generate_calendars()
 
-    out = [write("index.html", page_home())]
+    out = [
+        write("index.html", page_home()),
+        write("reset/index.html", page_reset()),
+        write("field-note/index.html", page_field_note()),
+    ]
     for s in STAGES:
         out.append(write(f"start/{s['key']}/index.html", page_stage(s)))
     out.append(write("stories/index.html", page_stories()))
@@ -1696,7 +1763,7 @@ def main():
     ]
 
     urls = (
-        ["/"]
+        ["/", "/reset", "/field-note"]
         + [f"/start/{s['key']}" for s in STAGES]
         + ["/stories"]
         + [f"/stories/{s['slug']}" for s in STORIES if s.get("live_page")]

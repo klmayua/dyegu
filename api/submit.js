@@ -6,7 +6,7 @@
 //   SUPABASE_URL                (defaults to DYEGU360 eu-west-2 project)
 //   SUPABASE_SERVICE_ROLE_KEY   (recommended; falls back to SUPABASE_ANON_KEY for insert-only RLS)
 //   RESEND_API_KEY              (optional; enables branded transactional confirmation emails)
-//   RESEND_FROM                 (default: "Sir K · DYEGU <hello@dyegu.co>")
+//   RESEND_FROM                 (default: "DYEGU <hello@dyegu.co>")
 //   TEAM_ALERT_WEBHOOK_URL      (optional; n8n / Slack / Discord webhook for enquiries, volunteers & care alerts)
 //   TURNSTILE_SECRET_KEY        (optional; enables Cloudflare Turnstile bot verification)
 
@@ -189,9 +189,9 @@ function validateAndShape(table, raw) {
 function buildConfirmationEmail(table, row, careFlag) {
   const esc = s => String(s || "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   const name = row.first_name || row.name || row.full_name || "friend";
-  let subject = "You're in — DYEGU";
-  let headline = "Welcome. You don't have to carry this alone.";
-  let bodyHtml = "<p>Thank you for joining <strong>The Comeback File</strong>. Every Sunday, we share one documented comeback story, the primary sources behind it, and one quiet move for your week.</p>";
+  let subject = "Your 1-Page Wilderness Field Note · DYEGU";
+  let headline = "Everything broke. Your story didn't.";
+  let bodyHtml = '<p>Thank you for joining <strong>The Comeback File</strong>. Your printable <strong>1-Page Wilderness Field Note</strong> is ready right now: <a href="https://dyegu.co/field-note" style="color:#C5A059;">dyegu.co/field-note</a>.</p><p>Every Sunday, we share one documented comeback story, the primary sources behind it, and one quiet move for your week. Subscribe on YouTube so Episode 01 finds you on 6 December: <a href="https://www.youtube.com/@dyegulive?sub_confirmation=1" style="color:#C5A059;">@dyegulive</a>.</p>';
 
   if (table === "subscribers" && row.list === "playbook_waitlist") {
     subject = "You're on The Rebuild Playbook early list · DYEGU";
@@ -205,7 +205,7 @@ function buildConfirmationEmail(table, row, careFlag) {
   } else if (table === "enquiries") {
     subject = "We received your enquiry · DYEGU";
     headline = "Enquiry received.";
-    bodyHtml = `<p>Thank you, ${esc(name)}. Sir K's team has received your <strong>${esc(row.kind)}</strong> enquiry and will reply within a few working days.</p>`;
+    bodyHtml = `<p>Thank you, ${esc(name)}. Our team has received your <strong>${esc(row.kind)}</strong> enquiry and will reply within a few working days.</p>`;
   } else if (table === "volunteers") {
     subject = "Thank you for applying to volunteer · DYEGU Community";
     headline = "Application received.";
@@ -234,7 +234,7 @@ function buildConfirmationEmail(table, row, careFlag) {
     <div style="font-family:Arial,sans-serif;font-size:15px;line-height:1.65;color:#cfcabf;">${bodyHtml}${careBlock}</div>
     <hr style="border:0;border-top:1px solid #222;margin:28px 0;">
     <p style="margin:0;font-style:italic;font-size:18px;color:#C5A059;">“Until the next story… don't you ever give up.”</p>
-    <p style="margin:8px 0 0;font-family:Arial,sans-serif;font-size:12px;color:#8a857b;">Sir K · <a href="https://dyegu.co" style="color:#C5A059;text-decoration:none;">dyegu.co</a></p>
+    <p style="margin:8px 0 0;font-family:Arial,sans-serif;font-size:12px;color:#8a857b;">DYEGU (@dyegulive) · <a href="https://dyegu.co" style="color:#C5A059;text-decoration:none;">dyegu.co</a></p>
   </div></body></html>`;
 
   return { subject, html };
@@ -243,7 +243,7 @@ function buildConfirmationEmail(table, row, careFlag) {
 async function sendConfirmationEmail(table, row, careFlag) {
   const apiKey = (process.env.RESEND_API_KEY || "").trim();
   if (!apiKey || !row.email) return;
-  const from = (process.env.RESEND_FROM || "Sir K · DYEGU <hello@dyegu.co>").trim();
+  const from = (process.env.RESEND_FROM || "DYEGU <hello@dyegu.co>").trim();
   const { subject, html } = buildConfirmationEmail(table, row, careFlag);
   try {
     await fetch("https://api.resend.com/emails", {

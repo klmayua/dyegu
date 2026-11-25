@@ -5,11 +5,11 @@ CALSCALE:GREGORIAN
 METHOD:PUBLISH
 BEGIN:VEVENT
 UID:ep03-tyler-perry@dyegu.co
-DTSTAMP:20261125T221518Z
+DTSTAMP:20261125T231059Z
 DTSTART:20261220T140000Z
 DTEND:20261220T143000Z
 SUMMARY:DYEGU Episode 03 Premiere: Tyler Perry
-DESCRIPTION:He spent his $12\,000 savings on one play. About thirty people came. He slept in his car. Watch on YouTube (@DYEGUOfficial) or read verified sources at https://dyegu.co/stories.
-URL:https://www.youtube.com/@DYEGUOfficial
+DESCRIPTION:He bet his entire $12\,000 savings on one play. Thirty people came. He slept in a Geo Metro. Watch on YouTube (@dyegulive) or read verified sources at https://dyegu.co/stories.
+URL:https://www.youtube.com/@dyegulive
 END:VEVENT
 END:VCALENDAR

@@ -5,11 +5,11 @@ CALSCALE:GREGORIAN
 METHOD:PUBLISH
 BEGIN:VEVENT
 UID:ep02-jk-rowling@dyegu.co
-DTSTAMP:20261125T221518Z
+DTSTAMP:20261125T231059Z
 DTSTART:20261213T140000Z
 DTEND:20261213T143000Z
 SUMMARY:DYEGU Episode 02 Premiere: J.K. Rowling
-DESCRIPTION:A single mother on benefits in Edinburgh\, grieving\, with three chapters and a stack of rejections. Watch on YouTube (@DYEGUOfficial) or read verified sources at https://dyegu.co/stories.
-URL:https://www.youtube.com/@DYEGUOfficial
+DESCRIPTION:A single mother on state benefits in Edinburgh\, grieving\, with three chapters and twelve rejections. Watch on YouTube (@dyegulive) or read verified sources at https://dyegu.co/stories.
+URL:https://www.youtube.com/@dyegulive
 END:VEVENT
 END:VCALENDAR

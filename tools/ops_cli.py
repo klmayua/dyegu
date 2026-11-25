@@ -97,11 +97,38 @@ def cmd_list(table: str, fields: str, limit: int, extra_filter: str = ""):
         print(" ", json.dumps(r, ensure_ascii=False))
 
 
+def cmd_monday(_args):
+    """Executive Monday readout aligned with 06_GROWTH/Launch_Feedback_Readout.md."""
+    print("\n=== DYEGU MONDAY LAUNCH READOUT ===")
+    subs = api_req("subscribers?select=list,stage,utm,created_at")
+    by_list: dict[str, int] = {}
+    by_stage: dict[str, int] = {}
+    for s in subs:
+        by_list[s.get("list") or "other"] = by_list.get(s.get("list") or "other", 0) + 1
+        if s.get("stage"):
+            by_stage[s["stage"]] = by_stage.get(s["stage"], 0) + 1
+    print("  Subscribers by list:", json.dumps(by_list))
+    print("  Top rebuild chapters:", json.dumps(dict(sorted(by_stage.items(), key=lambda x: -x[1])[:5])))
+    enqs = api_req("enquiries?select=id,status&status=eq.new")
+    vols = api_req("volunteers?select=id,status&status=eq.applied")
+    rebs = api_req("rebuilds?select=id,priority_flag&status=eq.unread")
+    care = sum(1 for r in rebs if r.get("priority_flag") == "care_review")
+    print(f"  Pending triage: {len(enqs)} new enquiries | {len(vols)} volunteer apps | {len(rebs)} unread stories ({care} care_review)")
+    try:
+        cohorts = api_req("v_circle_cohorts_ready?select=*&ready_to_launch=eq.true")
+        print(f"  Circles ready to open (>=6 members): {len(cohorts)}")
+        for c in cohorts:
+            print(f"    -> {c['stage']} ({c['tz_band']}): {c['waiting_members']} waiting")
+    except Exception:
+        pass
+
+
 def main():
     p = argparse.ArgumentParser(description="DYEGU Operations CLI")
     sub = p.add_subparsers(dest="cmd", required=True)
 
     sub.add_parser("status").set_defaults(func=cmd_status)
+    sub.add_parser("monday").set_defaults(func=cmd_monday)
 
     exp = sub.add_parser("export-substack")
     exp.add_argument("--out", default="comeback_file_export.csv")
