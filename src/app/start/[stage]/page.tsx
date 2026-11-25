@@ -40,8 +40,8 @@ export default async function StagePage({
       <section className="border-b border-[#444444] py-20 lg:py-24">
         <div className="mx-auto max-w-[900px] px-6">
           <p className="label-track text-[#C5A059]">
-            <Link href="/#triage" className="hover:underline">
-              Where the floor gave way
+            <Link href="/#mirror" className="hover:underline">
+              Stage 1 · The Mirror
             </Link>{" "}
             · {s.tag}
           </p>

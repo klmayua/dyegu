@@ -700,3 +700,281 @@ export const SPEAKER_KIT = {
     "Virtual global sessions",
   ],
 };
+
+export interface JourneyChapter {
+  slug: string;
+  stageKey: "job" | "money" | "rejected" | "breakup" | "health" | "later" | "stuck" | "grief";
+  shortLabel: string;
+  mirrorLine: string;
+  subLine: string;
+  parallelSubject: string;
+  parallelDuration: string;
+  dossierSlug: string;
+  highlightedSubjects: string[];
+  plateHeader: string;
+  plateBadge: string;
+  plateHeadline: string;
+  plateBeforeQuote: string;
+  plateDecisiveQuote: string;
+  plateAfterQuote: string;
+  plateContext: string;
+  plateImage?: string;
+  plateExhibitCaption: string;
+  benchPrompt: string;
+  benchPlaceholder: string;
+  quietMoveTitle: string;
+  quietMoveDay: string;
+  quietMoveDesc: string;
+}
+
+export const CHAPTERS: JourneyChapter[] = [
+  {
+    slug: "door-closed",
+    stageKey: "job",
+    shortLabel: "Career Exile & Closed Doors",
+    mirrorLine: "The room you built your name in just closed its door.",
+    subLine: "Fired, laid off, restructured out, or quietly pushed aside.",
+    parallelSubject: "Steve Jobs",
+    parallelDuration: "11 yrs",
+    dossierSlug: "steve-jobs",
+    highlightedSubjects: ["Steve Jobs"],
+    plateHeader: "ARCHIVAL PLATE · EPISODE 01 · FORTUNE, 5 AUGUST 1985",
+    plateBadge: "49 VERIFIED CLAIMS · 0 HELD BACK",
+    plateHeadline: "An office, a title, and no job.",
+    plateBeforeQuote:
+      "At the end of May 1985, Apple reorganised in a rush. At thirty, Steve Jobs was stripped of every operating role at the company he co-founded. Weeks later, John Sculley told Wall Street analysts there was ",
+    plateDecisiveQuote: "“no role for Steve Jobs at Apple, now or ever.”",
+    plateAfterQuote: " Most careers do not survive a sentence like that.",
+    plateContext:
+      "His did—not quickly, and not cleanly. It took eleven years of public losses at NeXT and $50 million of his own money into Pixar before Toy Story, Pixar's IPO, and Apple's $400 million purchase of NeXT brought him back.",
+    plateImage: "/assets/cards/ep01-fortune-1985.webp",
+    plateExhibitCaption: "Exhibit A · Contemporary Press Record (Aug–Sep 1985)",
+    benchPrompt:
+      "Write down three assets, skills, or scars you carry out of that closed room that nobody can revoke.",
+    benchPlaceholder: "1. \n2. \n3. ",
+    quietMoveTitle: "Put the facts on one clean page.",
+    quietMoveDay: "Tonight · 15 Minutes",
+    quietMoveDesc:
+      "Dates, decisions, what you controlled, and what you didn't. Strip out verdicts about your worth. Facts turn fog into ground you can stand on.",
+  },
+  {
+    slug: "quiet-insolvency",
+    stageKey: "money",
+    shortLabel: "Quiet Financial Collapse",
+    mirrorLine: "Everyone thinks you're fine. Your account tells a different story.",
+    subLine: "Debt, a folded venture, or savings wiped out while others lean on you.",
+    parallelSubject: "Tyler Perry",
+    parallelDuration: "6 yrs",
+    dossierSlug: "tyler-perry",
+    highlightedSubjects: ["Tyler Perry"],
+    plateHeader: "ARCHIVAL PLATE · EPISODE 03 · ATLANTA, 1992–1998",
+    plateBadge: "44 VERIFIED CLAIMS · 0 HELD BACK",
+    plateHeadline: "Thirty people in a 1,200-seat hall.",
+    plateBeforeQuote:
+      "In 1992, Tyler Perry saved $12,000 working as a bill collector and spent every dollar renting a hall in Atlanta. Expecting 1,200 seats filled, ",
+    plateDecisiveQuote: "“about thirty people showed up—and he slept in a Geo Metro for three months.”",
+    plateAfterQuote: " He hid the car from the repo man and refused to quit the play.",
+    plateContext:
+      "He staged the same play once a year while it failed for six straight years—until 1998 sold out the house. Seventeen years later he bought 330 acres of a former army base and built one of the largest studios in America.",
+    plateExhibitCaption: "Exhibit C · AARP Record & Atlanta Journal-Constitution Archive",
+    benchPrompt:
+      "Separate your balance sheet from your capability: list three hard-won skills or relationships nobody can repossess.",
+    benchPlaceholder: "What still stands even if the account is at zero:\n1. \n2. \n3. ",
+    quietMoveTitle: "Write the exact numbers on one quiet sheet.",
+    quietMoveDay: "Tonight · 20 Minutes",
+    quietMoveDesc:
+      "Every figure, every obligation, every due date. Panic feeds on the numbers you avoid looking straight in the eye.",
+  },
+  {
+    slug: "twelve-nos",
+    stageKey: "rejected",
+    shortLabel: "Rejection & Closed Rooms",
+    mirrorLine: "Twelve closed doors — and the quiet temptation to stop knocking.",
+    subLine: "The pitch, publisher, role, visa, or grant that came back no.",
+    parallelSubject: "J.K. Rowling",
+    parallelDuration: "3 yrs",
+    dossierSlug: "jk-rowling",
+    highlightedSubjects: ["J.K. Rowling"],
+    plateHeader: "ARCHIVAL PLATE · EPISODE 02 · EDINBURGH, 1994–1997",
+    plateBadge: "38 VERIFIED CLAIMS · 1 HELD BACK",
+    plateHeadline: "Twelve publishers passed before one eight-year-old read chapter one.",
+    plateBeforeQuote:
+      "In 1994, Joanne Rowling was jobless, grieving her mother, and raising an infant daughter on income support in Edinburgh. Twelve publishing houses rejected the manuscript. As she later told Harvard, ",
+    plateDecisiveQuote: "“by every usual standard, I was the biggest failure I knew.”",
+    plateAfterQuote: " She did not need twelve rooms to agree.",
+    plateContext:
+      "She needed Bloomsbury's chairman to take chapter one home to his eight-year-old daughter, Alice, who handed it back asking for the rest.",
+    plateExhibitCaption: "Exhibit B · Harvard Gazette (2008) & The Herald (8 Jul 1997)",
+    benchPrompt:
+      "List three rooms that said no—and one adjustment or new room you haven't knocked on yet.",
+    benchPlaceholder: "What the nos taught me — and the next room I will approach:\n",
+    quietMoveTitle: "Log every 'no' like an investigator, not a defendant.",
+    quietMoveDay: "Tonight · 15 Minutes",
+    quietMoveDesc:
+      "Write down what you sent, to whom, and what came back. Patterns appear on paper that bruised pride hides.",
+  },
+  {
+    slug: "life-split",
+    stageKey: "breakup",
+    shortLabel: "Life Split in Half",
+    mirrorLine: "The life you planned just broke into two halves.",
+    subLine: "Divorce, separation, or walking away to keep your dignity intact.",
+    parallelSubject: "Tina Turner",
+    parallelDuration: "8 yrs",
+    dossierSlug: "jk-rowling",
+    highlightedSubjects: ["Tina Turner"],
+    plateHeader: "ARCHIVAL PLATE · EPISODE 06 · DALLAS, JULY 1976",
+    plateBadge: "SEASON 1 · DOCUMENTED RECORD",
+    plateHeadline: "Thirty-six cents and her own name.",
+    plateBeforeQuote:
+      "In July 1976, Tina Turner ran across a Dallas highway at night leaving behind every house, car, and royalty stream. She walked out with ",
+    plateDecisiveQuote: "“36 cents and a Mobil gas card—giving up everything just to keep her own name.”",
+    plateAfterQuote: " American labels called her an oldies act at 44.",
+    plateContext:
+      "For eight years she played small lounges and rebuilt in Europe until Private Dancer swept three Grammys and sold twenty million copies.",
+    plateExhibitCaption: "Exhibit F · Season 1 Archival Dossier (Airs 10 Jan 2027)",
+    benchPrompt:
+      "What part of your name, rhythm, or dignity belongs strictly to you—not to the life that ended?",
+    benchPlaceholder: "What remains mine:\n",
+    quietMoveTitle: "Guard the ordinary basics tonight.",
+    quietMoveDay: "Tonight · 10 Minutes",
+    quietMoveDesc:
+      "Sleep, real food, one walk, and one trusted person who gets the unedited truth. Never make five-year decisions while the floor is still moving.",
+  },
+  {
+    slug: "body-interrupted",
+    stageKey: "health",
+    shortLabel: "Body & Recovery Setback",
+    mirrorLine: "Your body interrupted every plan you made.",
+    subLine: "A diagnosis, injury, or long recovery nobody around you can see.",
+    parallelSubject: "Monica Seles / Shania Twain",
+    parallelDuration: "28 mos–15 yrs",
+    dossierSlug: "steve-jobs",
+    highlightedSubjects: ["Monica Seles", "Shania Twain"],
+    plateHeader: "ARCHIVAL PLATE · EPISODES 09 & 11 · 1993–2017",
+    plateBadge: "SEASON 1 · DOCUMENTED RECORD",
+    plateHeadline: "Slower is not the same as finished.",
+    plateBeforeQuote:
+      "World No. 1 with eight Grand Slams at nineteen, Monica Seles lost twenty-eight months to an on-court attack—while Shania Twain lost her singing voice to nerve damage and open-throat surgery. ",
+    plateDecisiveQuote: "“Seles walked back onto centre court and won the 1996 Australian Open; Twain returned to #1 after fifteen years.”",
+    plateAfterQuote: " Patience was still motion.",
+    plateContext:
+      "Across Season 1—from Nwankwo Kanu's emergency heart surgery to Seles and Twain—rebuilding the body required redrawing the calendar without cancelling the future.",
+    plateExhibitCaption: "Exhibit G · Season 1 Medical & Return Chronology",
+    benchPrompt:
+      "Write down one thing your body has already carried you through this month that you haven't credited yourself for.",
+    benchPlaceholder: "Evidence of quiet endurance:\n",
+    quietMoveTitle: "Write three clear questions for your next care visit.",
+    quietMoveDay: "Tonight · 10 Minutes",
+    quietMoveDesc:
+      "Walk into every appointment with a short written list. Measure wins in days, not years.",
+  },
+  {
+    slug: "starting-late",
+    stageKey: "later",
+    shortLabel: "Rebuilding at 40, 50 or Later",
+    mirrorLine: "Starting again when everyone assumes you should already be settled.",
+    subLine: "Real family bills, zero patience for noise, deeper judgement.",
+    parallelSubject: "George Foreman",
+    parallelDuration: "20 yrs",
+    dossierSlug: "tyler-perry",
+    highlightedSubjects: ["George Foreman"],
+    plateHeader: "ARCHIVAL PLATE · EPISODE 14 · LAS VEGAS, 5 NOVEMBER 1994",
+    plateBadge: "SEASON 1 FINALE · 20-YEAR ARC",
+    plateHeadline: "The same red trunks from Zaire, twenty years later.",
+    plateBeforeQuote:
+      "Broke, mocked as a punchline, and twenty years past his defeat to Muhammad Ali in Zaire, George Foreman stepped back into the ring to keep a youth centre open. ",
+    plateDecisiveQuote: "“At 45, wearing the same red trunks from Zaire, he won the heavyweight title of the world.”",
+    plateAfterQuote: " Nobody could shortcut twenty years of judgement.",
+    plateContext:
+      "You are not arriving at the starting line empty-handed. You are arriving with decades of scars and pattern recognition a beginner cannot buy.",
+    plateExhibitCaption: "Exhibit N · Season 1 Finale Chronology (Airs 7 Mar 2027)",
+    benchPrompt:
+      "List three problems you can solve in an hour today that would have taken your twenty-five-year-old self a year.",
+    benchPlaceholder: "Pattern recognition I already carry:\n1. \n2. \n3. ",
+    quietMoveTitle: "Inventory what you know how to solve.",
+    quietMoveDay: "Tonight · 15 Minutes",
+    quietMoveDesc:
+      "Include the judgement you take for granted. Then pick one visible piece of work you can finish in 30 days.",
+  },
+  {
+    slug: "year-three-fog",
+    stageKey: "stuck",
+    shortLabel: "Year-Three Fog",
+    mirrorLine: "Nothing collapsed — you just can't see the next room anymore.",
+    subLine: "Standing still in the fog while the years keep turning.",
+    parallelSubject: "Season 1 Anthology",
+    parallelDuration: "3–11 yrs",
+    dossierSlug: "steve-jobs",
+    highlightedSubjects: ["Steve Jobs", "Tyler Perry"],
+    plateHeader: "ARCHIVAL PLATE · SEASON 1 CHRONOLOGY · YEARS TWO TO SIX",
+    plateBadge: "131 VERIFIED CLAIMS · EPS 01–03",
+    plateHeadline: "Almost nobody talks about what year three actually felt like.",
+    plateBeforeQuote:
+      "Between the dramatic collapse and the celebrated comeback sits the unfilmed middle: NeXT burning $40M a year, Perry's fourth empty theatre, Denzel Washington sitting in a barbershop after a 1.7 GPA dismissal. ",
+    plateDecisiveQuote: "“Clarity rarely arrives while standing still—direction is what small motion leaves behind.”",
+    plateAfterQuote: " Feeling stalled in year three is normal, not fatal.",
+    plateContext:
+      "Every subject in Season 1 spent years in rooms where nothing looked like winning before a single door shifted.",
+    plateExhibitCaption: "Exhibit S · Cross-Season Wilderness Comparison",
+    benchPrompt:
+      "When was the last time you felt genuinely useful? Write down what problem you were solving and who was in the room.",
+    benchPlaceholder: "A compass bearing from my own track record:\n",
+    quietMoveTitle: "Run one small experiment before Sunday.",
+    quietMoveDay: "Tonight · 15 Minutes",
+    quietMoveDesc:
+      "Pick one phone call, one page, or one weekend test—and cut one numbing habit to give it oxygen.",
+  },
+  {
+    slug: "quiet-grief",
+    stageKey: "grief",
+    shortLabel: "Carrying Quiet Grief",
+    mirrorLine: "Carrying a loss nobody else knows how to talk about.",
+    subLine: "A parent, a partner, a chapter, or the version of yourself you knew.",
+    parallelSubject: "J.K. Rowling / Season 1",
+    parallelDuration: "3 yrs",
+    dossierSlug: "jk-rowling",
+    highlightedSubjects: ["J.K. Rowling"],
+    plateHeader: "ARCHIVAL PLATE · EPISODE 02 · DECEMBER 1990 – 1994",
+    plateBadge: "38 VERIFIED CLAIMS · 1 HELD BACK",
+    plateHeadline: "Grief has its own clock.",
+    plateBeforeQuote:
+      "In December 1990, Anne Rowling died of multiple sclerosis at forty-five, months after her daughter began writing a children's book she would never get to read. ",
+    plateDecisiveQuote: "“Grief shaped every page Joanne wrote in those quiet Edinburgh cafés.”",
+    plateAfterQuote: " Nothing here tries to hurry it.",
+    plateContext:
+      "You do not owe anyone a tidy performance of strength. Keeping one steady daily anchor while the ground settles is enough for this week.",
+    plateExhibitCaption: "Exhibit B2 · The Guardian (18 Apr 2001) & jkrowling.com",
+    benchPrompt:
+      "Name one honest, low-pressure anchor you can keep steady this week—without pretending you are fine.",
+    benchPlaceholder: "One steady anchor for this week:\n",
+    quietMoveTitle: "Drop the brave mask with one trusted person.",
+    quietMoveDay: "Tonight · One Message",
+    quietMoveDesc:
+      "Send one honest sentence to someone safe. And if grief grows heavier, let a counsellor or doctor help carry it.",
+  },
+];
+
+export const CHAPTER_MAP: Record<string, JourneyChapter> = Object.fromEntries(
+  CHAPTERS.map((c) => [c.slug, c])
+);
+
+const LEGACY_STAGE_TO_CHAPTER: Record<string, string> = {
+  job: "door-closed",
+  money: "quiet-insolvency",
+  rejected: "twelve-nos",
+  breakup: "life-split",
+  health: "body-interrupted",
+  later: "starting-late",
+  stuck: "year-three-fog",
+  grief: "quiet-grief",
+};
+
+export function resolveChapterSlug(raw: string | null | undefined): string {
+  if (!raw) return "door-closed";
+  const clean = raw.trim().toLowerCase();
+  if (CHAPTER_MAP[clean]) return clean;
+  if (LEGACY_STAGE_TO_CHAPTER[clean]) return LEGACY_STAGE_TO_CHAPTER[clean];
+  return "door-closed";
+}
+

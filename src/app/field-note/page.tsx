@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { WILDERNESS_TIMELINE, YOUTUBE_HANDLE, YOUTUBE_SUBSCRIBE_URL } from "@/lib/dyegu-data";
 import { PrintButtonClient } from "@/components/PrintButtonClient";
+import { FieldNoteDynamicClient } from "@/components/FieldNoteDynamicClient";
 
 export const metadata: Metadata = {
   title: "The 1-Page Wilderness Field Note",
@@ -46,6 +47,8 @@ export default function FieldNotePage() {
             Before a single comeback in Season 1 began, someone separated what actually happened
             from the private verdict looping at 2 a.m. Take ten quiet minutes with a pen.
           </p>
+
+          <FieldNoteDynamicClient />
 
           <h2 className="mt-8 font-display text-2xl text-[#C5A059]">
             1. The Two-Column Reality Audit

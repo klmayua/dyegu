@@ -1,16 +1,16 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { BrandLockup, PhoenixMark } from "./BrandMarks";
 import { downloadSundayPremiereIcs, getGoogleCalendarUrl } from "@/lib/calendar";
-import { YOUTUBE_HANDLE, YOUTUBE_SUBSCRIBE_URL } from "@/lib/dyegu-data";
+import { PREMIERE_ISO, YOUTUBE_HANDLE, YOUTUBE_SUBSCRIBE_URL } from "@/lib/dyegu-data";
 
 const NAV_ITEMS = [
   { href: "/stories", label: "Stories" },
+  { href: "/#bench", label: "The Builder's Bench" },
   { href: "/#comeback-file", label: "The Comeback File" },
-  { href: "/community", label: "Community" },
   { href: "/standards", label: "Standards" },
 ];
 
@@ -18,8 +18,12 @@ export function SiteHeader() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [calendarOpen, setCalendarOpen] = useState(false);
+  const [isLive, setIsLive] = useState(false);
 
-  // Zero-nav mode strictly for /reset social squeeze page
+  useEffect(() => {
+    setIsLive(Date.now() >= new Date(PREMIERE_ISO).getTime());
+  }, []);
+
   if (pathname === "/reset") {
     return (
       <header className="sticky top-0 z-30 bg-[#000000]/95 backdrop-blur-md border-b border-[#444444]">
@@ -36,14 +40,18 @@ export function SiteHeader() {
     <>
       <header className="sticky top-0 z-30 bg-[#000000]/95 backdrop-blur-md border-b border-[#444444]">
         <div className="mx-auto flex h-[74px] max-w-[1200px] items-center justify-between gap-6 px-6">
-          <Link href="/" aria-label="DYEGU Home" className="py-1 focus-visible:outline focus-visible:outline-1 focus-visible:outline-[#C5A059]">
+          <Link
+            href="/"
+            aria-label="DYEGU Home"
+            className="py-1 focus-visible:outline focus-visible:outline-1 focus-visible:outline-[#C5A059]"
+          >
             <BrandLockup size="md" />
           </Link>
 
-          <nav aria-label="Primary" className="hidden md:flex items-center gap-8">
+          <nav aria-label="Primary" className="hidden lg:flex items-center gap-8">
             {NAV_ITEMS.map((item) => {
               const active =
-                item.href !== "/#comeback-file" &&
+                !item.href.startsWith("/#") &&
                 (pathname === item.href || pathname.startsWith(`${item.href}/`));
               return (
                 <Link
@@ -61,19 +69,28 @@ export function SiteHeader() {
           </nav>
 
           <div className="flex items-center gap-3">
-            <button
-              type="button"
-              onClick={() => setCalendarOpen(true)}
-              className="label-track border border-[#C5A059] bg-[#000000] px-4 py-2.5 text-[#C5A059] transition-colors hover:bg-[#C5A059] hover:text-[#000000]"
-            >
-              Premiere · Dec 6
-            </button>
+            {isLive ? (
+              <Link
+                href="/stories/steve-jobs"
+                className="label-track border border-[#C5A059] bg-[#C5A059] px-4 py-2.5 text-[#000000] transition-colors hover:bg-[#000000] hover:text-[#C5A059]"
+              >
+                Watch Ep 01
+              </Link>
+            ) : (
+              <button
+                type="button"
+                onClick={() => setCalendarOpen(true)}
+                className="label-track border border-[#C5A059] bg-[#000000] px-4 py-2.5 text-[#C5A059] transition-colors hover:bg-[#C5A059] hover:text-[#000000]"
+              >
+                Premiere · Dec 6
+              </button>
+            )}
             <button
               type="button"
               onClick={() => setMobileOpen((v) => !v)}
               aria-expanded={mobileOpen}
               aria-controls="mobile-nav"
-              className="md:hidden label-track border border-[#444444] px-3 py-2.5 text-[#F5F5F0]"
+              className="lg:hidden label-track border border-[#444444] px-3 py-2.5 text-[#F5F5F0]"
             >
               {mobileOpen ? "Close" : "Menu"}
             </button>
@@ -84,7 +101,7 @@ export function SiteHeader() {
           <nav
             id="mobile-nav"
             aria-label="Mobile"
-            className="md:hidden border-t border-[#444444] bg-[#000000] px-6 py-4"
+            className="lg:hidden border-t border-[#444444] bg-[#000000] px-6 py-4"
           >
             <div className="flex flex-col divide-y divide-[#444444]/60">
               {NAV_ITEMS.map((item) => (
@@ -97,6 +114,13 @@ export function SiteHeader() {
                   {item.label}
                 </Link>
               ))}
+              <Link
+                href="/allies"
+                onClick={() => setMobileOpen(false)}
+                className="label-track py-3.5 text-[#8E8E8A] hover:text-[#C5A059]"
+              >
+                Ally Desk (Practitioners &amp; Institutions)
+              </Link>
             </div>
           </nav>
         )}
@@ -140,9 +164,7 @@ export function SiteHeader() {
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               <button
                 type="button"
-                onClick={() => {
-                  downloadSundayPremiereIcs();
-                }}
+                onClick={() => downloadSundayPremiereIcs()}
                 className="label-track flex-1 border border-[#C5A059] bg-[#C5A059] px-5 py-3.5 text-center text-[#000000] transition-colors hover:bg-[#000000] hover:text-[#C5A059]"
               >
                 Download Recurring .ICS

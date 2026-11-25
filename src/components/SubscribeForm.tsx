@@ -8,6 +8,7 @@ import { YOUTUBE_HANDLE, YOUTUBE_SUBSCRIBE_URL } from "@/lib/dyegu-data";
 interface SubscribeFormProps {
   list?: "comeback_file" | "playbook_waitlist" | "merch_waitlist";
   stage?: string | null;
+  chapterSlug?: string | null;
   interest?: string[];
   buttonLabel?: string;
   placeholder?: string;
@@ -19,8 +20,9 @@ interface SubscribeFormProps {
 export function SubscribeForm({
   list = "comeback_file",
   stage = null,
+  chapterSlug = null,
   interest,
-  buttonLabel = "Open the 1-Page Wilderness Field Note",
+  buttonLabel = "Download My 1-Page Field Note",
   placeholder = "Enter your email address",
   finePrint = "Private. Instant 1-Page Field Note + one quiet Sunday email. Unsubscribe in 1 click.",
   compact = false,
@@ -31,6 +33,8 @@ export function SubscribeForm({
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [doneStatus, setDoneStatus] = useState<"ok" | "exists" | null>(null);
+
+  const fieldNoteHref = chapterSlug ? `/field-note?chapter=${chapterSlug}` : "/field-note";
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -78,7 +82,7 @@ export function SubscribeForm({
         </p>
         <p className="mt-1.5 font-display text-2xl text-[#F5F5F0]">
           {list === "comeback_file"
-            ? "Your 1-Page Wilderness Field Note is ready."
+            ? "Your Custom 1-Page Wilderness Field Note is ready."
             : list === "playbook_waitlist"
               ? "You're on The Rebuild Playbook founding list."
               : "You're on The Studio Mug preview list."}
@@ -86,10 +90,10 @@ export function SubscribeForm({
         <div className="mt-4 flex flex-wrap gap-3">
           {list === "comeback_file" && (
             <Link
-              href="/field-note"
+              href={fieldNoteHref}
               className="label-track border border-[#C5A059] bg-[#C5A059] px-4 py-2.5 text-[#000000] hover:bg-[#000000] hover:text-[#C5A059]"
             >
-              Open 1-Page Field Note →
+              Open Custom 1-Page Field Note →
             </Link>
           )}
           <a

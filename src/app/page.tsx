@@ -1,9 +1,5 @@
 import React from "react";
-import { HeroIdent } from "@/components/HeroIdent";
-import { ArchivalPlate } from "@/components/ArchivalPlate";
-import { WildernessTimeline } from "@/components/WildernessTimeline";
-import { FloorTriage } from "@/components/FloorTriage";
-import { HostRule } from "@/components/HostRule";
+import { JourneyExperience } from "@/components/JourneyExperience";
 import {
   FACEBOOK_URL,
   INSTAGRAM_URL,
@@ -28,11 +24,7 @@ export default function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(orgLd) }}
       />
-      <HeroIdent />
-      <ArchivalPlate />
-      <WildernessTimeline />
-      <FloorTriage />
-      <HostRule />
+      <JourneyExperience />
     </>
   );
 }

@@ -231,7 +231,7 @@ export default async function StoryDossierPage({
               return (
                 <Link
                   key={k}
-                  href={`/?chapter=${k}#triage`}
+                  href={`/?chapter=${k}#proof`}
                   className="label-track border border-[#444444] px-4 py-2 text-[#F5F5F0] hover:border-[#C5A059] hover:text-[#C5A059]"
                 >
                   {st.short} →

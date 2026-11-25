@@ -6,6 +6,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/",
     "/stories",
     "/standards",
+    "/allies",
     "/community",
     "/community/circles",
     "/community/sessions",

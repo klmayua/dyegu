@@ -18,8 +18,8 @@ export function SiteFooter() {
           <div className="lg:col-span-4">
             <BrandLockup size="md" />
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-[#8E8E8A]">
-              Don&apos;t You Ever Give Up. Primary-sourced 4K comeback documentaries and an
-              investigative archive for adults navigating major rebuilds.
+              Don&apos;t You Ever Give Up. A 4K documentary screening room and rebuilder&apos;s
+              bench grounded in primary filings, real dates, and quiet endurance.
             </p>
             <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 label-track text-[#8E8E8A]">
               <a
@@ -93,13 +93,13 @@ export function SiteFooter() {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/field-note" className="hover:text-[#F5F5F0]">
-                    1-Page Field Note
+                  <Link href="/#bench" className="hover:text-[#F5F5F0]">
+                    The Builder&apos;s Bench
                   </Link>
                 </li>
                 <li>
-                  <Link href="/#triage" className="hover:text-[#F5F5F0]">
-                    Where the Floor Gave Way
+                  <Link href="/field-note" className="hover:text-[#F5F5F0]">
+                    1-Page Field Note
                   </Link>
                 </li>
                 <li>
@@ -111,16 +111,11 @@ export function SiteFooter() {
             </div>
 
             <div>
-              <p className="label-track text-[#C5A059] mb-4">Community &amp; Playbook</p>
+              <p className="label-track text-[#C5A059] mb-4">Founding Cohort &amp; Playbook</p>
               <ul className="space-y-2.5 text-sm text-[#8E8E8A]">
                 <li>
                   <Link href="/community/circles" className="hover:text-[#F5F5F0]">
                     Rebuild Circles (Jan 2027)
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/community/sessions" className="hover:text-[#F5F5F0]">
-                    Free Expert Sessions
                   </Link>
                 </li>
                 <li>
@@ -134,8 +129,8 @@ export function SiteFooter() {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/volunteer" className="hover:text-[#F5F5F0]">
-                    Volunteer an Hour
+                  <Link href="/allies" className="hover:text-[#F5F5F0]">
+                    Ally Desk (Practitioners &amp; Orgs)
                   </Link>
                 </li>
               </ul>
@@ -160,11 +155,6 @@ export function SiteFooter() {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/studio" className="hover:text-[#F5F5F0]">
-                    Sponsors &amp; Partners
-                  </Link>
-                </li>
-                <li>
                   <Link href="/privacy" className="hover:text-[#F5F5F0]">
                     Privacy Policy
                   </Link>
@@ -174,7 +164,7 @@ export function SiteFooter() {
           </div>
         </div>
 
-        {/* International Crisis Helpline Banner — preserved verbatim in calm contrast */}
+        {/* International Crisis Helpline Banner */}
         <div className="mt-12 border border-[#444444] bg-[#000000] px-6 py-4 text-sm leading-relaxed text-[#F5F5F0]">
           <p>
             <strong className="font-medium text-[#C5A059]">Struggling right now?</strong> You
@@ -192,10 +182,10 @@ export function SiteFooter() {
           </p>
         </div>
 
-        {/* Bottom bar — strictly compliant with Brand Bible v1.1 (zero AI methodology copy here) */}
+        {/* Bottom Bar — Zero AI methodology text here */}
         <div className="mt-8 flex flex-col gap-3 border-t border-[#444444] pt-6 text-xs text-[#8E8E8A] sm:flex-row sm:items-center sm:justify-between">
           <p className="label-track text-[#8E8E8A]">
-            © 2026 DYEGU · Don&apos;t You Ever Give Up ·{" "}
+            © 2026 DYEGU ·{" "}
             <a
               href={YOUTUBE_URL}
               target="_blank"
@@ -207,7 +197,7 @@ export function SiteFooter() {
           </p>
           <p className="label-track text-[#8E8E8A]">
             <Link href="/standards" className="hover:text-[#C5A059]">
-              Read Primary-Source Verification Standards →
+              Primary-Source Verification Standards →
             </Link>
           </p>
         </div>
