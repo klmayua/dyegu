@@ -3,6 +3,7 @@ import { Cormorant_Garamond, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
+import { DyeguModalProvider } from "@/components/ModalContext";
 import { SITE_URL } from "@/lib/dyegu-data";
 
 const displayFont = Cormorant_Garamond({
@@ -23,18 +24,18 @@ const sansFont = Plus_Jakarta_Sans({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "D Y E G U — Documented Comebacks & Investigative Archive",
+    default: "D Y E G U — Everything broke. Your story didn't.",
     template: "%s · DYEGU",
   },
   description:
-    "Documented comebacks—not highlight reels. Real dates, primary filings, and what year three actually felt like. Hosted by Sir K.",
+    "Documented comebacks—not highlight reels. Real dates, primary filings, and a steady step for tomorrow morning. Hosted by Sir K.",
   openGraph: {
     type: "website",
     siteName: "DYEGU",
     url: SITE_URL,
     title: "D Y E G U — Everything broke. Your story didn't.",
     description:
-      "Documented comebacks—not highlight reels. Real dates, primary filings, and what year three actually felt like.",
+      "Take a breath. You are not behind—you are in the middle. Real dates, primary receipts, and three quiet moves for tomorrow morning.",
     images: [{ url: "/assets/og.jpg", width: 1200, height: 630, alt: "DYEGU" }],
   },
   twitter: {
@@ -60,11 +61,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         >
           Skip to content
         </a>
-        <SiteHeader />
-        <main id="main" className="bg-[#000000]">
-          {children}
-        </main>
-        <SiteFooter />
+        <DyeguModalProvider>
+          <SiteHeader />
+          <main id="main" className="bg-[#000000]">
+            {children}
+          </main>
+          <SiteFooter />
+        </DyeguModalProvider>
       </body>
     </html>
   );

@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
 import { BrandLockup } from "./BrandMarks";
@@ -9,8 +11,11 @@ import {
   X_URL,
   FACEBOOK_URL,
 } from "@/lib/dyegu-data";
+import { useDyeguModals } from "./ModalContext";
 
 export function SiteFooter() {
+  const { openStandardsModal, openAllyDrawer } = useDyeguModals();
+
   return (
     <footer className="bg-[#000000] border-t border-[#444444] text-[#F5F5F0]">
       <div className="mx-auto max-w-[1200px] px-6 py-16">
@@ -19,7 +24,7 @@ export function SiteFooter() {
             <BrandLockup size="md" />
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-[#8E8E8A]">
               Don&apos;t You Ever Give Up. A 4K documentary screening room and rebuilder&apos;s
-              bench grounded in primary filings, real dates, and quiet endurance.
+              sanctuary built on real dates, primary filings, and quiet endurance.
             </p>
             <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 label-track text-[#8E8E8A]">
               <a
@@ -63,95 +68,106 @@ export function SiteFooter() {
               <ul className="space-y-2.5 text-sm text-[#8E8E8A]">
                 <li>
                   <Link href="/stories" className="hover:text-[#F5F5F0]">
-                    Season 1 Archive (14)
+                    Season 1 Dossiers
                   </Link>
                 </li>
                 <li>
                   <Link href="/stories/steve-jobs" className="hover:text-[#F5F5F0]">
-                    01 · Steve Jobs
+                    Ep 01 · Steve Jobs
                   </Link>
                 </li>
                 <li>
                   <Link href="/stories/jk-rowling" className="hover:text-[#F5F5F0]">
-                    02 · J.K. Rowling
+                    Ep 02 · J.K. Rowling
                   </Link>
                 </li>
                 <li>
                   <Link href="/stories/tyler-perry" className="hover:text-[#F5F5F0]">
-                    03 · Tyler Perry
+                    Ep 03 · Tyler Perry
                   </Link>
                 </li>
               </ul>
             </div>
 
             <div>
-              <p className="label-track text-[#C5A059] mb-4">The Comeback File</p>
+              <p className="label-track text-[#C5A059] mb-4">For Rebuilders</p>
               <ul className="space-y-2.5 text-sm text-[#8E8E8A]">
                 <li>
-                  <Link href="/#comeback-file" className="hover:text-[#F5F5F0]">
-                    Sunday Dispatch
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/#bench" className="hover:text-[#F5F5F0]">
-                    The Builder&apos;s Bench
+                  <Link href="/#protocol" className="hover:text-[#F5F5F0]">
+                    Tomorrow&apos;s Protocol
                   </Link>
                 </li>
                 <li>
                   <Link href="/field-note" className="hover:text-[#F5F5F0]">
-                    1-Page Field Note
+                    1-Page Wilderness Field Note
                   </Link>
                 </li>
                 <li>
-                  <Link href="/share" className="hover:text-[#F5F5F0]">
-                    Share Your Rebuild
-                  </Link>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <p className="label-track text-[#C5A059] mb-4">Founding Cohort &amp; Playbook</p>
-              <ul className="space-y-2.5 text-sm text-[#8E8E8A]">
-                <li>
-                  <Link href="/community/circles" className="hover:text-[#F5F5F0]">
-                    Rebuild Circles (Jan 2027)
+                  <Link href="/#field-note" className="hover:text-[#F5F5F0]">
+                    The Comeback File
                   </Link>
                 </li>
                 <li>
                   <Link href="/playbook" className="hover:text-[#F5F5F0]">
-                    The Rebuild Playbook
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/shop" className="hover:text-[#F5F5F0]">
-                    The Studio Mug
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/allies" className="hover:text-[#F5F5F0]">
-                    Ally Desk (Practitioners &amp; Orgs)
+                    The Rebuild Playbook (Jan 2027)
                   </Link>
                 </li>
               </ul>
             </div>
 
             <div>
-              <p className="label-track text-[#C5A059] mb-4">Standards &amp; Rights</p>
+              <p className="label-track text-[#C5A059] mb-4">Custodians &amp; Allies</p>
               <ul className="space-y-2.5 text-sm text-[#8E8E8A]">
                 <li>
-                  <Link href="/standards" className="hover:text-[#F5F5F0]">
-                    Verification Standards
+                  <button
+                    type="button"
+                    onClick={() => openAllyDrawer("practitioners")}
+                    className="text-left hover:text-[#F5F5F0]"
+                  >
+                    Vetted Practitioners
+                  </button>
+                </li>
+                <li>
+                  <button
+                    type="button"
+                    onClick={() => openAllyDrawer("organizations")}
+                    className="text-left hover:text-[#F5F5F0]"
+                  >
+                    Organizations &amp; NGOs
+                  </button>
+                </li>
+                <li>
+                  <button
+                    type="button"
+                    onClick={() => openAllyDrawer("underwriters")}
+                    className="text-left hover:text-[#F5F5F0]"
+                  >
+                    Season Underwriters
+                  </button>
+                </li>
+                <li>
+                  <Link href="/shop" className="hover:text-[#F5F5F0]">
+                    The Studio Mug (Coming Soon)
                   </Link>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <p className="label-track text-[#C5A059] mb-4">Standards &amp; Legal</p>
+              <ul className="space-y-2.5 text-sm text-[#8E8E8A]">
+                <li>
+                  <button
+                    type="button"
+                    onClick={openStandardsModal}
+                    className="text-left hover:text-[#F5F5F0]"
+                  >
+                    Verification &amp; Research Standards
+                  </button>
                 </li>
                 <li>
                   <Link href="/community/guidelines" className="hover:text-[#F5F5F0]">
-                    Safety &amp; Guidelines
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/speaking" className="hover:text-[#F5F5F0]">
-                    Talks &amp; Workshops
+                    Safety &amp; Circle Guidelines
                   </Link>
                 </li>
                 <li>
@@ -164,7 +180,7 @@ export function SiteFooter() {
           </div>
         </div>
 
-        {/* International Crisis Helpline Banner */}
+        {/* Crisis Helpline Notice */}
         <div className="mt-12 border border-[#444444] bg-[#000000] px-6 py-4 text-sm leading-relaxed text-[#F5F5F0]">
           <p>
             <strong className="font-medium text-[#C5A059]">Struggling right now?</strong> You
@@ -176,16 +192,15 @@ export function SiteFooter() {
               rel="noopener noreferrer"
               className="text-[#C5A059] underline underline-offset-4 hover:text-[#F5F5F0]"
             >
-              Find a free, confidential helpline in your country
+              Find a free, confidential helpline in your country →
             </a>
-            .
           </p>
         </div>
 
-        {/* Bottom Bar — Zero AI methodology text here */}
+        {/* Bottom Credits — Zero AI methodology text in raw footer */}
         <div className="mt-8 flex flex-col gap-3 border-t border-[#444444] pt-6 text-xs text-[#8E8E8A] sm:flex-row sm:items-center sm:justify-between">
           <p className="label-track text-[#8E8E8A]">
-            © 2026 DYEGU ·{" "}
+            © 2026 DYEGU — Don&apos;t You Ever Give Up ·{" "}
             <a
               href={YOUTUBE_URL}
               target="_blank"
@@ -195,11 +210,13 @@ export function SiteFooter() {
               {YOUTUBE_HANDLE}
             </a>
           </p>
-          <p className="label-track text-[#8E8E8A]">
-            <Link href="/standards" className="hover:text-[#C5A059]">
-              Primary-Source Verification Standards →
-            </Link>
-          </p>
+          <button
+            type="button"
+            onClick={openStandardsModal}
+            className="label-track text-left text-[#8E8E8A] hover:text-[#C5A059] sm:text-right"
+          >
+            Verification &amp; Research Standards →
+          </button>
         </div>
       </div>
     </footer>

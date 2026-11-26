@@ -2,27 +2,78 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { AnimatePresence, motion, useInView, useReducedMotion } from "framer-motion";
 import {
-  CHAPTERS,
-  CHAPTER_MAP,
+  Activity,
+  Bell,
+  Clock,
+  CloudFog,
+  Compass,
+  DoorClosed,
+  FileText,
+  Flame,
+  HeartCrack,
+  HeartHandshake,
+  PlayCircle,
+  Share2,
+  Users,
+  Wallet,
+  X,
+} from "lucide-react";
+import {
   EPISODES,
   PREMIERE_ISO,
   STORIES,
   STUDIO_MUG,
   YOUTUBE_HANDLE,
   YOUTUBE_SUBSCRIBE_URL,
-  resolveChapterSlug,
   type StoryMeta,
 } from "@/lib/dyegu-data";
+import {
+  MASTER_CHAPTERS,
+  MASTER_CHAPTER_MAP,
+  resolveMasterChapter,
+  type ChapterIconName,
+} from "@/lib/chapters-data";
 import { downloadSundayPremiereIcs, formatLocalBroadcastTime } from "@/lib/calendar";
 import { PhoenixMark } from "./BrandMarks";
 import { DossierDrawer } from "./DossierDrawer";
 import { WildernessTimeline } from "./WildernessTimeline";
-import { BuildersBench } from "./BuildersBench";
-import { AllyDeskDrawer } from "./AllyDeskDrawer";
-import type { AllyTab } from "./AllyDeskContent";
+import { TomorrowsProtocol } from "./TomorrowsProtocol";
+import { QuietWitnessWall } from "./QuietWitnessWall";
+import { useDyeguModals } from "./ModalContext";
+
+const CINEMA_EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
+
+function ChapterIcon({ name, active }: { name: ChapterIconName; active: boolean }) {
+  const cls = `h-4 w-4 shrink-0 transition-colors ${
+    active ? "text-[#C5A059]" : "text-[#C5A059]/75 group-hover:text-[#C5A059]"
+  }`;
+  const props = { className: cls, strokeWidth: 1.25 };
+  switch (name) {
+    case "DoorClosed":
+      return <DoorClosed {...props} />;
+    case "Wallet":
+      return <Wallet {...props} />;
+    case "Compass":
+      return <Compass {...props} />;
+    case "HeartCrack":
+      return <HeartCrack {...props} />;
+    case "Activity":
+      return <Activity {...props} />;
+    case "Clock":
+      return <Clock {...props} />;
+    case "CloudFog":
+      return <CloudFog {...props} />;
+    case "Flame":
+      return <Flame {...props} />;
+  }
+}
 
 export function JourneyExperience() {
+  const prefersReduced = useReducedMotion();
+  const { openAllyDrawer } = useDyeguModals();
+
   const [chapterSlug, setChapterSlug] = useState<string>("door-closed");
   const [isLive, setIsLive] = useState(false);
   const [liveVideoId, setLiveVideoId] = useState<string | null>(null);
@@ -30,26 +81,23 @@ export function JourneyExperience() {
   const [identOpen, setIdentOpen] = useState(false);
   const [identKey, setIdentKey] = useState(0);
   const [selectedDossier, setSelectedDossier] = useState<StoryMeta | null>(null);
-  const [allyDrawer, setAllyDrawer] = useState<{ open: boolean; tab: AllyTab }>({
-    open: false,
-    tab: "practitioners",
-  });
-  const [highlightActive, setHighlightActive] = useState(false);
-  const [copiedLink, setCopiedLink] = useState(false);
+  const [copiedMirror, setCopiedMirror] = useState(false);
+  const [showWhatsAppOption, setShowWhatsAppOption] = useState(false);
 
-  const plateRef = useRef<HTMLDivElement | null>(null);
-  const plateVisibleRef = useRef(false);
+  const mirrorSectionRef = useRef<HTMLDivElement | null>(null);
+  const mirrorInView = useInView(mirrorSectionRef, { once: true, amount: 0.25 });
+  const [highlightSweep, setHighlightSweep] = useState(false);
 
-  const activeChapter = CHAPTER_MAP[chapterSlug] ?? CHAPTERS[0];
+  const activeChapter = MASTER_CHAPTER_MAP[chapterSlug] ?? MASTER_CHAPTERS[0];
   const openingThree = STORIES.filter((s) => s.livePage);
 
-  // Sync URL ?chapter=slug on initial load & evaluate date-aware broadcast state
+  // Sync URL ?chapter=slug on mount & evaluate date-aware broadcast state
   useEffect(() => {
     if (typeof window !== "undefined") {
       const p = new URLSearchParams(window.location.search);
       const raw = p.get("chapter") || p.get("stage");
       if (raw) {
-        setChapterSlug(resolveChapterSlug(raw));
+        setChapterSlug(resolveMasterChapter(raw).slug);
       }
     }
 
@@ -68,42 +116,18 @@ export function JourneyExperience() {
     }
   }, []);
 
-  // Scroll-triggered highlighter sweep on the Archival Plate (re-triggers cleanly on chapter change)
+  // Re-trigger archival highlighter sweep when entering viewport or switching chapter
   useEffect(() => {
-    const el = plateRef.current;
-    if (!el) return;
-    if (
-      typeof window !== "undefined" &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    ) {
-      setHighlightActive(true);
+    if (prefersReduced) {
+      setHighlightSweep(true);
       return;
     }
+    if (!mirrorInView) return;
+    setHighlightSweep(false);
+    const t = window.setTimeout(() => setHighlightSweep(true), 120);
+    return () => window.clearTimeout(t);
+  }, [mirrorInView, chapterSlug, prefersReduced]);
 
-    if (plateVisibleRef.current) {
-      setHighlightActive(false);
-      const t = window.setTimeout(() => setHighlightActive(true), 60);
-      return () => window.clearTimeout(t);
-    }
-
-    const io = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            plateVisibleRef.current = true;
-            setHighlightActive(true);
-            io.disconnect();
-            break;
-          }
-        }
-      },
-      { threshold: 0.3 }
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, [chapterSlug]);
-
-  // Escape key closes Ident modal
   useEffect(() => {
     if (!identOpen) return;
     const onKey = (e: KeyboardEvent) => {
@@ -113,9 +137,10 @@ export function JourneyExperience() {
     return () => window.removeEventListener("keydown", onKey);
   }, [identOpen]);
 
-  function handleSelectChapter(slug: string) {
+  function selectChapter(slug: string) {
     setChapterSlug(slug);
-    setCopiedLink(false);
+    setCopiedMirror(false);
+    setShowWhatsAppOption(false);
     if (typeof window !== "undefined") {
       const url = new URL(window.location.href);
       url.searchParams.set("chapter", slug);
@@ -130,309 +155,276 @@ export function JourneyExperience() {
     return `${window.location.origin}/?chapter=${activeChapter.slug}`;
   }
 
-  async function handleCopyPrivateLink() {
+  async function handleQuietShare() {
+    setShowWhatsAppOption(true);
     try {
       await navigator.clipboard.writeText(getDeepLink());
-      setCopiedLink(true);
-      setTimeout(() => setCopiedLink(false), 2000);
+      setCopiedMirror(true);
+      setTimeout(() => setCopiedMirror(false), 3000);
     } catch {
-      // ignore clipboard denial
+      // ignore
     }
   }
 
-  function handleWhatsAppShare() {
-    const text = `Thinking of you today. Came across this quiet, documented record for people walking through a hard rebuild — zero hype, just proof: ${getDeepLink()}`;
+  function handleWhatsApp() {
+    const text = `Thinking of you today. Came across this quiet, documented story for people walking through a hard chapter—zero hype, just real proof: ${getDeepLink()}`;
     window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, "_blank", "noopener,noreferrer");
   }
 
   return (
     <>
       {/* =================================================================
-          STAGE 1: THE MIRROR (HERO + IMMEDIATE 8-CHAPTER SELF-IDENTIFICATION)
+          SECTION 01: THE SCREENING ROOM HERO (OUTCOME: PEACE)
           ================================================================= */}
       <section
-        id="mirror"
-        aria-label="Stage 1: The Mirror"
-        className="bg-[#000000] border-b border-[#444444] py-16 lg:py-24"
+        id="screening-player"
+        aria-label="Screening Room Hero"
+        className="bg-[#000000] border-b border-[#444444] py-24 md:py-32"
       >
         <div className="mx-auto max-w-[1200px] px-6">
-          <div className="mx-auto max-w-[840px] text-center">
+          <div className="mx-auto max-w-[820px] text-center">
             {/* 0–0.8s: 1px #C5A059 hairline draws left-to-right */}
-            <div className="mx-auto mb-7 flex max-w-[300px] items-center justify-center">
-              <span
-                className="ident-hairline block h-px w-full bg-[#C5A059]"
+            <div className="mx-auto mb-8 max-w-[300px]">
+              <motion.span
+                initial={prefersReduced ? { scaleX: 1 } : { scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ duration: 0.8, ease: CINEMA_EASE }}
+                style={{ transformOrigin: "left center" }}
+                className="block h-px w-full bg-[#C5A059]"
                 aria-hidden="true"
               />
             </div>
 
-            {/* 0.8–3.2s: Phoenix rises cleanly */}
-            <div className="ident-phoenix mb-6 flex flex-col items-center justify-center gap-3">
-              <PhoenixMark size={38} />
-              <p className="label-track text-[#8E8E8A]">
-                Stage 1 · The Mirror · 4K Documentary Screening Room
+            {/* 0.8–3.2s: Phoenix rises smoothly */}
+            <motion.div
+              initial={prefersReduced ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 2.2, delay: prefersReduced ? 0 : 0.75, ease: CINEMA_EASE }}
+              className="mb-7 flex flex-col items-center gap-3.5"
+            >
+              <PhoenixMark size={40} />
+              <p className="label-track text-[#C5A059]">
+                DOCUMENTED COMEBACKS · HOSTED BY SIR K
               </p>
-            </div>
+            </motion.div>
 
-            {/* Settled Headline & Subhead */}
-            <div className="ident-settle">
-              <h1 className="font-display text-[46px] font-medium leading-[0.98] tracking-[-0.015em] text-[#F5F5F0] sm:text-[66px] lg:text-[84px]">
+            {/* Headline & Subheadline */}
+            <motion.div
+              initial={prefersReduced ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.85, delay: prefersReduced ? 0 : 1.5, ease: CINEMA_EASE }}
+            >
+              <h1 className="font-display text-[48px] font-medium leading-[0.98] tracking-[-0.015em] text-[#F5F5F0] sm:text-[68px] lg:text-[88px]">
                 Everything broke.{" "}
                 <em className="block sm:inline text-[#C5A059] not-italic">
                   Your story didn&apos;t.
                 </em>
               </h1>
-              <p className="mx-auto mt-6 max-w-[60ch] text-base leading-[1.74] text-[#F5F5F0]/80 sm:text-[18px]">
-                You are not behind. You are in the middle. Select the line that mirrors where you
-                are standing—and see the documented proof that this room has an exit.
+              <p className="mx-auto mt-7 max-w-[58ch] text-base leading-[1.76] text-[#F5F5F0]/80 sm:text-[18px]">
+                Take a breath. You are not behind—you are in the middle. No hype. No ten-step
+                hustle lectures. Just real dates, primary receipts, and a steady step for tomorrow
+                morning.
               </p>
-            </div>
+            </motion.div>
 
-            {/* Broadcast Pill + Ident / Live Switch */}
-            <div className="ident-settle-late mt-8 flex flex-wrap items-center justify-center gap-3">
-              <div className="inline-flex flex-wrap items-center justify-center gap-x-3 gap-y-1 border border-[rgba(197,160,89,0.60)] px-4 py-2.5">
-                <span className="label-track text-[#C5A059]">Sundays · 15:00 WAT</span>
-                {localTime && (
-                  <>
-                    <span className="text-[#444444]" aria-hidden="true">
-                      |
-                    </span>
-                    <span className="label-track text-[#8E8E8A]">Your time · {localTime}</span>
-                  </>
-                )}
-              </div>
-
-              {!isLive && (
-                <>
-                  <button
-                    type="button"
-                    onClick={() => downloadSundayPremiereIcs()}
-                    className="label-track border border-[#C5A059] bg-[#C5A059] px-5 py-2.5 text-[#000000] transition-colors hover:bg-[#000000] hover:text-[#C5A059]"
-                  >
-                    Set Reminder · Dec 6
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setIdentKey((k) => k + 1);
-                      setIdentOpen(true);
-                    }}
-                    className="label-track border border-[#444444] px-5 py-2.5 text-[#F5F5F0] transition-colors hover:border-[#C5A059] hover:text-[#C5A059]"
-                  >
-                    ▶ Watch 4s Ident
-                  </button>
-                </>
-              )}
-            </div>
-
-            {/* Live Mode 16:9 YouTube Screening Frame on/after Dec 6 */}
-            {isLive && (
-              <div className="ident-settle-late mt-10 aspect-video w-full border border-[rgba(197,160,89,0.60)] bg-[#000000]">
-                {liveVideoId ? (
-                  <iframe
-                    src={`https://www.youtube-nocookie.com/embed/${liveVideoId}?rel=0`}
-                    title="DYEGU Episode 01: Steve Jobs"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    className="h-full w-full border-0"
-                  />
-                ) : (
-                  <div className="flex h-full flex-col items-center justify-center gap-4 p-8">
-                    <PhoenixMark size={44} />
-                    <p className="label-track text-[#C5A059]">Now Streaming · Episode 01</p>
-                    <a
-                      href={YOUTUBE_SUBSCRIBE_URL}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="label-track border border-[#C5A059] bg-[#C5A059] px-6 py-3 text-[#000000]"
-                    >
-                      Watch on YouTube ({YOUTUBE_HANDLE}) →
-                    </a>
-                  </div>
-                )}
-              </div>
-            )}
-          </div>
-
-          {/* Interactive 8-Chapter Selector (Synced to ?chapter=slug) */}
-          <div className="mt-14">
-            <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
-              <p className="label-track text-[#C5A059]">
-                Select Your Chapter · Live Across the Screening Room
-              </p>
-              <a
-                href="#proof"
-                className="label-track text-[#8E8E8A] hover:text-[#C5A059] transition-colors"
-              >
-                See Matched Proof Below ↓
-              </a>
-            </div>
-
-            <div
-              role="radiogroup"
-              aria-label="Select the life chapter that mirrors where you are standing"
-              className="grid grid-cols-1 gap-x-10 border-t border-[#444444] md:grid-cols-2"
+            {/* Primary & Secondary CTAs (Date-Aware) */}
+            <motion.div
+              initial={prefersReduced ? { opacity: 1 } : { opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.75, delay: prefersReduced ? 0 : 2.1, ease: CINEMA_EASE }}
+              className="mt-10"
             >
-              {CHAPTERS.map((ch, idx) => {
-                const isSelected = ch.slug === activeChapter.slug;
-                return (
-                  <button
-                    key={ch.slug}
-                    type="button"
-                    role="radio"
-                    aria-checked={isSelected}
-                    onClick={() => handleSelectChapter(ch.slug)}
-                    className={`group flex w-full items-start justify-between gap-4 border-b border-[#444444] py-5 text-left transition-all ${
-                      isSelected
-                        ? "border-l-2 border-l-[#C5A059] pl-4"
-                        : "hover:pl-2"
-                    }`}
-                  >
-                    <div>
-                      <div className="flex flex-wrap items-center gap-2.5">
-                        <span className="label-track text-[#8E8E8A]">
-                          {String(idx + 1).padStart(2, "0")} · Mirror: {ch.parallelSubject} (
-                          {ch.parallelDuration})
-                        </span>
-                        {isSelected && (
-                          <span className="label-track border border-[rgba(197,160,89,0.60)] px-2 py-0.5 text-[9px] text-[#C5A059]">
-                            Active
-                          </span>
-                        )}
+              {isLive ? (
+                <div className="space-y-6">
+                  <div className="aspect-video w-full border border-[rgba(197,160,89,0.60)] bg-[#000000]">
+                    {liveVideoId ? (
+                      <iframe
+                        src={`https://www.youtube-nocookie.com/embed/${liveVideoId}?rel=0`}
+                        title="DYEGU Episode 01 · Steve Jobs"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                        className="h-full w-full border-0"
+                      />
+                    ) : (
+                      <div className="flex h-full flex-col items-center justify-center gap-4 p-8">
+                        <PhoenixMark size={44} />
+                        <p className="label-track text-[#C5A059]">Now Streaming · Episode 01</p>
+                        <a
+                          href={YOUTUBE_SUBSCRIBE_URL}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="label-track inline-flex items-center gap-2 border border-[#C5A059] bg-[#C5A059] px-6 py-3.5 text-[#000000]"
+                        >
+                          <PlayCircle className="h-4 w-4" strokeWidth={1.25} />
+                          <span>Watch Episode 01 · Steve Jobs</span>
+                        </a>
                       </div>
-                      <span
-                        className={`mt-1.5 block font-display text-[22px] font-medium leading-snug ${
-                          isSelected
-                            ? "text-[#C5A059]"
-                            : "text-[#F5F5F0] group-hover:text-[#C5A059]"
-                        }`}
-                      >
-                        {ch.mirrorLine}
-                      </span>
-                    </div>
-                    <span
-                      className={`mt-1 shrink-0 text-base ${
-                        isSelected ? "text-[#C5A059]" : "text-[#8E8E8A]"
-                      }`}
-                      aria-hidden="true"
+                    )}
+                  </div>
+                </div>
+              ) : (
+                <div className="flex flex-col items-center gap-4">
+                  <div className="flex flex-col items-center justify-center gap-3.5 sm:flex-row">
+                    <button
+                      type="button"
+                      onClick={() => downloadSundayPremiereIcs()}
+                      className="label-track inline-flex w-full items-center justify-center gap-2.5 border border-[#C5A059] bg-[#C5A059] px-7 py-4 text-[#000000] transition-colors hover:bg-[#000000] hover:text-[#C5A059] sm:w-auto"
                     >
-                      {isSelected ? "●" : "→"}
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
-
-            {/* ADDENDUM §1: Quiet Threshold Entry below the 8-chapter selector */}
-            <div className="flex flex-col justify-between gap-3 border-b border-[#444444] py-4 sm:flex-row sm:items-center">
-              <p className="text-sm text-[#8E8E8A]">
-                Not here for yourself? Walking beside someone—or looking to contribute as a
-                practitioner or organization?
-              </p>
-              <button
-                type="button"
-                onClick={() => setAllyDrawer({ open: true, tab: "practitioners" })}
-                className="label-track shrink-0 text-left text-[#C5A059] hover:underline underline-offset-4 sm:text-right"
-              >
-                Open the Ally Desk →
-              </button>
-            </div>
+                      <Bell className="h-4 w-4" strokeWidth={1.4} />
+                      <span>Set Reminder · Sunday 6 Dec (15:00 WAT)</span>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setIdentKey((k) => k + 1);
+                        setIdentOpen(true);
+                      }}
+                      className="label-track inline-flex w-full items-center justify-center gap-2.5 border border-[#444444] bg-[#000000] px-7 py-4 text-[#F5F5F0] transition-colors hover:border-[#C5A059] hover:text-[#C5A059] sm:w-auto"
+                    >
+                      <PlayCircle className="h-4 w-4 text-[#C5A059]" strokeWidth={1.25} />
+                      <span>Watch 4s Title Ident</span>
+                    </button>
+                  </div>
+                  <p className="label-track text-[#8E8E8A]">
+                    Sundays · 15:00 WAT
+                    {localTime ? ` · ${localTime} in your timezone` : ""} · {YOUTUBE_HANDLE}
+                  </p>
+                </div>
+              )}
+            </motion.div>
           </div>
         </div>
       </section>
 
       {/* =================================================================
-          STAGE 2: YOUR HISTORICAL MIRROR & EMPIRICAL PROOF (DYNAMIC)
+          SECTION 02: THE THRESHOLD CHAPTER SELECTOR (OUTCOME: RECOGNITION)
           ================================================================= */}
       <section
-        id="proof"
-        aria-label="Stage 2: Your Historical Mirror and Empirical Proof"
+        id="threshold"
+        aria-label="Where are you standing tonight?"
+        className="bg-[#000000] border-b border-[#444444] py-20 lg:py-24"
+      >
+        <div className="mx-auto max-w-[1200px] px-6">
+          <div className="max-w-2xl">
+            <p className="label-track text-[#C5A059]">
+              STEP 01 · WHERE ARE YOU STANDING TONIGHT?
+            </p>
+            <h2 className="mt-3 font-display text-[36px] font-medium leading-[1.06] text-[#F5F5F0] sm:text-[48px]">
+              Pick the line that sounds like your week.
+            </h2>
+          </div>
+
+          {/* 2-Column Hairline Grid with Framer Motion layoutId='activeChapterIndicator' */}
+          <div
+            role="radiogroup"
+            aria-label="Choose your current life chapter"
+            className="mt-10 grid grid-cols-1 gap-x-10 border-t border-b border-[#444444] md:grid-cols-2"
+          >
+            {MASTER_CHAPTERS.map((ch, idx) => {
+              const isSelected = ch.slug === activeChapter.slug;
+              return (
+                <button
+                  key={ch.slug}
+                  type="button"
+                  role="radio"
+                  aria-checked={isSelected}
+                  onClick={() => selectChapter(ch.slug)}
+                  className="group relative flex w-full items-start gap-4 border-b border-[#444444] py-6 pl-4 pr-2 text-left last:border-b-0 md:[&:nth-last-child(-n+2)]:border-b-0"
+                >
+                  {isSelected && (
+                    <motion.span
+                      layoutId="activeChapterIndicator"
+                      transition={{ duration: 0.45, ease: CINEMA_EASE }}
+                      className="absolute left-0 top-0 bottom-0 w-[2px] bg-[#C5A059]"
+                      aria-hidden="true"
+                    />
+                  )}
+
+                  <span className="mt-1.5">
+                    <ChapterIcon name={ch.icon} active={isSelected} />
+                  </span>
+
+                  <div className="flex-1 min-w-0">
+                    <div className="flex flex-wrap items-center justify-between gap-2">
+                      <span className="label-track text-[#8E8E8A]">
+                        {String(idx + 1).padStart(2, "0")} · {ch.mirrorSubject} (
+                        {ch.wildernessDuration})
+                      </span>
+                      {isSelected && (
+                        <span className="label-track text-[#C5A059]">Active Mirror</span>
+                      )}
+                    </div>
+                    <span
+                      className={`mt-1.5 block font-display text-[22px] font-medium leading-snug transition-colors ${
+                        isSelected
+                          ? "text-[#C5A059]"
+                          : "text-[#F5F5F0] group-hover:text-[#C5A059]"
+                      }`}
+                    >
+                      {ch.line}
+                    </span>
+                    <span className="mt-1 block text-xs leading-relaxed text-[#8E8E8A]">
+                      {ch.subtext}
+                    </span>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Ally Threshold Row */}
+          <div className="flex flex-col justify-between gap-4 border-b border-[#444444] py-4 sm:flex-row sm:items-center">
+            <div className="flex items-start gap-3 sm:items-center">
+              <HeartHandshake
+                className="mt-0.5 h-4 w-4 shrink-0 text-[#C5A059] sm:mt-0"
+                strokeWidth={1.25}
+              />
+              <p className="text-sm text-[#8E8E8A]">
+                Not here for yourself? Walking beside someone—or looking to contribute as a
+                practitioner or organization?
+              </p>
+            </div>
+            <button
+              type="button"
+              onClick={() => openAllyDrawer("practitioners")}
+              className="label-track shrink-0 text-left text-[#C5A059] hover:underline underline-offset-4 sm:text-right"
+            >
+              Open the Ally Desk →
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* =================================================================
+          SECTION 03: LIVING MIRROR & RECEIPT (OUTCOME: HOPE)
+          ================================================================= */}
+      <section
+        id="mirror"
+        ref={mirrorSectionRef}
+        aria-label="Your Historical Mirror and Primary Receipt"
         className="bg-[#000000] border-b border-[#444444] py-20 lg:py-28"
       >
         <div className="mx-auto max-w-[1200px] px-6">
-          {/* Personalized Mirror Banner */}
-          <div className="mb-10 flex flex-col justify-between gap-4 border border-[rgba(197,160,89,0.60)] bg-[#000000] px-6 py-5 md:flex-row md:items-center">
-            <div>
-              <p className="label-track text-[#8E8E8A]">Stage 2 · Your Historical Mirror</p>
-              <p className="mt-1.5 font-display text-2xl font-medium text-[#F5F5F0] sm:text-3xl">
-                Your Chapter:{" "}
-                <span className="text-[#C5A059]">{activeChapter.shortLabel}</span>{" "}
-                <span className="text-[#444444]" aria-hidden="true">
-                  →
-                </span>{" "}
-                Historical Parallel:{" "}
-                <span className="text-[#F5F5F0]">{activeChapter.parallelSubject}</span>
-              </p>
-            </div>
-            <a
-              href="#bench"
-              className="label-track shrink-0 text-[#C5A059] hover:underline underline-offset-4"
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeChapter.slug}
+              initial={prefersReduced ? false : { opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={prefersReduced ? undefined : { opacity: 0, y: -8 }}
+              transition={{ duration: 0.6, ease: CINEMA_EASE }}
+              className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:items-start"
             >
-              Go to Your Builder&apos;s Bench ↓
-            </a>
-          </div>
-
-          {/* Dynamic Archival Primary-Source Plate */}
-          <div
-            ref={plateRef}
-            className="border border-[rgba(197,160,89,0.60)] bg-[#000000] p-6 sm:p-10 lg:p-12"
-          >
-            <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[#444444] pb-4">
-              <p className="label-track text-[#C5A059]">{activeChapter.plateHeader}</p>
-              <span className="label-track text-[#8E8E8A]">{activeChapter.plateBadge}</span>
-            </div>
-
-            <div className="mt-8 grid grid-cols-1 gap-10 lg:grid-cols-12 lg:items-center">
-              <div className="lg:col-span-5">
-                {activeChapter.plateImage ? (
-                  <div className="border border-[#444444] bg-[#000000] p-2">
-                    <img
-                      src={activeChapter.plateImage}
-                      alt={activeChapter.plateExhibitCaption}
-                      width={1280}
-                      height={720}
-                      className="aspect-video w-full object-cover"
-                    />
-                  </div>
-                ) : (
-                  <div className="flex aspect-video w-full flex-col justify-between border border-[#444444] bg-[#000000] p-6">
-                    <div className="flex items-center justify-between label-track text-[#8E8E8A]">
-                      <span>DYEGU ARCHIVE</span>
-                      <span>{activeChapter.parallelDuration}</span>
-                    </div>
-                    <div>
-                      <p className="label-track text-[#C5A059]">Documented Record</p>
-                      <p className="mt-2 font-display text-3xl text-[#F5F5F0]">
-                        {activeChapter.parallelSubject}
-                      </p>
-                    </div>
-                    <p className="border-t border-[#444444] pt-3 label-track text-[#8E8E8A]">
-                      {activeChapter.plateBadge}
-                    </p>
-                  </div>
-                )}
-                <p className="mt-3 label-track text-[#8E8E8A]">
-                  {activeChapter.plateExhibitCaption}
-                </p>
-              </div>
-
-              <div className="lg:col-span-7 space-y-5">
-                <h2 className="font-display text-3xl font-medium leading-[1.1] text-[#F5F5F0] sm:text-[38px]">
-                  {activeChapter.plateHeadline}
+              {/* Left: Empathetic 2nd-Person Narrative Bridge */}
+              <div className="lg:col-span-6 space-y-6">
+                <p className="label-track text-[#C5A059]">{activeChapter.mirrorEyebrow}</p>
+                <h2 className="font-display text-[38px] font-medium leading-[1.06] text-[#F5F5F0] sm:text-[48px]">
+                  {activeChapter.mirrorHeadline}
                 </h2>
-                <p className="font-display text-[22px] leading-[1.56] text-[#F5F5F0]/90">
-                  {activeChapter.plateBeforeQuote}
-                  <span
-                    className="quote-highlight-wrap text-[#F5F5F0]"
-                    data-active={highlightActive ? "true" : "false"}
-                  >
-                    {activeChapter.plateDecisiveQuote}
-                  </span>
-                  {activeChapter.plateAfterQuote}
+                <p className="font-display text-[22px] leading-[1.58] text-[#F5F5F0]/90">
+                  {activeChapter.mirrorNarrative}
                 </p>
-                <p className="text-sm leading-relaxed text-[#8E8E8A]">
-                  {activeChapter.plateContext}
-                </p>
-                <div className="flex flex-wrap items-center gap-6 pt-2">
+
+                <div className="flex flex-col gap-3 pt-2 sm:flex-row sm:flex-wrap sm:items-center">
                   <button
                     type="button"
                     onClick={() => {
@@ -441,278 +433,308 @@ export function JourneyExperience() {
                         openingThree[0];
                       setSelectedDossier(matched);
                     }}
-                    className="label-track border border-[#C5A059] px-5 py-3 text-[#C5A059] transition-colors hover:bg-[#C5A059] hover:text-[#000000]"
+                    className="label-track inline-flex items-center justify-center gap-2 border border-[#C5A059] bg-[#C5A059] px-5 py-3.5 text-[#000000] transition-colors hover:bg-[#000000] hover:text-[#C5A059]"
                   >
-                    Inspect Primary Citations
+                    <FileText className="h-4 w-4" strokeWidth={1.35} />
+                    <span>{activeChapter.receiptCtaLabel}</span>
                   </button>
-                  <Link
-                    href={`/stories/${activeChapter.dossierSlug}`}
-                    className="label-track text-[#F5F5F0] hover:text-[#C5A059]"
+
+                  <button
+                    type="button"
+                    onClick={handleQuietShare}
+                    className="label-track inline-flex items-center justify-center gap-2 border border-[#444444] px-5 py-3.5 text-[#F5F5F0] transition-colors hover:border-[#C5A059] hover:text-[#C5A059]"
                   >
-                    Open Full Dossier →
-                  </Link>
+                    <Share2 className="h-4 w-4 text-[#C5A059]" strokeWidth={1.25} />
+                    <span>
+                      {copiedMirror
+                        ? "Private Link Copied (?chapter=" + activeChapter.slug + ")"
+                        : "Send this mirror quietly to a friend"}
+                    </span>
+                  </button>
+                </div>
+
+                {showWhatsAppOption && (
+                  <div className="flex flex-wrap items-center gap-4 border-l border-[#C5A059] pl-4 text-xs text-[#8E8E8A]">
+                    <span>Direct deep link ready for this chapter.</span>
+                    <button
+                      type="button"
+                      onClick={handleWhatsApp}
+                      className="label-track text-[#C5A059] hover:underline"
+                    >
+                      Send Calm WhatsApp Note →
+                    </button>
+                  </div>
+                )}
+              </div>
+
+              {/* Right: Archival Primary-Source Plate */}
+              <div className="lg:col-span-6">
+                <div className="border border-[rgba(197,160,89,0.60)] bg-[#000000] p-6 sm:p-8">
+                  <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#444444] pb-4">
+                    <p className="label-track text-[#C5A059]">{activeChapter.plateCitation}</p>
+                    <span className="label-track text-[#8E8E8A]">{activeChapter.plateBadge}</span>
+                  </div>
+
+                  {activeChapter.plateImage && (
+                    <div className="mt-6 border border-[#444444] bg-[#000000] p-1.5">
+                      <img
+                        src={activeChapter.plateImage}
+                        alt={activeChapter.plateCitation}
+                        width={1280}
+                        height={720}
+                        className="aspect-video w-full object-cover saturate-[0.6] contrast-[1.08]"
+                      />
+                    </div>
+                  )}
+
+                  <blockquote className="mt-6 font-display text-[24px] leading-[1.52] text-[#F5F5F0]">
+                    {activeChapter.plateQuotePrefix}
+                    <span
+                      className="quote-highlight-wrap text-[#F5F5F0]"
+                      data-active={highlightSweep ? "true" : "false"}
+                    >
+                      {activeChapter.plateQuoteHighlighted}
+                    </span>
+                    {activeChapter.plateQuoteSuffix}
+                  </blockquote>
+
+                  <div className="mt-6 flex items-center justify-between border-t border-[#444444] pt-4">
+                    <span className="label-track text-[#8E8E8A]">
+                      Wilderness · {activeChapter.wildernessDuration}
+                    </span>
+                    <Link
+                      href={`/stories/${activeChapter.dossierSlug}`}
+                      className="label-track text-[#C5A059] hover:underline"
+                    >
+                      Open Full Dossier →
+                    </Link>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </AnimatePresence>
 
-          {/* Season 1 Verified Dossier Strip */}
-          <div className="mt-14">
+          {/* Compact 3-Column Season 1 Verified Dossier Strip */}
+          <div className="mt-16">
             <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
               <p className="label-track text-[#8E8E8A]">
-                Season 1 Verified Dossiers · Click any card for 3 primary citations
+                Opening Season 1 Dossiers · Click any card to inspect primary receipts
               </p>
               <Link href="/stories" className="label-track text-[#C5A059] hover:underline">
                 All 14 Season 1 Episodes →
               </Link>
             </div>
-
             <div className="grid grid-cols-1 border-y border-[#444444] md:grid-cols-3 md:divide-x md:divide-[#444444]">
               {openingThree.map((story) => {
                 const ep = EPISODES[story.slug];
-                const isMirrorDossier = story.slug === activeChapter.dossierSlug;
                 return (
                   <button
                     key={story.slug}
                     type="button"
                     onClick={() => setSelectedDossier(story)}
-                    className={`group flex flex-col justify-between border-b border-[#444444] bg-[#000000] p-7 text-left last:border-b-0 md:border-b-0 ${
-                      isMirrorDossier ? "border-t-2 border-t-[#C5A059]" : ""
-                    }`}
+                    className="group flex flex-col justify-between border-b border-[#444444] bg-[#000000] p-6 text-left last:border-b-0 md:border-b-0"
                   >
                     <div>
                       <div className="flex items-baseline justify-between gap-3">
-                        <span className="font-display text-4xl font-medium text-[#C5A059]">
-                          {story.no}
-                        </span>
+                        <span className="font-display text-3xl text-[#C5A059]">{story.no}</span>
                         <span className="label-track text-[#8E8E8A]">
-                          {ep?.verified_claims ?? 0} verified facts
+                          {ep?.verified_claims ?? 0} verified receipts
                         </span>
                       </div>
-                      <h3 className="mt-3 font-display text-3xl font-medium text-[#F5F5F0] group-hover:text-[#C5A059] transition-colors">
+                      <h3 className="mt-2 font-display text-2xl text-[#F5F5F0] group-hover:text-[#C5A059] transition-colors">
                         {story.subject}
                       </h3>
-                      <p className="mt-2 text-sm leading-relaxed text-[#8E8E8A]">{story.fall}</p>
+                      <p className="mt-2 text-xs leading-relaxed text-[#8E8E8A]">{story.fall}</p>
                     </div>
-                    <div className="mt-7 flex items-center justify-between border-t border-[#444444]/60 pt-4">
-                      <span className="label-track text-[#C5A059]">
-                        Wilderness · {story.wilderness}
-                      </span>
-                      <span className="label-track text-[#F5F5F0] group-hover:text-[#C5A059]">
-                        Inspect Drawer →
-                      </span>
-                    </div>
+                    <p className="mt-5 label-track text-[#C5A059]">Inspect Citations →</p>
                   </button>
                 );
               })}
             </div>
           </div>
-
-          {/* The Wilderness Duration Chart (Highlights Visitor's Selected Chapter) */}
-          <div className="mt-16 border-t border-[#444444] pt-14">
-            <WildernessTimeline
-              embedded
-              highlightedSubjects={activeChapter.highlightedSubjects}
-            />
-          </div>
         </div>
       </section>
 
       {/* =================================================================
-          STAGE 3: THE BUILDER'S BENCH (PRIVATE REFLECTION + OUTCOME CAPTURE)
+          SECTION 04: WILDERNESS REALITY CHECK (OUTCOME: PERSPECTIVE)
           ================================================================= */}
-      <BuildersBench chapter={activeChapter} />
+      <WildernessTimeline
+        activeChapterSlug={activeChapter.slug}
+        highlightedSubjects={activeChapter.highlightedSubjects}
+      />
 
       {/* =================================================================
-          STAGE 4: THE HUMAN ANCHOR, QUIET SHARE & CUSTODIANS OF THE REBUILD
+          SECTION 05: TOMORROW'S PROTOCOL (OUTCOME: CLARITY)
+          ================================================================= */}
+      <TomorrowsProtocol chapter={activeChapter} />
+
+      {/* =================================================================
+          SECTION 06: QUIET WITNESS WALL (OUTCOME: COMMUNITY)
+          ================================================================= */}
+      <QuietWitnessWall />
+
+      {/* =================================================================
+          SECTION 07: SIR K & THREE DOORS (HUMAN ANCHOR & NEXT STEPS)
           ================================================================= */}
       <section
-        aria-label="Stage 4: The Human Anchor and Custodians of the Rebuild"
+        aria-label="Sir K and Three Doors"
         className="bg-[#000000] py-20 lg:py-28"
       >
         <div className="mx-auto max-w-[1200px] px-6">
-          {/* Sir K Host Editorial Split */}
-          <div className="grid grid-cols-1 gap-10 border-b border-[#444444] pb-16 lg:grid-cols-12 lg:gap-0">
+          {/* Part A: Host Anchor */}
+          <div className="grid grid-cols-1 gap-10 pb-16 lg:grid-cols-12 lg:gap-0">
             <div className="lg:col-span-4 lg:pr-12">
               <div className="mx-auto max-w-[300px] lg:mx-0">
                 <div className="flex aspect-[4/5] w-full flex-col items-center justify-between border border-[rgba(197,160,89,0.60)] bg-[#000000] p-6">
-                  <div className="flex w-full items-center justify-between label-track text-[#8E8E8A]">
+                  <div className="flex w-full justify-between label-track text-[#8E8E8A]">
                     <span>4:5</span>
-                    <span>24FPS</span>
+                    <span>4K · 24FPS</span>
                   </div>
                   <div className="flex flex-col items-center gap-4 text-center">
-                    <PhoenixMark size={30} />
+                    <PhoenixMark size={32} />
                     <p className="label-track text-[#C5A059]">SIR K · STUDIO 01</p>
-                    <p className="text-xs text-[#8E8E8A]">Dark-Studio Portrait Reserved</p>
+                    <p className="text-xs leading-relaxed text-[#8E8E8A]">
+                      Reserved 4:5 frame for low-key dark studio portrait
+                    </p>
                   </div>
                   <div className="w-full border-t border-[#444444] pt-3 text-center label-track text-[#8E8E8A]">
-                    DYEGU ARCHIVE · 2026
+                    DYEGU · {YOUTUBE_HANDLE}
                   </div>
                 </div>
               </div>
             </div>
 
             <div className="flex flex-col justify-center lg:col-span-8 lg:border-l lg:border-[#444444] lg:pl-14">
-              <p className="label-track text-[#C5A059]">Stage 4 · The Human Anchor · The DYEGU Rule</p>
+              <p className="label-track text-[#C5A059]">THE DYEGU RULE · SIR K</p>
               <blockquote className="mt-5 font-display text-[32px] font-medium italic leading-[1.24] text-[#F5F5F0] sm:text-[44px]">
                 &ldquo;Sometimes losing the version of your life you outgrew is how you build the
                 one that lasts.&rdquo;
               </blockquote>
-              <p className="mt-5 label-track text-[#8E8E8A]">— Sir K, Host of DYEGU</p>
-              <p className="mt-5 max-w-xl text-sm leading-relaxed text-[#8E8E8A]">
-                These stories are not documented to perform inspiration or sell a miracle formula.
-                They are documented without hype so anyone standing in year three can inspect real
-                dates, see how ordinary endurance works, and keep laying bricks.
+              <p className="mt-6 max-w-2xl text-base leading-relaxed text-[#8E8E8A]">
+                &ldquo;I don&apos;t make these documentaries to tell you everything happens for a
+                reason. I make them because when you&apos;re in the wilderness, you deserve to see
+                the actual receipts of people who refused to quit—and how they put one brick down
+                at a time.&rdquo; <span className="text-[#F5F5F0]">— Sir K</span>
               </p>
 
-              {/* Founding Cohort, Playbook & Studio Mug Preview Strip */}
-              <div className="mt-8 grid grid-cols-1 gap-6 border-t border-[#444444] pt-7 sm:grid-cols-2">
-                <div>
-                  <p className="label-track text-[#C5A059]">
-                    Founding Cohort Waitlist · Opens January 2027
-                  </p>
-                  <p className="mt-2 text-xs leading-relaxed text-[#8E8E8A]">
-                    Free 6-week peer Rebuild Circles ($0) &amp; The Rebuild Playbook ($19).
-                  </p>
-                  <div className="mt-3 flex flex-wrap gap-4 label-track">
-                    <Link href="/community/circles" className="text-[#C5A059] hover:underline">
-                      Join Cohort Waitlist →
-                    </Link>
-                    <Link href="/playbook" className="text-[#F5F5F0] hover:text-[#C5A059]">
-                      Playbook →
-                    </Link>
-                  </div>
+              {/* Subtle Studio Mug Preview (Holding all apparel pending trademark clearance) */}
+              <div className="mt-8 flex items-center gap-4 border-t border-[#444444] pt-6">
+                <div className="h-16 w-16 shrink-0 border border-[rgba(197,160,89,0.60)] bg-[#000000] overflow-hidden">
+                  <img
+                    src={STUDIO_MUG.image}
+                    alt={STUDIO_MUG.name}
+                    width={160}
+                    height={160}
+                    className="h-full w-full object-cover saturate-[0.75]"
+                  />
                 </div>
-
-                <div className="flex items-center gap-4">
-                  <div className="h-16 w-16 shrink-0 border border-[rgba(197,160,89,0.60)] bg-[#000000] overflow-hidden">
-                    <img
-                      src={STUDIO_MUG.image}
-                      alt={STUDIO_MUG.name}
-                      width={160}
-                      height={160}
-                      className="h-full w-full object-cover"
-                    />
-                  </div>
-                  <div>
-                    <p className="label-track text-[#8E8E8A]">Coming Soon · Edition 01</p>
-                    <p className="font-display text-xl text-[#F5F5F0]">{STUDIO_MUG.name}</p>
-                    <Link href="/shop" className="label-track text-[#C5A059] hover:underline">
-                      12oz Ceramic Preview →
-                    </Link>
-                  </div>
+                <div>
+                  <p className="label-track text-[#8E8E8A]">Studio Prop · Coming Soon</p>
+                  <p className="font-display text-xl text-[#F5F5F0]">
+                    {STUDIO_MUG.name}{" "}
+                    <span className="text-sm text-[#8E8E8A]">(12oz Matte-Black Ceramic)</span>
+                  </p>
+                  <Link href="/shop" className="label-track text-[#C5A059] hover:underline">
+                    Join Preview List →
+                  </Link>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Quiet Share Artifact (For Silent Carriers) */}
-          <div className="my-12 flex flex-col justify-between gap-5 border border-[rgba(197,160,89,0.60)] bg-[#000000] px-6 py-6 md:flex-row md:items-center">
-            <div>
-              <p className="label-track text-[#C5A059]">
-                Quiet Share · For Someone Carrying a Heavy Week
-              </p>
-              <p className="mt-1.5 text-sm text-[#8E8E8A]">
-                Send this exact chapter mirror (
-                <span className="text-[#F5F5F0]">?chapter={activeChapter.slug}</span>) with a calm,
-                zero-cringe note.
-              </p>
-            </div>
-            <div className="flex flex-wrap gap-3">
-              <button
-                type="button"
-                onClick={handleCopyPrivateLink}
-                className="label-track border border-[#444444] px-4 py-3 text-[#F5F5F0] hover:border-[#C5A059] hover:text-[#C5A059]"
-              >
-                {copiedLink ? "Private Link Copied" : "Copy private link"}
-              </button>
-              <button
-                type="button"
-                onClick={handleWhatsAppShare}
-                className="label-track border border-[#C5A059] bg-[#C5A059] px-5 py-3 text-[#000000] hover:bg-[#000000] hover:text-[#C5A059]"
-              >
-                Send on WhatsApp
-              </button>
-            </div>
-          </div>
-
-          {/* ADDENDUM §2: Custodians of the Rebuild (2-column hairline grid below Sir K's Host Block) */}
-          <div className="mt-14">
-            <div className="mb-5 flex flex-wrap items-center justify-between gap-2">
-              <p className="label-track text-[#8E8E8A]">
-                Custodians of the Rebuild · Practitioners, Organizations &amp; Underwriters
-              </p>
-              <Link href="/allies" className="label-track text-[#C5A059] hover:underline">
-                Visit Full Ally Desk (/allies) →
-              </Link>
-            </div>
-
-            <div className="grid grid-cols-1 divide-y divide-[#444444] border-y border-[#444444] md:grid-cols-2 md:divide-x md:divide-y-0">
-              {/* Left Column — Vetted Practitioners & Mentors */}
-              <div className="flex flex-col justify-between py-9 md:pr-10">
-                <div>
-                  <p className="label-track text-[#C5A059]">FOR PRACTITIONERS · ZERO PITCHING</p>
-                  <h3 className="mt-3 font-display text-3xl font-medium text-[#F5F5F0]">
-                    Vetted Practitioners &amp; Mentors
-                  </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-[#8E8E8A]">
-                    Therapists, career leads, legal/financial advisors, and elders who have walked
-                    through a rebuild. Contribute one pitch-free hour a month to our January 2027
-                    Founding Cohort.
-                  </p>
-                </div>
-                <div className="mt-7">
-                  <button
-                    type="button"
-                    onClick={() => setAllyDrawer({ open: true, tab: "practitioners" })}
-                    className="label-track border border-[#C5A059] px-5 py-3 text-[#C5A059] transition-colors hover:bg-[#C5A059] hover:text-[#000000]"
-                  >
-                    Apply to the Vetted Roster →
-                  </button>
-                </div>
+          {/* Part B: Three Doors (3-column hairline grid, 1px solid #444444) */}
+          <div className="grid grid-cols-1 divide-y divide-[#444444] border-y border-[#444444] md:grid-cols-3 md:divide-x md:divide-y-0">
+            {/* Door 01: Watch */}
+            <div className="flex flex-col justify-between py-9 md:pr-8">
+              <div>
+                <PlayCircle className="h-5 w-5 text-[#C5A059]" strokeWidth={1.25} />
+                <p className="mt-4 label-track text-[#C5A059]">DOOR 01 · WATCH</p>
+                <h3 className="mt-2 font-display text-3xl font-medium text-[#F5F5F0]">
+                  The Sunday Screening Ritual
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-[#8E8E8A]">
+                  New 25-minute investigative documentaries every Sunday at 15:00 WAT on{" "}
+                  {YOUTUBE_HANDLE}.
+                </p>
               </div>
+              <div className="mt-7 flex flex-col gap-3">
+                <a
+                  href={YOUTUBE_SUBSCRIBE_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="label-track text-[#C5A059] hover:underline underline-offset-4"
+                >
+                  Subscribe on YouTube ({YOUTUBE_HANDLE}) →
+                </a>
+                <button
+                  type="button"
+                  onClick={() => downloadSundayPremiereIcs()}
+                  className="label-track text-left text-[#8E8E8A] hover:text-[#F5F5F0]"
+                >
+                  Add Sundays (.ics)
+                </button>
+              </div>
+            </div>
 
-              {/* Right Column — Organizations, NGOs & Underwriters */}
-              <div className="flex flex-col justify-between py-9 md:pl-10">
-                <div>
-                  <p className="label-track text-[#C5A059]">FOR INSTITUTIONS &amp; SPONSORS</p>
-                  <h3 className="mt-3 font-display text-3xl font-medium text-[#F5F5F0]">
-                    Organizations, NGOs &amp; Underwriters
-                  </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-[#8E8E8A]">
-                    Bring private Season 1 documentary screenings and Sir K&apos;s talks to teams
-                    navigating restructuring or transition—or underwrite free access to the Rebuild
-                    Playbook.
-                  </p>
-                </div>
-                <div className="mt-7 flex flex-wrap items-center gap-5">
-                  <button
-                    type="button"
-                    onClick={() => setAllyDrawer({ open: true, tab: "organizations" })}
-                    className="label-track border border-[#C5A059] px-5 py-3 text-[#C5A059] transition-colors hover:bg-[#C5A059] hover:text-[#000000]"
-                  >
-                    Request the Institutional Brief →
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setAllyDrawer({ open: true, tab: "underwriters" })}
-                    className="label-track text-[#8E8E8A] hover:text-[#C5A059]"
-                  >
-                    Season Underwriting →
-                  </button>
-                </div>
+            {/* Door 02: Walk Together */}
+            <div className="flex flex-col justify-between py-9 md:px-8">
+              <div>
+                <Users className="h-5 w-5 text-[#C5A059]" strokeWidth={1.25} />
+                <p className="mt-4 label-track text-[#C5A059]">DOOR 02 · WALK TOGETHER</p>
+                <h3 className="mt-2 font-display text-3xl font-medium text-[#F5F5F0]">
+                  Founding Rebuild Circles
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-[#8E8E8A]">
+                  Small, peer-led rooms of 6–8 people navigating your exact chapter in your
+                  timezone. Zero pitching, strictly confidential. Opening January 2027.
+                </p>
+              </div>
+              <div className="mt-7">
+                <Link
+                  href={`/community/circles?stage=${activeChapter.stageKey}`}
+                  className="label-track text-[#C5A059] hover:underline underline-offset-4"
+                >
+                  Join the Founding Cohort Waitlist →
+                </Link>
+              </div>
+            </div>
+
+            {/* Door 03: Stand Behind the Work */}
+            <div className="flex flex-col justify-between py-9 md:pl-8">
+              <div>
+                <HeartHandshake className="h-5 w-5 text-[#C5A059]" strokeWidth={1.25} />
+                <p className="mt-4 label-track text-[#C5A059]">DOOR 03 · STAND BEHIND THE WORK</p>
+                <h3 className="mt-2 font-display text-3xl font-medium text-[#F5F5F0]">
+                  Practitioners &amp; Institutional Allies
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-[#8E8E8A]">
+                  For vetted therapists, mentors, coaches, NGOs, and organizations looking to
+                  contribute pitch-free guidance or bring DYEGU screenings to teams in transition.
+                </p>
+              </div>
+              <div className="mt-7 flex flex-wrap items-center gap-5">
+                <button
+                  type="button"
+                  onClick={() => openAllyDrawer("practitioners")}
+                  className="label-track text-[#C5A059] hover:underline underline-offset-4"
+                >
+                  Enter the Ally Desk →
+                </button>
+                <Link href="/allies" className="label-track text-[#8E8E8A] hover:text-[#F5F5F0]">
+                  /allies
+                </Link>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 4s Official Ident Modal */}
+      {/* 4s Title Ident Lightbox Modal */}
       {identOpen && (
         <div
           role="dialog"
           aria-modal="true"
-          aria-label="DYEGU Official 4-Second Ident"
+          aria-label="DYEGU Official 4-Second Title Ident"
           className="fixed inset-0 z-50 flex items-center justify-center bg-[#000000]/95 p-5"
           onClick={(e) => {
             if (e.target === e.currentTarget) setIdentOpen(false);
@@ -727,9 +749,9 @@ export function JourneyExperience() {
                 type="button"
                 onClick={() => setIdentOpen(false)}
                 aria-label="Close ident modal"
-                className="border border-[#444444] px-2.5 py-1 text-sm text-[#8E8E8A] hover:border-[#C5A059] hover:text-[#C5A059]"
+                className="border border-[#444444] p-1.5 text-[#8E8E8A] hover:border-[#C5A059] hover:text-[#C5A059]"
               >
-                ×
+                <X className="h-4 w-4" strokeWidth={1.25} />
               </button>
             </div>
             <div className="aspect-video w-full border border-[#444444] bg-[#000000]">
@@ -746,7 +768,7 @@ export function JourneyExperience() {
             </div>
             <div className="mt-4 flex flex-wrap items-center justify-between gap-3 border-t border-[#444444] pt-4">
               <span className="label-track text-[#8E8E8A]">
-                0–0.8s Hairline · 0.8–3.2s Phoenix Rise · 4.0s Void Black Hold
+                0–0.8s Hairline · 0.8–3.2s Rising Phoenix · 4.0s Void Hold
               </span>
               <button
                 type="button"
@@ -762,13 +784,6 @@ export function JourneyExperience() {
 
       {/* Slide-Over Investigative Dossier Drawer */}
       <DossierDrawer story={selectedDossier} onClose={() => setSelectedDossier(null)} />
-
-      {/* Slide-Over Ally Desk Drawer (Practitioners / Orgs / Underwriters) */}
-      <AllyDeskDrawer
-        open={allyDrawer.open}
-        initialTab={allyDrawer.tab}
-        onClose={() => setAllyDrawer((prev) => ({ ...prev, open: false }))}
-      />
     </>
   );
 }
