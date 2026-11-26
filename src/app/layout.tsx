@@ -4,6 +4,7 @@ import "./globals.css";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { DyeguModalProvider } from "@/components/ModalContext";
+import { SmoothScroll } from "@/components/MotionPrimitives";
 import { SITE_URL } from "@/lib/dyegu-data";
 
 const displayFont = Cormorant_Garamond({
@@ -61,6 +62,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         >
           Skip to content
         </a>
+        <SmoothScroll />
         <DyeguModalProvider>
           <SiteHeader />
           <main id="main" className="bg-[#000000]">

@@ -3,14 +3,18 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { motion, useReducedMotion, useScroll } from "framer-motion";
 import { Calendar, Menu, Play, X } from "lucide-react";
 import { BrandLockup, PhoenixMark } from "./BrandMarks";
 import { downloadSundayPremiereIcs, getGoogleCalendarUrl } from "@/lib/calendar";
 import { PREMIERE_ISO, YOUTUBE_HANDLE, YOUTUBE_SUBSCRIBE_URL } from "@/lib/dyegu-data";
 import { useDyeguModals } from "./ModalContext";
+import { lockPageScroll } from "./MotionPrimitives";
 
 export function SiteHeader() {
   const pathname = usePathname();
+  const still = useReducedMotion();
+  const { scrollYProgress } = useScroll();
   const { openStandardsModal, openAllyDrawer } = useDyeguModals();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [calendarOpen, setCalendarOpen] = useState(false);
@@ -19,6 +23,19 @@ export function SiteHeader() {
   useEffect(() => {
     setIsLive(Date.now() >= new Date(PREMIERE_ISO).getTime());
   }, []);
+
+  useEffect(() => {
+    if (!calendarOpen) return;
+    lockPageScroll(true);
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setCalendarOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => {
+      lockPageScroll(false);
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [calendarOpen]);
 
   if (pathname === "/reset") {
     return (
@@ -51,20 +68,20 @@ export function SiteHeader() {
 
           <nav aria-label="Primary" className="hidden lg:flex items-center gap-8">
             <Link
-              href="/#mirror"
+              href="/#threshold"
+              className="label-track text-[#F5F5F0]/80 transition-colors hover:text-[#C5A059]"
+            >
+              Tomorrow&apos;s Protocol
+            </Link>
+            <Link
+              href="/#episodes"
               className={`label-track transition-colors ${
                 pathname.startsWith("/stories")
                   ? "text-[#C5A059]"
                   : "text-[#F5F5F0]/80 hover:text-[#C5A059]"
               }`}
             >
-              Stories
-            </Link>
-            <Link
-              href="/#protocol"
-              className="label-track text-[#F5F5F0]/80 transition-colors hover:text-[#C5A059]"
-            >
-              Tomorrow&apos;s Protocol
+              Episodes
             </Link>
             <Link
               href="/#field-note"
@@ -88,7 +105,7 @@ export function SiteHeader() {
           <div className="flex items-center gap-3">
             {isLive ? (
               <Link
-                href="/#screening-player"
+                href="/#episodes"
                 className="label-track inline-flex items-center gap-2 border border-[#C5A059] bg-[#C5A059] px-4 py-2.5 text-[#000000] transition-colors hover:bg-[#000000] hover:text-[#C5A059]"
               >
                 <Play className="h-3.5 w-3.5" strokeWidth={1.5} />
@@ -122,6 +139,15 @@ export function SiteHeader() {
           </div>
         </div>
 
+        {/* 1px #C5A059 Scroll Progress Hairline (modeled on UcheChineke SiteNav) */}
+        {!still && (
+          <motion.span
+            aria-hidden="true"
+            style={{ scaleX: scrollYProgress, transformOrigin: "left" }}
+            className="pointer-events-none absolute inset-x-0 -bottom-px block h-px bg-[#C5A059]"
+          />
+        )}
+
         {mobileOpen && (
           <nav
             id="mobile-nav"
@@ -130,18 +156,18 @@ export function SiteHeader() {
           >
             <div className="flex flex-col divide-y divide-[#444444]/60">
               <Link
-                href="/#mirror"
-                onClick={() => setMobileOpen(false)}
-                className="label-track py-3.5 text-[#F5F5F0] hover:text-[#C5A059]"
-              >
-                Stories
-              </Link>
-              <Link
-                href="/#protocol"
+                href="/#threshold"
                 onClick={() => setMobileOpen(false)}
                 className="label-track py-3.5 text-[#F5F5F0] hover:text-[#C5A059]"
               >
                 Tomorrow&apos;s Protocol
+              </Link>
+              <Link
+                href="/#episodes"
+                onClick={() => setMobileOpen(false)}
+                className="label-track py-3.5 text-[#F5F5F0] hover:text-[#C5A059]"
+              >
+                Episodes
               </Link>
               <Link
                 href="/#field-note"
@@ -181,7 +207,8 @@ export function SiteHeader() {
           role="dialog"
           aria-modal="true"
           aria-label="Season 1 Premiere Calendar"
-          className="fixed inset-0 z-50 flex items-center justify-center bg-[#000000]/90 p-5"
+          data-lenis-prevent
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-[#000000]/90 p-5"
           onClick={(e) => {
             if (e.target === e.currentTarget) setCalendarOpen(false);
           }}

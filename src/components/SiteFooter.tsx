@@ -93,7 +93,7 @@ export function SiteFooter() {
               <p className="label-track text-[#C5A059] mb-4">For Rebuilders</p>
               <ul className="space-y-2.5 text-sm text-[#8E8E8A]">
                 <li>
-                  <Link href="/#protocol" className="hover:text-[#F5F5F0]">
+                  <Link href="/#threshold" className="hover:text-[#F5F5F0]">
                     Tomorrow&apos;s Protocol
                   </Link>
                 </li>
