@@ -159,12 +159,11 @@ export function ChapterRoomModal({
             transition={{ duration: 0.45, ease: SOFT }}
             className="relative flex max-h-[92vh] w-full max-w-[960px] flex-col border border-[rgba(197,160,89,0.60)] bg-[#000000]"
           >
-            {/* Sticky Modal Top Bar */}
+            {/* Sticky Modal Top Bar — 100% about the visitor */}
             <div className="flex items-center justify-between gap-4 border-b border-[#444444] px-6 py-4 sm:px-8">
               <div className="min-w-0">
                 <p className="label-track text-[#C5A059] truncate">
-                  {chapter.shortLabel} · Historical Parallel: {chapter.mirrorSubject} (
-                  {chapter.wildernessDuration})
+                  Your Chapter · {chapter.shortLabel}
                 </p>
               </div>
               <div className="flex items-center gap-2 shrink-0">
@@ -192,13 +191,13 @@ export function ChapterRoomModal({
               data-lenis-prevent
               className="flex-1 overflow-y-auto px-6 py-7 sm:px-9 sm:py-9 space-y-9"
             >
-              {/* 1. Immediate Recognition */}
+              {/* 1. Immediate Recognition — Strictly About the Visitor */}
               <div>
                 <h2 className="font-display text-3xl font-medium leading-[1.08] text-[#F5F5F0] sm:text-5xl">
                   {chapter.line}
                 </h2>
-                <p className="mt-5 font-display text-[21px] leading-[1.56] text-[#F5F5F0]/88 max-w-3xl">
-                  {chapter.mirrorNarrative}
+                <p className="mt-5 font-display text-[22px] leading-[1.54] text-[#F5F5F0]/90 max-w-3xl">
+                  {chapter.visitorTruth}
                 </p>
               </div>
 
@@ -275,10 +274,10 @@ export function ChapterRoomModal({
                   onClose();
                   onInspectDossier(slug);
                 }}
-                className="label-track inline-flex items-center gap-2 text-[#C5A059] hover:underline"
+                className="label-track inline-flex items-center gap-2 text-[#8E8E8A] hover:text-[#C5A059]"
               >
                 <FileText className="h-3.5 w-3.5" strokeWidth={1.25} />
-                <span>Inspect {chapter.mirrorSubject} Primary Receipts →</span>
+                <span>Optional: See a documented parallel ({chapter.mirrorSubject}) →</span>
               </button>
 
               <div className="flex flex-wrap items-center gap-4 label-track">

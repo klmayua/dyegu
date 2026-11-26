@@ -6,11 +6,12 @@ import { motion, useReducedMotion } from "framer-motion";
 import {
   Activity,
   ArrowUpRight,
-  Bell,
+  BookOpen,
   Clock,
   CloudFog,
   Compass,
   DoorClosed,
+  Feather,
   Flame,
   HeartCrack,
   HeartHandshake,
@@ -36,7 +37,6 @@ import {
 import { downloadSundayPremiereIcs, formatLocalBroadcastTime } from "@/lib/calendar";
 import { PhoenixMark } from "./BrandMarks";
 import { DossierDrawer } from "./DossierDrawer";
-import { WildernessTimeline } from "./WildernessTimeline";
 import { QuietWitnessWall } from "./QuietWitnessWall";
 import { ChapterRoomModal } from "./ChapterRoomModal";
 import { EpisodeStack } from "./EpisodeStack";
@@ -91,7 +91,6 @@ export function JourneyExperience() {
 
   const openingThree = STORIES.filter((s) => s.livePage);
 
-  // If visitor arrives via a deep-linked ?chapter=slug share link, open that chapter room directly
   useEffect(() => {
     setLocalTime(formatLocalBroadcastTime(PREMIERE_ISO));
     if (typeof window !== "undefined") {
@@ -142,11 +141,11 @@ export function JourneyExperience() {
 
   return (
     <>
-      {/* Once-per-visit cinema curtain (lifts smoothly upward on load) */}
+      {/* Once-per-visit cinema curtain */}
       <OpeningCurtain />
 
       {/* =================================================================
-          ACT 1: THE SCREENING ROOM HERO (PEACE — CLEAN & DIRECT)
+          ACT 1: THE HERO — 100% ABOUT THE VISITOR (ZERO EPISODE NOISE)
           ================================================================= */}
       <section
         aria-label="Hero"
@@ -161,9 +160,7 @@ export function JourneyExperience() {
               className="mb-7 flex flex-col items-center gap-3.5"
             >
               <PhoenixMark size={38} />
-              <p className="label-track text-[#C5A059]">
-                DON&apos;T YOU EVER GIVE UP · {YOUTUBE_HANDLE}
-              </p>
+              <p className="label-track text-[#C5A059]">DON&apos;T YOU EVER GIVE UP</p>
             </motion.div>
 
             <MaskedHeadline
@@ -179,56 +176,39 @@ export function JourneyExperience() {
               initial={still ? false : { opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: still ? 0 : 0.45, ease: SOFT }}
-              className="mx-auto mt-7 max-w-[56ch] text-base leading-[1.76] text-[#F5F5F0]/80 sm:text-[18px]"
+              className="mx-auto mt-7 max-w-[54ch] text-base leading-[1.76] text-[#F5F5F0]/80 sm:text-[18px]"
             >
-              Just came over from a video—or arrived here tonight in the middle of a hard season?
-              Pick the line that sounds like your week below. Your tailored 3-step morning protocol
-              and 1-page Field Note open immediately.
+              Take a breath. Nobody here is going to lecture you or sell you a miracle. Tell us
+              where you&apos;re standing tonight—and leave with a clear, quiet plan for tomorrow
+              morning.
             </motion.p>
 
             <motion.div
               initial={still ? false : { opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: still ? 0 : 0.6, ease: SOFT }}
-              className="mt-10 flex flex-col items-center gap-4"
+              className="mt-10 flex flex-col items-center justify-center gap-3.5 sm:flex-row"
             >
-              <div className="flex flex-col items-center justify-center gap-3.5 sm:flex-row">
-                <a
-                  href="#threshold"
-                  className="label-track inline-flex w-full items-center justify-center gap-2 border border-[#C5A059] bg-[#C5A059] px-7 py-4 text-[#000000] transition-colors hover:bg-[#000000] hover:text-[#C5A059] sm:w-auto"
-                >
-                  <span>Where are you standing tonight? ↓</span>
-                </a>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setIdentKey((k) => k + 1);
-                    setIdentOpen(true);
-                  }}
-                  className="label-track inline-flex w-full items-center justify-center gap-2.5 border border-[#444444] bg-[#000000] px-7 py-4 text-[#F5F5F0] transition-colors hover:border-[#C5A059] hover:text-[#C5A059] sm:w-auto"
-                >
-                  <PlayCircle className="h-4 w-4 text-[#C5A059]" strokeWidth={1.25} />
-                  <span>Watch 4s Title Ident</span>
-                </button>
-              </div>
-              <button
-                type="button"
-                onClick={() => downloadSundayPremiereIcs()}
-                className="label-track inline-flex items-center gap-2 text-[#8E8E8A] hover:text-[#C5A059]"
+              <a
+                href="#threshold"
+                className="label-track inline-flex w-full items-center justify-center gap-2 border border-[#C5A059] bg-[#C5A059] px-7 py-4 text-[#000000] transition-colors hover:bg-[#000000] hover:text-[#C5A059] sm:w-auto"
               >
-                <Bell className="h-3.5 w-3.5 text-[#C5A059]" strokeWidth={1.25} />
-                <span>
-                  Premiere · Sun 6 Dec · 15:00 WAT
-                  {localTime ? ` (${localTime} your time)` : ""} · Add .ICS
-                </span>
-              </button>
+                <span>Where are you standing tonight? ↓</span>
+              </a>
+              <Link
+                href="/field-note"
+                className="label-track inline-flex w-full items-center justify-center gap-2 border border-[#444444] bg-[#000000] px-7 py-4 text-[#F5F5F0] transition-colors hover:border-[#C5A059] hover:text-[#C5A059] sm:w-auto"
+              >
+                <span>Open 1-Page Field Note</span>
+              </Link>
             </motion.div>
           </div>
         </div>
       </section>
 
       {/* =================================================================
-          ACT 2: INTERACTIVE CHAPTER ROOMS (FLOWS IN 1-BY-1 · OPENS AT ONCE!)
+          ACT 2: YOUR CHAPTER — 100% ABOUT THE VISITOR (ZERO CELEBRITY LABELS)
+          Clicking any line opens their tailored Tomorrow Morning Protocol AT ONCE!
           ================================================================= */}
       <section
         id="threshold"
@@ -238,20 +218,17 @@ export function JourneyExperience() {
         <div className="mx-auto max-w-[1200px] px-6">
           <Reveal className="flex flex-col justify-between gap-5 md:flex-row md:items-end">
             <div className="max-w-2xl">
-              <p className="label-track text-[#C5A059]">
-                STEP 01 · CLARITY FOR TOMORROW MORNING
-              </p>
+              <p className="label-track text-[#C5A059]">STEP 01 · YOUR REBUILD STARTS HERE</p>
               <h2 className="mt-3 font-display text-[38px] font-medium leading-[1.05] text-[#F5F5F0] sm:text-[50px]">
                 Pick the line that sounds like your week.
               </h2>
             </div>
             <p className="max-w-sm text-sm leading-relaxed text-[#8E8E8A]">
-              Tap any line to open its tailored 3-step morning protocol, private 7:00 AM scratchpad,
-              and printable 1-Page Field Note immediately.
+              Tap any line to open your tailored 3-step Tomorrow Morning Protocol, private 7:00 AM
+              scratchpad, and custom 1-Page Field Note right away.
             </p>
           </Reveal>
 
-          {/* 8 Lines Flow In One at a Time — Clicking Opens ChapterRoomModal Right Away */}
           <StaggerList
             gap={0.065}
             className="mt-12 grid grid-cols-1 gap-x-10 border-t border-b border-[#444444] md:grid-cols-2"
@@ -283,7 +260,7 @@ export function JourneyExperience() {
                     </div>
                   </div>
                   <span className="mt-1 inline-flex shrink-0 items-center gap-1 label-track text-[#C5A059] opacity-75 transition-opacity group-hover:opacity-100">
-                    <span className="hidden sm:inline">Open</span>
+                    <span className="hidden sm:inline">Open Protocol</span>
                     <ArrowUpRight className="h-4 w-4" strokeWidth={1.35} />
                   </span>
                 </button>
@@ -291,7 +268,7 @@ export function JourneyExperience() {
             ))}
           </StaggerList>
 
-          {/* Ally Threshold Row */}
+          {/* Quiet Ally Threshold Row */}
           <Reveal delay={0.1}>
             <div className="flex flex-col justify-between gap-4 border-b border-[#444444] py-5 sm:flex-row sm:items-center">
               <div className="flex items-start gap-3 sm:items-center">
@@ -317,27 +294,140 @@ export function JourneyExperience() {
       </section>
 
       {/* =================================================================
-          ACT 3: SCROLL-PACED STATEMENT + WILDERNESS TIMELINE (PERSPECTIVE)
+          ACT 3: QUIET WITNESS WALL — REAL PEOPLE IN THE ROOM TONIGHT
+          ================================================================= */}
+      <QuietWitnessWall />
+
+      {/* =================================================================
+          ACT 4: YOUR NEXT STEPS — FIELD NOTE, REBUILD CIRCLES, PLAYBOOK, ALLIES
           ================================================================= */}
       <section
-        aria-label="Perspective and Wilderness Timeline"
+        aria-label="Your Rebuild Tools and Community"
         className="bg-[#000000] border-b border-[#444444] py-20 lg:py-28"
       >
         <div className="mx-auto max-w-[1200px] px-6">
           <ScrollStatement
-            eyebrow="PERSPECTIVE · WHY YEAR TWO FEELS PERMANENT"
-            text="Social media compresses ten-year rebuilds into sixty-second clips. Every real comeback on record took between twenty-eight months and twenty years. You are not behind—you are in the middle."
+            eyebrow="WHY YOU ARE HERE"
+            text="You don't need a five-year speech tonight. You need one clean page, three quiet moves before noon, and a room where nobody pretends they have it all figured out."
           />
 
-          <div className="mt-16 border-t border-[#444444] pt-14">
-            <WildernessTimeline embedded />
-          </div>
+          {/* 1-Page Field Note + Sunday Comeback File Capture */}
+          <Reveal className="mt-14 border border-[rgba(197,160,89,0.60)] bg-[#000000] p-7 sm:p-10">
+            <div id="field-note" className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-center">
+              <div className="lg:col-span-6">
+                <p className="label-track text-[#C5A059]">
+                  The Comeback File · Free Every Sunday
+                </p>
+                <h2 className="mt-2 font-display text-3xl font-medium text-[#F5F5F0] sm:text-4xl">
+                  Take the 1-Page Wilderness Field Note offline tonight.
+                </h2>
+                <p className="mt-3 text-sm leading-relaxed text-[#8E8E8A]">
+                  A single printable sheet to separate documented facts from the 2:00 AM verdicts in
+                  your head—plus one quiet, grounded dispatch every Sunday.
+                </p>
+              </div>
+              <div className="lg:col-span-6">
+                <SubscribeForm
+                  buttonLabel="Send My 1-Page Field Note →"
+                  placeholder="Your email address"
+                  finePrint="Zero spam. Zero hustle sermons. Unsubscribe in 1 click."
+                />
+              </div>
+            </div>
+          </Reveal>
+
+          {/* Three Visitor-First Doors Flowing In One at a Time */}
+          <StaggerList
+            gap={0.09}
+            className="mt-12 grid grid-cols-1 divide-y divide-[#444444] border-y border-[#444444] md:grid-cols-3 md:divide-x md:divide-y-0"
+          >
+            <StaggerItem className="flex flex-col justify-between py-9 md:pr-8">
+              <div>
+                <Users className="h-5 w-5 text-[#C5A059]" strokeWidth={1.25} />
+                <p className="mt-4 label-track text-[#C5A059]">
+                  WALK TOGETHER · OPENS JANUARY 2027 · $0
+                </p>
+                <h3 className="mt-2 font-display text-3xl font-medium text-[#F5F5F0]">
+                  Founding Rebuild Circles
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-[#8E8E8A]">
+                  Six to eight ordinary peers navigating your exact chapter in your timezone. Camera
+                  optional on rough days, strictly zero pitching.
+                </p>
+              </div>
+              <div className="mt-7">
+                <Link
+                  href="/community/circles"
+                  className="label-track text-[#C5A059] hover:underline underline-offset-4"
+                >
+                  Join the Founding Cohort Waitlist →
+                </Link>
+              </div>
+            </StaggerItem>
+
+            <StaggerItem className="flex flex-col justify-between py-9 md:px-8">
+              <div>
+                <BookOpen className="h-5 w-5 text-[#C5A059]" strokeWidth={1.25} />
+                <p className="mt-4 label-track text-[#C5A059]">
+                  WORKBOOK &amp; READER ARCHIVE
+                </p>
+                <h3 className="mt-2 font-display text-3xl font-medium text-[#F5F5F0]">
+                  The Rebuild Playbook &amp; Your Story
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-[#8E8E8A]">
+                  A calm 7-chapter practical workbook opening January 2027 ($19)—or share your own
+                  rebuild privately with real people who read every word.
+                </p>
+              </div>
+              <div className="mt-7 flex flex-wrap gap-5">
+                <Link
+                  href="/playbook"
+                  className="label-track text-[#C5A059] hover:underline underline-offset-4"
+                >
+                  Preview Playbook →
+                </Link>
+                <Link
+                  href="/share"
+                  className="label-track inline-flex items-center gap-1.5 text-[#8E8E8A] hover:text-[#F5F5F0]"
+                >
+                  <Feather className="h-3.5 w-3.5" strokeWidth={1.25} />
+                  <span>Share Privately</span>
+                </Link>
+              </div>
+            </StaggerItem>
+
+            <StaggerItem className="flex flex-col justify-between py-9 md:pl-8">
+              <div>
+                <HeartHandshake className="h-5 w-5 text-[#C5A059]" strokeWidth={1.25} />
+                <p className="mt-4 label-track text-[#C5A059]">CUSTODIANS OF THE REBUILD</p>
+                <h3 className="mt-2 font-display text-3xl font-medium text-[#F5F5F0]">
+                  Practitioners &amp; Institutional Allies
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-[#8E8E8A]">
+                  For vetted therapists, mentors, advisors, NGOs, and organizations looking to give
+                  pitch-free guidance or underwrite access for people in transition.
+                </p>
+              </div>
+              <div className="mt-7 flex flex-wrap items-center gap-5">
+                <button
+                  type="button"
+                  onClick={() => openAllyDrawer("practitioners")}
+                  className="label-track text-[#C5A059] hover:underline underline-offset-4"
+                >
+                  Enter the Ally Desk →
+                </button>
+                <Link href="/allies" className="label-track text-[#8E8E8A] hover:text-[#F5F5F0]">
+                  /allies
+                </Link>
+              </div>
+            </StaggerItem>
+          </StaggerList>
         </div>
       </section>
 
       {/* =================================================================
-          ACT 4: ONE SINGLE EPISODES SECTION (STICKY-STACKING CASE STUDY CARDS)
-          Explicitly for visitors who haven't watched on YouTube yet!
+          ACT 5 (OPTIONAL · AT THE BOTTOM): ONE SINGLE EPISODES SECTION
+          For visitors who didn't arrive from YouTube and want to inspect the films
           ================================================================= */}
       <section
         id="episodes"
@@ -348,56 +438,83 @@ export function JourneyExperience() {
           <Reveal className="mb-14 flex flex-col justify-between gap-6 md:flex-row md:items-end">
             <div className="max-w-2xl">
               <p className="label-track text-[#C5A059]">
-                NEW HERE? · SEASON 1 DOCUMENTARIES
+                DIDN&apos;T COME FROM YOUTUBE? · SEASON 1 ARCHIVE
               </p>
               <h2 className="mt-3 font-display text-[38px] font-medium leading-[1.05] text-[#F5F5F0] sm:text-[52px]">
                 Haven&apos;t watched the films yet?
               </h2>
               <p className="mt-4 text-base leading-relaxed text-[#8E8E8A]">
-                If you arrived from elsewhere and haven&apos;t seen the documentaries on{" "}
-                {YOUTUBE_HANDLE}, start with any opening dossier below. Click a card to inspect the
-                primary filings or read the full verified chronology.
+                Click any opening documentary below to inspect the verified primary receipts—or
+                watch every Sunday at 15:00 WAT
+                {localTime ? ` (${localTime} your time)` : ""} on {YOUTUBE_HANDLE}.
               </p>
             </div>
-            <Link
-              href="/stories"
-              className="label-track shrink-0 text-[#C5A059] hover:underline underline-offset-4"
-            >
-              Browse All 14 Season 1 Episodes →
-            </Link>
+            <div className="flex flex-wrap items-center gap-4 shrink-0">
+              <button
+                type="button"
+                onClick={() => {
+                  setIdentKey((k) => k + 1);
+                  setIdentOpen(true);
+                }}
+                className="label-track inline-flex items-center gap-2 border border-[#444444] px-4 py-2.5 text-[#F5F5F0] hover:border-[#C5A059] hover:text-[#C5A059]"
+              >
+                <PlayCircle className="h-3.5 w-3.5 text-[#C5A059]" strokeWidth={1.25} />
+                <span>4s Ident</span>
+              </button>
+              <Link
+                href="/stories"
+                className="label-track text-[#C5A059] hover:underline underline-offset-4"
+              >
+                All 14 Episodes &amp; Timeline →
+              </Link>
+            </div>
           </Reveal>
 
           <EpisodeStack onSelectStory={(s) => setSelectedDossier(s)} />
+
+          <Reveal className="mt-8 flex flex-wrap items-center justify-between gap-4 border-t border-[#444444] pt-6">
+            <p className="label-track text-[#8E8E8A]">
+              Sundays · 15:00 WAT on {YOUTUBE_HANDLE}
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <button
+                type="button"
+                onClick={() => downloadSundayPremiereIcs()}
+                className="label-track text-[#8E8E8A] hover:text-[#F5F5F0]"
+              >
+                Add Sundays (.ics)
+              </button>
+              <a
+                href={YOUTUBE_SUBSCRIBE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="label-track text-[#C5A059] hover:underline"
+              >
+                Subscribe ({YOUTUBE_HANDLE}) →
+              </a>
+            </div>
+          </Reveal>
         </div>
       </section>
 
       {/* =================================================================
-          ACT 5: QUIET WITNESS WALL (COMMUNITY — FLOWS IN ONE AT A TIME)
+          ACT 6: QUIET CLOSING NOTE (THE DYEGU RULE + STUDIO MUG PREVIEW)
           ================================================================= */}
-      <QuietWitnessWall />
-
-      {/* =================================================================
-          ACT 6: SIR K, 1-PAGE FIELD NOTE CAPTURE & THREE DOORS
-          ================================================================= */}
-      <section
-        aria-label="Sir K, The Comeback File, and Three Doors"
-        className="bg-[#000000] py-20 lg:py-28"
-      >
+      <section aria-label="The DYEGU Rule" className="bg-[#000000] py-20 lg:py-24">
         <div className="mx-auto max-w-[1200px] px-6">
-          {/* Host Anchor */}
-          <Reveal className="grid grid-cols-1 gap-10 pb-16 lg:grid-cols-12 lg:gap-0">
+          <Reveal className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-0">
             <div className="lg:col-span-4 lg:pr-12">
-              <div className="mx-auto max-w-[300px] lg:mx-0">
+              <div className="mx-auto max-w-[280px] lg:mx-0">
                 <div className="flex aspect-[4/5] w-full flex-col items-center justify-between border border-[rgba(197,160,89,0.60)] bg-[#000000] p-6">
                   <div className="flex w-full justify-between label-track text-[#8E8E8A]">
                     <span>4:5</span>
-                    <span>4K · 24FPS</span>
+                    <span>STUDIO 01</span>
                   </div>
                   <div className="flex flex-col items-center gap-4 text-center">
-                    <PhoenixMark size={32} />
+                    <PhoenixMark size={30} />
                     <p className="label-track text-[#C5A059]">SIR K · STUDIO 01</p>
                     <p className="text-xs leading-relaxed text-[#8E8E8A]">
-                      Reserved 4:5 frame for low-key dark studio portrait
+                      Reserved 4:5 dark-studio portrait frame
                     </p>
                   </div>
                   <div className="w-full border-t border-[#444444] pt-3 text-center label-track text-[#8E8E8A]">
@@ -408,19 +525,18 @@ export function JourneyExperience() {
             </div>
 
             <div className="flex flex-col justify-center lg:col-span-8 lg:border-l lg:border-[#444444] lg:pl-14">
-              <p className="label-track text-[#C5A059]">THE DYEGU RULE · SIR K</p>
-              <blockquote className="mt-5 font-display text-[32px] font-medium italic leading-[1.24] text-[#F5F5F0] sm:text-[44px]">
+              <p className="label-track text-[#C5A059]">THE DYEGU RULE</p>
+              <blockquote className="mt-4 font-display text-[32px] font-medium italic leading-[1.24] text-[#F5F5F0] sm:text-[42px]">
                 &ldquo;Sometimes losing the version of your life you outgrew is how you build the
                 one that lasts.&rdquo;
               </blockquote>
-              <p className="mt-6 max-w-2xl text-base leading-relaxed text-[#8E8E8A]">
+              <p className="mt-5 max-w-2xl text-sm leading-relaxed text-[#8E8E8A]">
                 &ldquo;I don&apos;t make these documentaries to tell you everything happens for a
                 reason. I make them because when you&apos;re in the wilderness, you deserve to see
                 the actual receipts of people who refused to quit—and how they put one brick down
                 at a time.&rdquo; <span className="text-[#F5F5F0]">— Sir K</span>
               </p>
 
-              {/* Studio Mug Preview (Holding apparel pending trademark clearance) */}
               <div className="mt-8 flex items-center gap-4 border-t border-[#444444] pt-6">
                 <div className="h-16 w-16 shrink-0 border border-[rgba(197,160,89,0.60)] bg-[#000000] overflow-hidden">
                   <img
@@ -444,118 +560,10 @@ export function JourneyExperience() {
               </div>
             </div>
           </Reveal>
-
-          {/* 1-Page Field Note & Comeback File Capture */}
-          <Reveal className="mb-14 border border-[rgba(197,160,89,0.60)] bg-[#000000] p-7 sm:p-10">
-            <div id="field-note" className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-center">
-              <div className="lg:col-span-6">
-                <p className="label-track text-[#C5A059]">The Comeback File · Free Every Sunday</p>
-                <h2 className="mt-2 font-display text-3xl font-medium text-[#F5F5F0] sm:text-4xl">
-                  Take the 1-Page Field Note offline tonight.
-                </h2>
-                <p className="mt-3 text-sm leading-relaxed text-[#8E8E8A]">
-                  Download the printable Wilderness Field Note immediately—plus one quiet,
-                  primary-sourced comeback story in your inbox every Sunday.
-                </p>
-              </div>
-              <div className="lg:col-span-6">
-                <SubscribeForm
-                  buttonLabel="Send My 1-Page Field Note →"
-                  placeholder="Your email address"
-                  finePrint="Zero spam. Zero hustle sermons. Unsubscribe in 1 click."
-                />
-              </div>
-            </div>
-          </Reveal>
-
-          {/* Three Doors Flowing In One at a Time */}
-          <StaggerList
-            gap={0.09}
-            className="grid grid-cols-1 divide-y divide-[#444444] border-y border-[#444444] md:grid-cols-3 md:divide-x md:divide-y-0"
-          >
-            <StaggerItem className="flex flex-col justify-between py-9 md:pr-8">
-              <div>
-                <PlayCircle className="h-5 w-5 text-[#C5A059]" strokeWidth={1.25} />
-                <p className="mt-4 label-track text-[#C5A059]">DOOR 01 · WATCH</p>
-                <h3 className="mt-2 font-display text-3xl font-medium text-[#F5F5F0]">
-                  The Sunday Screening Ritual
-                </h3>
-                <p className="mt-3 text-sm leading-relaxed text-[#8E8E8A]">
-                  New 25-minute investigative documentaries every Sunday at 15:00 WAT on{" "}
-                  {YOUTUBE_HANDLE}.
-                </p>
-              </div>
-              <div className="mt-7 flex flex-col gap-3">
-                <a
-                  href={YOUTUBE_SUBSCRIBE_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="label-track text-[#C5A059] hover:underline underline-offset-4"
-                >
-                  Subscribe on YouTube ({YOUTUBE_HANDLE}) →
-                </a>
-                <button
-                  type="button"
-                  onClick={() => downloadSundayPremiereIcs()}
-                  className="label-track text-left text-[#8E8E8A] hover:text-[#F5F5F0]"
-                >
-                  Add Sundays (.ics)
-                </button>
-              </div>
-            </StaggerItem>
-
-            <StaggerItem className="flex flex-col justify-between py-9 md:px-8">
-              <div>
-                <Users className="h-5 w-5 text-[#C5A059]" strokeWidth={1.25} />
-                <p className="mt-4 label-track text-[#C5A059]">DOOR 02 · WALK TOGETHER</p>
-                <h3 className="mt-2 font-display text-3xl font-medium text-[#F5F5F0]">
-                  Founding Rebuild Circles
-                </h3>
-                <p className="mt-3 text-sm leading-relaxed text-[#8E8E8A]">
-                  Small, peer-led rooms of 6–8 people navigating your exact chapter in your
-                  timezone. Zero pitching, strictly confidential. Opening January 2027.
-                </p>
-              </div>
-              <div className="mt-7">
-                <Link
-                  href="/community/circles"
-                  className="label-track text-[#C5A059] hover:underline underline-offset-4"
-                >
-                  Join the Founding Cohort Waitlist →
-                </Link>
-              </div>
-            </StaggerItem>
-
-            <StaggerItem className="flex flex-col justify-between py-9 md:pl-8">
-              <div>
-                <HeartHandshake className="h-5 w-5 text-[#C5A059]" strokeWidth={1.25} />
-                <p className="mt-4 label-track text-[#C5A059]">DOOR 03 · STAND BEHIND THE WORK</p>
-                <h3 className="mt-2 font-display text-3xl font-medium text-[#F5F5F0]">
-                  Practitioners &amp; Institutional Allies
-                </h3>
-                <p className="mt-3 text-sm leading-relaxed text-[#8E8E8A]">
-                  For vetted therapists, mentors, coaches, NGOs, and organizations looking to
-                  contribute pitch-free guidance or bring DYEGU screenings to teams in transition.
-                </p>
-              </div>
-              <div className="mt-7 flex flex-wrap items-center gap-5">
-                <button
-                  type="button"
-                  onClick={() => openAllyDrawer("practitioners")}
-                  className="label-track text-[#C5A059] hover:underline underline-offset-4"
-                >
-                  Enter the Ally Desk →
-                </button>
-                <Link href="/allies" className="label-track text-[#8E8E8A] hover:text-[#F5F5F0]">
-                  /allies
-                </Link>
-              </div>
-            </StaggerItem>
-          </StaggerList>
         </div>
       </section>
 
-      {/* Instant-Open Chapter Protocol Room Modal (Opens right away on click!) */}
+      {/* Instant-Open Chapter Room Modal */}
       <ChapterRoomModal
         chapter={openChapter}
         onClose={handleCloseChapter}

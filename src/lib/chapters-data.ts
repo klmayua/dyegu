@@ -40,6 +40,7 @@ export interface MasterChapter {
   highlightedSubjects: string[];
   mirrorEyebrow: string;
   mirrorHeadline: string;
+  visitorTruth: string;
   mirrorNarrative: string;
   plateCitation: string;
   plateBadge: string;
@@ -66,6 +67,8 @@ export const MASTER_CHAPTERS: MasterChapter[] = [
     highlightedSubjects: ["Steve Jobs"],
     mirrorEyebrow: "YOUR HISTORICAL MIRROR · EPISODE 01",
     mirrorHeadline: "An office, a title, and no job.",
+    visitorTruth:
+      "Losing a seat you built hits deeper than a payslip—it shakes where you carry your name. Nothing that happened this week erased your judgement, your craft, or what you know how to build. You do not need to solve the next five years tonight; just reclaim tomorrow morning.",
     mirrorNarrative:
       "If the phone stopped ringing this week, you know the specific humiliation of losing a seat you built. In May 1985, Steve Jobs was thirty years old—stripped of every operating role at Apple, left with a ceremonial chairman title and an empty building across the street. Wall Street was told there was no role for him now or ever. He didn't bounce back in ninety days. He spent eleven years losing money on NeXT and Pixar before anyone called it a comeback. You are not finished. You are simply at the start of the unglamorous middle.",
     plateCitation: "ARCHIVAL PLATE · FORTUNE MAGAZINE, 5 AUGUST 1985",
@@ -108,6 +111,8 @@ export const MASTER_CHAPTERS: MasterChapter[] = [
     highlightedSubjects: ["Tyler Perry"],
     mirrorEyebrow: "YOUR HISTORICAL MIRROR · EPISODE 03",
     mirrorHeadline: "Thirty people in a 1,200-seat hall.",
+    visitorTruth:
+      "Financial pressure is loud at 2:00 AM and invisible to everyone who still assumes you are the strong one. A broken balance sheet is a hard season—never a verdict on your mind or your worth. Put the real numbers in daylight tomorrow and take one calm step back to solid ground.",
     mirrorNarrative:
       "Financial collapse is loud in your head at 2:00 AM and completely invisible to the people who still expect you to carry them. In 1992, Tyler Perry took his entire $12,000 savings from working as a bill collector and rented an Atlanta theatre expecting 1,200 people. Thirty showed up. He lost his apartment and slept in a Geo Metro he hid from the repo man—yet he staged that same play once a year through six years of failure before 1998 broke open. A zero balance sheet is a season, never a sentence on what you know how to build.",
     plateCitation: "ARCHIVAL PLATE · ATLANTA RECORD, 1992–1998",
@@ -149,6 +154,8 @@ export const MASTER_CHAPTERS: MasterChapter[] = [
     highlightedSubjects: ["J.K. Rowling"],
     mirrorEyebrow: "YOUR HISTORICAL MIRROR · EPISODE 02",
     mirrorHeadline: "Twelve publishers passed before one reader said yes.",
+    visitorTruth:
+      "Every rejection lands on the same bruise until it becomes tempting to stop knocking altogether. Most rooms cannot recognise solid work until somebody else validates it first. Treat every 'no' as research data—not a sentence—and keep your hand steady.",
     mirrorNarrative:
       "Every rejection lands on the exact same bruise until you start mistaking a gatekeeper's hesitation for a verdict on your worth. In 1994, Joanne Rowling was grieving her mother, raising an infant daughter on state income support in Edinburgh, and watching twelve publishers turn down her manuscript. She didn't need twelve committees to agree—she needed one chairman to hand chapter one to his eight-year-old daughter. Twelve nos are data, not a final judgement.",
     plateCitation: "ARCHIVAL PLATE · HARVARD GAZETTE & THE HERALD, 1997",
@@ -190,6 +197,8 @@ export const MASTER_CHAPTERS: MasterChapter[] = [
     highlightedSubjects: ["Tina Turner"],
     mirrorEyebrow: "YOUR HISTORICAL MIRROR · EPISODE 06",
     mirrorHeadline: "Thirty-six cents and her own name.",
+    visitorTruth:
+      "When a marriage or home splits, you don't just lose a partner—you lose the map of the next ten years. You are not starting from zero; you carry your name, your dignity, and everything you already survived. Protect the quiet basics tomorrow before deciding anything permanent.",
     mirrorNarrative:
       "When a marriage or home splits, you don't only lose a partner—you lose the entire map of the next ten years. In July 1976, Tina Turner ran across a Dallas highway at night with thirty-six cents and a Mobil gas card, surrendering every house and royalty in the divorce just to keep her own name. American labels dismissed her at 44; eight years of rebuilding in small lounges and Europe ended with Private Dancer and three Grammys. You are not starting from zero—you carry your name and everything you survived.",
     plateCitation: "ARCHIVAL PLATE · SEASON 1 FILE · DALLAS, JULY 1976",
@@ -231,6 +240,8 @@ export const MASTER_CHAPTERS: MasterChapter[] = [
     highlightedSubjects: ["Monica Seles", "Shania Twain"],
     mirrorEyebrow: "YOUR HISTORICAL MIRROR · EPISODES 09 & 11",
     mirrorHeadline: "Slower is not the same as finished.",
+    visitorTruth:
+      "When your body changes the terms, waiting feels harder than fighting—especially when nobody around you can see what you are carrying. Slower is not finished. Redraw the calendar around today's capacity without cancelling your future.",
     mirrorNarrative:
       "When your body rewrites the terms, waiting feels harder than fighting. At nineteen, Monica Seles held eight Grand Slams before an on-court stabbing took twenty-eight months of her prime; Shania Twain lost her singing voice to nerve damage and endured open-throat surgery and fifteen years of quiet rehabilitation. Seles walked back onto centre court to win the 1996 Australian Open; Twain returned to #1. Redraw the calendar without surrendering the climb.",
     plateCitation: "ARCHIVAL PLATE · SEASON 1 CHRONOLOGY · 1993–2017",
@@ -272,6 +283,8 @@ export const MASTER_CHAPTERS: MasterChapter[] = [
     highlightedSubjects: ["George Foreman"],
     mirrorEyebrow: "YOUR HISTORICAL MIRROR · EPISODE 14",
     mirrorHeadline: "The same red trunks from Zaire, twenty years later.",
+    visitorTruth:
+      "Starting over at forty, fifty, or beyond carries real bills and zero patience for loud advice. Quiet the voice saying the clock ran out—you are not arriving empty-handed, you are arriving with decades of pattern recognition no beginner can shortcut.",
     mirrorNarrative:
       "Rebuilding at forty, fifty, or beyond carries responsibilities a twenty-year-old doesn't have—and a quiet pressure to pretend you should already be finished. Twenty years after losing to Muhammad Ali in Zaire, George Foreman was broke, mocked by sportswriters, and fighting to keep his youth centre open. On 5 November 1994, at 45 years old, wearing the exact same red trunks, he won the heavyweight championship of the world. You are not late; you are arriving with decades of discernment no beginner can shortcut.",
     plateCitation: "ARCHIVAL PLATE · LAS VEGAS, 5 NOVEMBER 1994",
@@ -313,6 +326,8 @@ export const MASTER_CHAPTERS: MasterChapter[] = [
     highlightedSubjects: ["Steve Jobs", "Tyler Perry"],
     mirrorEyebrow: "YOUR HISTORICAL MIRROR · SEASON 1 ANTHOLOGY",
     mirrorHeadline: "Nobody talks about what year three actually felt like.",
+    visitorTruth:
+      "You don't need a dramatic catastrophe to feel quietly stalled while the years keep turning. Clarity almost never arrives while staring at the wall—direction is what small, stubborn motion leaves behind. Run one unhurried experiment before noon tomorrow.",
     mirrorNarrative:
       "You don't need a dramatic catastrophe to feel quietly drained. Between every public fall and every celebrated comeback sits the long, unfilmed middle—NeXT losing $40M a year, Perry's fourth empty theatre, Denzel Washington sitting in his mother's beauty parlour after being dismissed with a 1.7 GPA. Clarity almost never arrives while staring at the wall; direction is what small, stubborn motion leaves behind.",
     plateCitation: "ARCHIVAL PLATE · SEASON 1 CROSS-CHRONOLOGY",
@@ -354,6 +369,8 @@ export const MASTER_CHAPTERS: MasterChapter[] = [
     highlightedSubjects: ["J.K. Rowling"],
     mirrorEyebrow: "YOUR HISTORICAL MIRROR · EPISODE 02",
     mirrorHeadline: "Grief has its own clock.",
+    visitorTruth:
+      "Nothing here is meant to rush you or tidy a real loss into a motivational quote. You do not owe anyone a performance of strength this week. Keeping one quiet daily anchor steady—and letting safe people help carry it—is enough for tomorrow.",
     mirrorNarrative:
       "In December 1990, Anne Rowling died of multiple sclerosis at forty-five—months after her daughter began writing a children's book she would never get to read. Grief sat beside Joanne in every quiet Edinburgh café where those chapters took shape. Nothing here tries to rush grief or tidy it into a motivational lesson. Keeping one steady anchor while the ground settles is enough for this week.",
     plateCitation: "ARCHIVAL PLATE · THE GUARDIAN (2001) & JKROWLING.COM",
